@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolbox>
+    <tool>
+        <key>DateBuilder</key>
+        <class>com.bysj.rj.util.DateBuilder</class>
+        <scope>application</scope>
+    </tool>
+    <tool>
+        <key>StringUtil</key>
+        <class>com.bysj.rj.util.StringUtil</class>
+        <scope>application</scope>
+    </tool>
+</toolbox>
