@@ -27,6 +27,7 @@ import java.util.Properties;
 public class RootConfig {
     private static Properties properties = new Properties();
 
+
     @Bean
     public User user() throws Exception {
         User user = new User();
