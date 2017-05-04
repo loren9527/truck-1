@@ -28,4 +28,5 @@ public class TruckWebAppInitializer extends AbstractAnnotationConfigDispatcherSe
         return new Filter[]{encodingFilter};
     }
 
+
 }

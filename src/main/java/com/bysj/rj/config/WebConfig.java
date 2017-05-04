@@ -15,17 +15,14 @@ import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * Created by Administrator on 2017/4/29 0029.
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.bysj.rj")
+@ComponentScan(basePackages = {"com.bysj.rj.controller","com.bysj.rj.listener"})
 public class WebConfig extends WebMvcConfigurerAdapter{
-
-    private static Properties properties = new Properties();
 
     @Bean
     public VelocityConfigurer velocityConfig(){

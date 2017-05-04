@@ -9,23 +9,23 @@ import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
+import org.springframework.stereotype.Controller;
+import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.util.Properties;
 
 /**
  * Created by Administrator on 2017/4/29 0029.
  */
 @Configuration
-@ComponentScan(basePackages = {"com.bysj.rj"})
+@ComponentScan(basePackages = {"com.bysj.rj."},excludeFilters = { @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Controller.class,WebListener.class})})
 @MapperScan("com.bysj.rj.dao")
 @EnableTransactionManagement
 public class RootConfig {
-    private static Properties properties = new Properties();
 
 
     @Bean
