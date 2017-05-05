@@ -28,18 +28,10 @@ public class RootConfig {
 
 
     @Bean
-    public User user() throws Exception {
-        User user = new User();
-        user.setPassword("sssssssssss");
-        user.setUserName("aaaaaaaaaaa");
-        System.out.println(JSON.toJSONString(user));
-        return user;
-    }
-    @Bean
     public DataSource dataSource() throws Exception{
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/shopdb?useUnicode=true&characterEncoding=UTF-8");
+        dataSource.setUrl("jdbc:mysql://long.host:3306/shopdb?useUnicode=true&characterEncoding=UTF-8");
         dataSource.setUsername("root");
         dataSource.setPassword("");
         dataSource.setMaxActive(20);
