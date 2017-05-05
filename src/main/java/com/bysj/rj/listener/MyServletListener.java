@@ -16,7 +16,7 @@ public class MyServletListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext ctx = servletContextEvent.getServletContext();
         String ctxPath = ctx.getContextPath();
-        ctx.setAttribute("ctxpath", ctxPath);
+        ctx.setAttribute("ctxPath", ctxPath);
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
