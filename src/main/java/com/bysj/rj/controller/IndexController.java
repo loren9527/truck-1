@@ -1,8 +1,6 @@
 package com.bysj.rj.controller;
 
-import com.bysj.rj.service.IUserService;
 import org.apache.log4j.Logger;
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 public class IndexController {
     private Logger logger = Logger.getLogger(IndexController.class);
     @Autowired
-    private IUserService userService;
+    private IService userService;
 
     @Autowired
     private HttpServletRequest request;

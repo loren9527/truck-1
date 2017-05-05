@@ -2,10 +2,7 @@ package com.bysj.rj.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.bysj.rj.config.RootConfig;
-import com.bysj.rj.config.TruckWebAppInitializer;
 import com.bysj.rj.config.WebConfig;
-import com.bysj.rj.entity.User;
-import com.bysj.rj.service.IUserService;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
  * Created by Administrator on 2017/4/26 0026.
@@ -25,7 +21,7 @@ public class MybatisTest {
     private ApplicationContext ac = null;
 
 //    @Autowired
-//    private IUserService userService = null;
+//    private IService userService = null;
 
     @Autowired
     private User user;
@@ -34,7 +30,7 @@ public class MybatisTest {
 //	public void before() {
 //        logger.info("before");
 //		ac = new ClassPathXmlApplicationContext("classpath:spring-mybatis.xml");
-//		userService = (IUserService) ac.getBean("userService");
+//		userService = (IService) ac.getBean("userService");
 //	}
 //    @Test
 //    public void test1() {

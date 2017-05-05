@@ -1,7 +1,6 @@
 package com.bysj.rj.config;
 
 import com.alibaba.fastjson.JSON;
-import com.bysj.rj.entity.User;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -65,7 +64,7 @@ public class RootConfig {
     @Bean
     public MapperScannerConfigurer mapperScannerConfigurer(SqlSessionFactoryBean sqlSessionFactoryBean){
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
-        mapperScannerConfigurer.setSqlSessionFactoryBeanName("sessionFactory");
+        mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactoryBean");
         mapperScannerConfigurer.setBasePackage("com.bysj.rj.dao");
         return mapperScannerConfigurer;
     }
