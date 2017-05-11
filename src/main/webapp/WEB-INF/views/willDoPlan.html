@@ -450,12 +450,11 @@
 
     function editTruckPlan(planId) {
          //要学会用浏览器控制台测试 console.info(tdArr)   console.log(tdArr.eq(1).text());
-
         $.ajax({
             type: "GET",
             url:  "${ctxPath}/editTruckPlan?planId="+planId,
             dataType: "json",
-            success: function(data){
+            success: function (data) {
                 $("#truckType").val(data.truckPlanEntity.truckType);
                 $("#isFinish").val(data.truckPlanEntity.isFinish);
                 $("#planNumber").val(data.truckPlanEntity.planNumber);
@@ -477,8 +476,10 @@
 //                            + '</p></div>';
 //                });
 //                $('#resText').html(html);
+            },
+            error: function (data) {
+                alert(data);
             }
-
         });
     }
 
