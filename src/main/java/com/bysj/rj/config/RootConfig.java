@@ -31,9 +31,9 @@ public class RootConfig {
     public DataSource dataSource() throws Exception{
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://long.host:3306/bysj?useUnicode=true&characterEncoding=UTF-8");
+        dataSource.setUrl("jdbc:mysql://101.201.65.103:3306/bysj?useUnicode=true&characterEncoding=UTF-8");
         dataSource.setUsername("root");
-        dataSource.setPassword("123456");
+        dataSource.setPassword("root");
         dataSource.setMaxActive(20);
         dataSource.setInitialSize(0);
         dataSource.setMaxIdle(20);
