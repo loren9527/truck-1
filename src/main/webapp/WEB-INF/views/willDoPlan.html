@@ -456,26 +456,18 @@
             url:  "${ctxPath}/editTruckPlan?planId="+planId,
             dataType: "json",
             success: function(data){
-                 var jsonObject=JSON.parse(data);
-                
-                var truckPlanEntity = {
-                    truckType: $("#truckType").val()=,
-                    isFinish: $("#isFinish").val(),
-                    planNumber: $("#planNumber").val(),
-                    planVolume: $("#planVolume").val(),
-                    goodVolume: $("#goodVolume").val(),
-                    remainVolume: $("#remainVolume").val(),
-                    badVolume: $("#badVolume").val(),
-                    planDate: $("#planDate").val(),
-                    produceDate: $("#produceDate").val(),
-                    finishDate: $("#finishDate").val(),
-                    examine: $("#examine").val(),
-                    remark: $("#remark").val()
-                }
-
-
-
-
+                $("#truckType").val(data.truckPlanEntity.truckType);
+                $("#isFinish").val(data.truckPlanEntity.isFinish);
+                $("#planNumber").val(data.truckPlanEntity.planNumber);
+                $("#planVolume").val(data.truckPlanEntity.planVolume);
+                $("#goodVolume").val(data.truckPlanEntity.goodVolume);
+                $("#remainVolume").val(data.truckPlanEntity.remainVolume);
+                $("#badVolume").val(data.truckPlanEntity.badVolume);
+                $("#planDate").val(data.truckPlanEntity.planDate);
+                $("#produceDate").val(data.truckPlanEntity.produceDate);
+                $("#finishDate").val(data.truckPlanEntity.finishDate);
+                $("#examine").val(data.truckPlanEntity.examine);
+                $("#remark").val(data.truckPlanEntity.remark);
 
 //                $('#resText').empty();   //清空resText里面的所有内容
 //                var html = '';
