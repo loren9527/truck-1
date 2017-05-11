@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class PartsController extends BaseController{
 
 
-    @GetMapping("willDoPlan")
+    @GetMapping("/willDoPlan")
     public ModelAndView willDoPlan(){
         ModelAndView model = new ModelAndView();
         model.setViewName("willDoPlan");

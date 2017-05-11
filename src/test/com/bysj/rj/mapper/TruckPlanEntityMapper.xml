@@ -3,7 +3,7 @@
 <mapper namespace="test.com.bysj.rj.dao.TruckPlanEntityMapper" >
   <resultMap id="BaseResultMap" type="test.com.bysj.rj.entity.TruckPlanEntity" >
     <id column="plan_id" property="planId" jdbcType="BIGINT" />
-    <result column="truck_type" property="truckType" jdbcType="CHAR" />
+    <result column="truck_type" property="truckType" jdbcType="VARCHAR" />
     <result column="is_finish" property="isFinish" jdbcType="TINYINT" />
     <result column="plan_number" property="planNumber" jdbcType="VARCHAR" />
     <result column="plan_volume" property="planVolume" jdbcType="INTEGER" />
@@ -13,7 +13,7 @@
     <result column="plan_date" property="planDate" jdbcType="BIGINT" />
     <result column="produce_date" property="produceDate" jdbcType="BIGINT" />
     <result column="finish_date" property="finishDate" jdbcType="BIGINT" />
-    <result column="check" property="check" jdbcType="VARCHAR" />
+    <result column="examine" property="examine" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -76,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List" >
     plan_id, truck_type, is_finish, plan_number, plan_volume, good_volume, remain_volume, 
-    bad_volume, plan_date, produce_date, finish_date, check, remark
+    bad_volume, plan_date, produce_date, finish_date, examine, remark
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="test.com.bysj.rj.entity.TruckPlanEntityExample" >
     select
@@ -113,12 +113,12 @@
     insert into truck_plan (plan_id, truck_type, is_finish, 
       plan_number, plan_volume, good_volume, 
       remain_volume, bad_volume, plan_date, 
-      produce_date, finish_date, check, 
+      produce_date, finish_date, examine, 
       remark)
-    values (#{planId,jdbcType=BIGINT}, #{truckType,jdbcType=CHAR}, #{isFinish,jdbcType=TINYINT}, 
+    values (#{planId,jdbcType=BIGINT}, #{truckType,jdbcType=VARCHAR}, #{isFinish,jdbcType=TINYINT}, 
       #{planNumber,jdbcType=VARCHAR}, #{planVolume,jdbcType=INTEGER}, #{goodVolume,jdbcType=INTEGER}, 
       #{remainVolume,jdbcType=INTEGER}, #{badVolume,jdbcType=INTEGER}, #{planDate,jdbcType=BIGINT}, 
-      #{produceDate,jdbcType=BIGINT}, #{finishDate,jdbcType=BIGINT}, #{check,jdbcType=VARCHAR}, 
+      #{produceDate,jdbcType=BIGINT}, #{finishDate,jdbcType=BIGINT}, #{examine,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="test.com.bysj.rj.entity.TruckPlanEntity" >
@@ -157,8 +157,8 @@
       <if test="finishDate != null" >
         finish_date,
       </if>
-      <if test="check != null" >
-        check,
+      <if test="examine != null" >
+        examine,
       </if>
       <if test="remark != null" >
         remark,
@@ -169,7 +169,7 @@
         #{planId,jdbcType=BIGINT},
       </if>
       <if test="truckType != null" >
-        #{truckType,jdbcType=CHAR},
+        #{truckType,jdbcType=VARCHAR},
       </if>
       <if test="isFinish != null" >
         #{isFinish,jdbcType=TINYINT},
@@ -198,8 +198,8 @@
       <if test="finishDate != null" >
         #{finishDate,jdbcType=BIGINT},
       </if>
-      <if test="check != null" >
-        #{check,jdbcType=VARCHAR},
+      <if test="examine != null" >
+        #{examine,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -219,7 +219,7 @@
         plan_id = #{record.planId,jdbcType=BIGINT},
       </if>
       <if test="record.truckType != null" >
-        truck_type = #{record.truckType,jdbcType=CHAR},
+        truck_type = #{record.truckType,jdbcType=VARCHAR},
       </if>
       <if test="record.isFinish != null" >
         is_finish = #{record.isFinish,jdbcType=TINYINT},
@@ -248,8 +248,8 @@
       <if test="record.finishDate != null" >
         finish_date = #{record.finishDate,jdbcType=BIGINT},
       </if>
-      <if test="record.check != null" >
-        check = #{record.check,jdbcType=VARCHAR},
+      <if test="record.examine != null" >
+        examine = #{record.examine,jdbcType=VARCHAR},
       </if>
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -262,7 +262,7 @@
   <update id="updateByExample" parameterType="map" >
     update truck_plan
     set plan_id = #{record.planId,jdbcType=BIGINT},
-      truck_type = #{record.truckType,jdbcType=CHAR},
+      truck_type = #{record.truckType,jdbcType=VARCHAR},
       is_finish = #{record.isFinish,jdbcType=TINYINT},
       plan_number = #{record.planNumber,jdbcType=VARCHAR},
       plan_volume = #{record.planVolume,jdbcType=INTEGER},
@@ -272,7 +272,7 @@
       plan_date = #{record.planDate,jdbcType=BIGINT},
       produce_date = #{record.produceDate,jdbcType=BIGINT},
       finish_date = #{record.finishDate,jdbcType=BIGINT},
-      check = #{record.check,jdbcType=VARCHAR},
+      examine = #{record.examine,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -282,7 +282,7 @@
     update truck_plan
     <set >
       <if test="truckType != null" >
-        truck_type = #{truckType,jdbcType=CHAR},
+        truck_type = #{truckType,jdbcType=VARCHAR},
       </if>
       <if test="isFinish != null" >
         is_finish = #{isFinish,jdbcType=TINYINT},
@@ -311,8 +311,8 @@
       <if test="finishDate != null" >
         finish_date = #{finishDate,jdbcType=BIGINT},
       </if>
-      <if test="check != null" >
-        check = #{check,jdbcType=VARCHAR},
+      <if test="examine != null" >
+        examine = #{examine,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -322,7 +322,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="test.com.bysj.rj.entity.TruckPlanEntity" >
     update truck_plan
-    set truck_type = #{truckType,jdbcType=CHAR},
+    set truck_type = #{truckType,jdbcType=VARCHAR},
       is_finish = #{isFinish,jdbcType=TINYINT},
       plan_number = #{planNumber,jdbcType=VARCHAR},
       plan_volume = #{planVolume,jdbcType=INTEGER},
@@ -332,7 +332,7 @@
       plan_date = #{planDate,jdbcType=BIGINT},
       produce_date = #{produceDate,jdbcType=BIGINT},
       finish_date = #{finishDate,jdbcType=BIGINT},
-      check = #{check,jdbcType=VARCHAR},
+      examine = #{examine,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR}
     where plan_id = #{planId,jdbcType=BIGINT}
   </update>

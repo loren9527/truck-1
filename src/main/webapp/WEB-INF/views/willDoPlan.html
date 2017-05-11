@@ -2,19 +2,14 @@
 <html lang="en">
 
 <head>
-
     <!-- Basic -->
     <meta charset="UTF-8"/>
-
-    <title>Advanced Table | Fire - Admin Template</title>
-
+    <title>待生产计划</title>
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-
     <!-- 引入外部CSS js 文件 -->
     #parse("includeLink.html")
     <!-- end 引入外部CSS js 文件 -->
-
 </head>
 
 <body>
@@ -80,264 +75,35 @@
                                 </tr>
                                 </thead>
                                 <tbody id="id-tbody">
+                                #foreach($truckPlanOne in $truckPlanEntityList)
                                 <tr class="gradeX">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-warning">完成</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center" style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
+                                    <td>$!{truckPlanOne.truckType}</td>
+                                    <td>
+                                        #if($truckPlanOne.isFinish)
+                                        <span class="label label-default">已完成</span>
+                                        #else
+                                        <span class="label label-warning">未完成</span>
+                                        #end
+                                    </td>
+                                    <td>$!{truckPlanOne.planNumber}</td>
+                                    <td class="center">$!{truckPlanOne.planVolume}</td>
+                                    <td class="center">$!truckPlanOne.goodVolume</td>
+                                    <td class="center">$!truckPlanOne.remainVolume</td>
+                                    <td class="center">$!truckPlanOne.badVolume</td>
+                                    <td class="center" style="width: 140px;">$!truckPlanOne.planDate</td>
+                                    <td class="center">$!truckPlanOne.produceDate</td>
+                                    <td class="center">$!truckPlanOne.finishDate</td>
+                                    <td class="center">$!truckPlanOne.check</td>
+                                    <td class="center">$!truckPlanOne.remark</td>
                                     <td class="actions">
                                         <a href="#" class="on-default edit-row" data-toggle="modal"
-                                           data-target="#planModal"><i class="fa fa-pencil"></i></a>
+                                           data-target="#planModal" onclick='editTruckPlan($!truckPlanOne.planId)'><i class="fa fa-pencil"></i></a>
                                         <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                                         <a href="#" class="on-default remove-row" data-toggle="modal"
                                            data-target="#dayPlanModal"><i class="fa fa-table red"></i></a>
                                     </td>
                                 </tr>
-
-                                <tr class="gradeX">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-primary">未完工</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td style="width: 140px;" class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="actions">
-                                        <a href="#" class="on-default edit-row" data-toggle="modal"
-                                           data-target="#planModal"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        <a href="#" class="on-default remove-row" data-toggle="modal"
-                                           data-target="#dayPlanModal"><i class="fa fa-table red"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeC">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-warning">完成</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td style="width: 140px;" class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="actions">
-                                        <a href="#" class="on-default edit-row" data-toggle="modal"
-                                           data-target="#planModal"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        <a href="#" class="on-default remove-row" data-toggle="modal"
-                                           data-target="#dayPlanModal"><i class="fa fa-table red"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeC">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-primary">未完工</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td style="width: 140px;" class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="actions">
-                                        <a href="#" class="on-default edit-row" data-toggle="modal"
-                                           data-target="#planModal"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        <a href="#" class="on-default remove-row" data-toggle="modal"
-                                           data-target="#dayPlanModal"><i class="fa fa-table red"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-warning">完成</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td style="width: 140px;" class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="actions">
-                                        <a href="#" class="on-default edit-row" data-toggle="modal"
-                                           data-target="#planModal"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        <a href="#" class="on-default remove-row" data-toggle="modal"
-                                           data-target="#dayPlanModal"><i class="fa fa-table red"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-primary">未完工</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td style="width: 140px;" class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="actions">
-                                        <a href="#" class="on-default edit-row" data-toggle="modal"
-                                           data-target="#planModal"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        <a href="#" class="on-default remove-row" data-toggle="modal"
-                                           data-target="#dayPlanModal"><i class="fa fa-table red"></i></a>
-
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-warning">完成</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td style="width: 140px;" class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="actions">
-                                        <a href="#" class="on-default edit-row" data-toggle="modal"
-                                           data-target="#planModal"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        <a href="#" class="on-default remove-row" data-toggle="modal"
-                                           data-target="#dayPlanModal"><i class="fa fa-table red"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-warning">完成</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td style="width: 140px;" class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="actions">
-
-                                        <a href="#" class="on-default edit-row" data-toggle="modal"
-                                           data-target="#planModal"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        <a href="#" class="on-default remove-row" data-toggle="modal"
-                                           data-target="#dayPlanModal"><i class="fa fa-table red"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-primary">未完工</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td style="width: 140px;" class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="actions">
-                                        <a href="#" class="on-default edit-row" data-toggle="modal"
-                                           data-target="#planModal"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        <a href="#" class="on-default remove-row" data-toggle="modal"
-                                           data-target="#dayPlanModal"><i class="fa fa-table red"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeC">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-warning">完成</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td style="width: 140px;" class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="actions">
-
-                                        <a href="#" class="on-default edit-row" data-toggle="modal"
-                                           data-target="#planModal"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        <a href="#" class="on-default remove-row" data-toggle="modal"
-                                           data-target="#dayPlanModal"><i class="fa fa-table red"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeC">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-primary">未完工</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td style="width: 140px;" class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="actions">
-
-                                        <a href="#" class="on-default edit-row" data-toggle="modal"
-                                           data-target="#planModal"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        <a href="#" class="on-default remove-row" data-toggle="modal"
-                                           data-target="#dayPlanModal"><i class="fa fa-table red"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeU">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-warning">完成</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td style="width: 140px;" class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="actions">
-
-                                        <a href="#" class="on-default edit-row" data-toggle="modal"
-                                           data-target="#planModal"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        <a href="#" class="on-default remove-row" data-toggle="modal"
-                                           data-target="#dayPlanModal"><i class="fa fa-table red"></i></a>
-                                    </td>
-                                </tr>
+                                #end
                                 </tbody>
                             </table>
                         </div>
@@ -346,95 +112,85 @@
             </div>
         </div>
         <!-- End Main Page -->
-        <!-- 	描述：添加任务修改任务的模态框 -->
-        <div class="modal fade bs-example-modal-lg" id="planModal" tabindex="-1" role="dialog"
-             aria-labelledby="myLargeModalLabel">
-            <div class="modal-dialog modal-lg" role="document" style="width: 950px;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="exampleModalLabel">添加计划</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <!--<div class="form-group">
-                                <label for="recipient-name" class="control-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="message-text" class="control-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
-                            </div>-->
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-sm-6 col-md-6">
-                                        <div class="row">
-                                            <div class="col-sm-12 col-dm-12">
-                                                <div class="input-group" style="margin-bottom: 10px;">
-                                                    <span class="input-group-addon" id="basic-addon1">订单类型</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                                <div class="input-group" style="margin-bottom: 10px;">
-                                                    <span class="input-group-addon" id="basic-addon1">完工与否</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                                <div class="input-group" style="margin-bottom: 10px;">
-                                                    <span class="input-group-addon" id="basic-addon1">销售单号</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                                <div class="input-group" style="margin-bottom: 10px;">
-                                                    <span class="input-group-addon" id="basic-addon1">开始生产日</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                                <div class="input-group" style="margin-bottom: 10px;">
-                                                    <span class="input-group-addon" id="basic-addon1">原定完成日</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                                <div class="input-group" style="margin-bottom: 10px;">
-                                                    <span class="input-group-addon" id="basic-addon1">实际完成日</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
+    </div>
+    <!-- 	描述：添加任务修改任务的模态框 -->
+    <div class="modal fade bs-example-modal-lg" id="planModal" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document" style="width: 950px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">添加计划</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="panel-body">
+                            <div class="row" id="truckPlanEntity">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-dm-12">
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">订单类型</span>
+                                                <input type="text" class="form-control" id="truckType">
                                             </div>
-
-                                        </div>
-                                    </div>
-                                    <div class=" col-sm-6 col-md-6">
-                                        <div class="raw">
-
-                                            <div class=" col-sm-12 col-md-12">
-                                                <div class="input-group" style="margin-bottom: 10px;">
-                                                    <span class="input-group-addon" id="basic-addon1">总计划总量</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                                <div class="input-group" style="margin-bottom: 10px;">
-                                                    <span class="input-group-addon" id="basic-addon1">现成品总量</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                                <div class="input-group" style="margin-bottom: 10px;">
-                                                    <span class="input-group-addon" id="basic-addon1">待生产总量</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                                <div class="input-group" style="margin-bottom: 10px;">
-                                                    <span class="input-group-addon" id="basic-addon1">现次品总量</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                                <div class="input-group" style="margin-bottom: 10px;">
-                                                    <span class="input-group-addon" id="basic-addon1">审计</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                                <div class="input-group" style="margin-bottom: 10px;">
-                                                    <span class="input-group-addon" id="basic-addon1">备注</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">完工与否</span>
+                                                <input type="text" class="form-control" id="isFinish">
                                             </div>
-
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">销售单号</span>
+                                                <input type="text" class="form-control" id="planNumber">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">生产日期</span>
+                                                <input type="text" class="form-control" id="produceDate">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">完成日期</span>
+                                                <input type="text" class="form-control" id="finishDate"  >
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">原定完成日</span>
+                                                <input type="text" class="form-control" id="planDate"  >
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <div class="raw">
 
-                                <div class="panel panel-default" style="margin-top: 15px; style=" border:1px solid red
-                                ">
+                                        <div class=" col-sm-12 col-md-12">
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">总计划总量</span>
+                                                <input type="text" class="form-control" id="planVolume">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">现成品总量</span>
+                                                <input type="text" class="form-control" id="goodVolume">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">待生产总量</span>
+                                                <input type="text" class="form-control" id="remainVolume">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">现次品总量</span>
+                                                <input type="text" class="form-control" id="badVolume">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">审计</span>
+                                                <input type="text" class="form-control" id="examine">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">备注</span>
+                                                <input type="text" class="form-control" id="remark">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default" style="margin-top: 15px; ">
                                 <div class="panel-heading ">
                                     <div class="row " id="dayPlanRow">
                                         <div class=" col-sm-3 col-md-2 " style="text-align: right; ">
@@ -457,8 +213,8 @@
                                                 <th>操作</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
-                                            <tr>
+                                            <tbody id="dayPlanTr">
+                                           <!-- <tr>
                                                 <td>2017.3.16</td>
                                                 <td>11000</td>
                                                 <td>10000</td>
@@ -476,99 +232,39 @@
                                                     <a href="# " class="on-default remove-row "><i
                                                             class="fa fa-trash-o "></i></a>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017.3.16</td>
-                                                <td>11000</td>
-                                                <td>10000</td>
-                                                <td>1000</td>
-                                                <td style="text-align: center; "><span
-                                                        class="label label-warning ">完成</span></td>
-                                                <td>hhhhhhhhhhhhhhhhhhhhhhhh</td>
-                                                <td class="actions " style="width: 80px; ">
-                                                    <a href="# " class="hidden on-editing save-row "><i
-                                                            class="fa fa-save "></i></a>
-                                                    <a href="# " class="hidden on-editing cancel-row "><i
-                                                            class="fa fa-times "></i></a>
-                                                    <a href="# " class="on-default edit-row "><i
-                                                            class="fa fa-pencil "></i></a>
-                                                    <a href="# " class="on-default remove-row "><i
-                                                            class="fa fa-trash-o "></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017.3.16</td>
-                                                <td>11000</td>
-                                                <td>10000</td>
-                                                <td>1000</td>
-                                                <td style="text-align: center; "><span
-                                                        class="label label-warning ">完成</span></td>
-                                                <td>hhhhhhhhhhhhhhhhhhhhhhhh</td>
-                                                <td class="actions " style="width: 80px; ">
-                                                    <a href="# " class="hidden on-editing save-row "><i
-                                                            class="fa fa-save "></i></a>
-                                                    <a href="# " class="hidden on-editing cancel-row "><i
-                                                            class="fa fa-times "></i></a>
-                                                    <a href="# " class="on-default edit-row "><i
-                                                            class="fa fa-pencil "></i></a>
-                                                    <a href="# " class="on-default remove-row "><i
-                                                            class="fa fa-trash-o "></i></a>
-                                                </td>
-                                            </tr>
+                                            </tr>-->
 
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                    </div>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer ">
                     <button type="button " class="btn btn-default " data-dismiss="modal ">关闭</button>
-                    <button type="button " class="btn btn-primary ">保存</button>
+                    <button type="button " id="addPlan" class="btn btn-primary ">保存</button>
                 </div>
             </div>
         </div>
+    </div>
+    <!-- End 添加任务修改任务的模态框-->
 
-        <!-- End 添加任务修改任务的模态框-->
-        <!-- 	描述：日任务的模态框 -->
-        <div class="modal fade bs-example-modal-lg" id="dayPlanModal" tabindex="-1" role="dialog"
-             aria-labelledby="myLargeModalLabel">
-            <div class="modal-dialog modal-lg" role="document" style="width: 950px;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="exampleModalLabel">每日计划情况</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <!--<div class="form-group">
-                                <label for="recipient-name" class="control-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="message-text" class="control-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
-                            </div>-->
-                            <div class="panel-body">
-                                <!--<div class="row" style="margin-bottom: 10px;">
-                                   <div class="col-sm-6 col-dm-6">
-                                       <div class="input-group">
-                                           <span class="input-group-addon" id="basic-addon1">订单类型:<span class="label label-success">xxxxxxx</span></span>
-
-                                       </div>
-                                   </div>
-                                   <div class="col-sm-6 col-dm-6">
-                                       <div class="input-group">
-                                           <span class="input-group-addon" id="basic-addon1">销售单号:<span class="label label-success">xxxxxxx</span></span>
-
-                                       </div>
-                                   </div>
-                               </div>-->
-                                <div class="panel panel-default" style="margin-top: 0px; style=" border:1px solid red
-                                ">
+    <!-- 	描述：日任务的模态框 -->
+    <div class="modal fade bs-example-modal-lg" id="dayPlanModal" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document" style="width: 950px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">每日计划情况</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="panel-body">
+                            <div class="panel panel-default" style="margin-top: 0px;">
                                 <div class="panel-heading ">
                                     <div class="row " id="dayPlanRow2">
                                         <div class=" col-sm-3 col-md-2 " style="text-align: right; ">
@@ -591,49 +287,8 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>2017.3.16</td>
-                                                <td>11000</td>
-                                                <td>10000</td>
-                                                <td>1000</td>
-                                                <td style="text-align: center; "><span
-                                                        class="label label-warning ">完成</span></td>
-                                                <td>hhhhhhhhhhhhhhhhhhhhhhhh</td>
-                                                <td class="actions " style="width: 80px; ">
-                                                    <a href="# " class="hidden on-editing save-row "><i
-                                                            class="fa fa-save "></i></a>
-                                                    <a href="# " class="hidden on-editing cancel-row "><i
-                                                            class="fa fa-times "></i></a>
-                                                    <a href="# " class="on-default edit-row "><i
-                                                            class="fa fa-pencil "></i></a>
-                                                    <a href="# " class="on-default remove-row "><i
-                                                            class="fa fa-trash-o "></i></a>
-                                                    <a href="# " class="on-default remove-row " data-toggle="modal"
-                                                       data-target="#doDayPlanModal"><i class="fa fa-cogs"></i></a>
 
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017.3.16</td>
-                                                <td>11000</td>
-                                                <td>10000</td>
-                                                <td>1000</td>
-                                                <td style="text-align: center; "><span
-                                                        class="label label-warning ">完成</span></td>
-                                                <td>hhhhhhhhhhhhhhhhhhhhhhhh</td>
-                                                <td class="actions " style="width: 80px; ">
-                                                    <a href="# " class="hidden on-editing save-row "><i
-                                                            class="fa fa-save "></i></a>
-                                                    <a href="# " class="hidden on-editing cancel-row "><i
-                                                            class="fa fa-times "></i></a>
-                                                    <a href="# " class="on-default edit-row "><i
-                                                            class="fa fa-pencil "></i></a>
-                                                    <a href="# " class="on-default remove-row "><i
-                                                            class="fa fa-trash-o "></i></a>
-                                                    <a href="# " class="on-default remove-row " data-toggle="modal"
-                                                       data-target="#doDayPlanModal"><i class="fa fa-cogs"></i></a>
-                                                </td>
-                                            </tr>
+
                                             <tr>
                                                 <td>2017.3.16</td>
                                                 <td>11000</td>
@@ -661,7 +316,7 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer ">
@@ -670,57 +325,57 @@
                 </div>
             </div>
         </div>
-        <!-- End 日任务的模态框-->
+    </div>
+    <!-- 	end 日任务的模态框 -->
 
-        <!-- 	描述：日任务的执行模态框 -->
-        <div class="modal fade" id="doDayPlanModal" data-position="center" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-doDayPlan" role="document" data-position="center"
-                 style=" margin: 200px auto; ">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">执行该计划</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form role="form">
-                            <div class="row" style="margin-bottom: 10px;">
-                                <div class="col-sm-6 col-dm-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon1">生产机器</span>
-                                        <select class="form-control">
-                                            <option>1号机器</option>
-                                            <option>2号机器</option>
-                                            <option>3号机器</option>
-                                            <option>4号机器</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-dm-6">
-                                    <div class="input-group" style="margin-bottom: 10px;">
-                                        <span class="input-group-addon" id="basic-addon1">转向架种类</span>
-                                        <select class="form-control">
-                                            <option>1号转向架</option>
-                                            <option>2号转向架</option>
-                                            <option>3号转向架</option>
-                                            <option>4号转向架</option>
-                                        </select>
-                                    </div>
+    <!-- 	描述：日任务的执行模态框 -->
+    <div class="modal fade" id="doDayPlanModal" data-position="center" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-doDayPlan" role="document" data-position="center" style=" margin: 200px auto; ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">执行该计划</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-sm-6 col-dm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">生产机器</span>
+                                    <select class="form-control">
+                                        <option>1号机器</option>
+                                        <option>2号机器</option>
+                                        <option>3号机器</option>
+                                        <option>4号机器</option>
+                                    </select>
                                 </div>
                             </div>
+                            <div class="col-sm-6 col-dm-6">
+                                <div class="input-group" style="margin-bottom: 10px;">
+                                    <span class="input-group-addon">转向架种类</span>
+                                    <select class="form-control">
+                                        <option>1号转向架</option>
+                                        <option>2号转向架</option>
+                                        <option>3号转向架</option>
+                                        <option>4号转向架</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
-                            <input type="hidden" class="form-control" name="dp_id" value="">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary">执行</button>
-                    </div>
+                        <input type="hidden" class="form-control" name="dp_id" value="">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">执行</button>
                 </div>
             </div>
         </div>
-        <!-- End 日任务的执行模态框-->
     </div>
+    <!-- End 日任务的执行模态框-->
+
 </div>
 <!--/container-->
 
@@ -728,6 +383,7 @@
 <script src="${ctxPath}/assets/js/pages/table-advanced.js "></script>
 <!-- 自定义 JS -->
 <script type="text/javascript ">
+
     window.onload = function () {
         $("#datatable-default_filter").parent().after('<div class="col-sm-3 col-md-2 ">' +
                 '<div class="bk-margin-bottom-10 " style="text-align: right; ">' +
@@ -738,6 +394,102 @@
         $("#dayPlanRow").prepend($("#dayPlan-editable_length").parent());
         $("#dayPlanRow2").prepend($("#dayPlan-editable2_filter").parent());
         $("#dayPlanRow2").prepend($("#dayPlan-editable2_length").parent());
+    }
+
+    $(document).ready(function () {
+        $("#addPlan").click(function () {
+
+            var truckPlanEntity = {
+                truckType: $("#truckType").val(),
+                isFinish: $("#isFinish").val(),
+                planNumber: $("#planNumber").val(),
+                planVolume: $("#planVolume").val(),
+                goodVolume: $("#goodVolume").val(),
+                remainVolume: $("#remainVolume").val(),
+                badVolume: $("#badVolume").val(),
+                planDate: $("#planDate").val(),
+                produceDate: $("#produceDate").val(),
+                finishDate: $("#finishDate").val(),
+                examine: $("#examine").val(),
+                remark: $("#remark").val()
+            }
+
+            var dayPlanArry = [];
+            $('#dayPlanTr tr').each(function () {
+                var tdArr = $(this).children();
+                var temp;
+                if (tdArr.eq(4).text() == "已完成") temp = 1;
+                else temp = 0;
+                var dayPlan = {
+                    date: moment(tdArr.eq(0).text()).format('X'),
+                    planVolume: tdArr.eq(1).text(),
+                    goodVolume: tdArr.eq(2).text(),
+                    badVolume: tdArr.eq(3).text(),
+                    isFinish: temp,
+                    remark: tdArr.eq(5).text()
+                }
+                dayPlanArry.push(dayPlan);
+            });
+
+            $.post("http://localhost:8080/truck-1/addPlan",
+                    {
+                        truckPlanEntity: JSON.stringify(truckPlanEntity),
+                        dayPlanArry: JSON.stringify(dayPlanArry)
+                    },
+                    function (resultMsg) {
+                        var json = JSON.parse(resultMsg);
+                        if (json.msg) {
+                            alert("成功");
+                        } else {
+                            alert("失败");
+                        }
+                    });
+
+        });
+    });
+
+    function editTruckPlan(planId) {
+         //要学会用浏览器控制台测试 console.info(tdArr)   console.log(tdArr.eq(1).text());
+
+        $.ajax({
+            type: "GET",
+            url:  "${ctxPath}/editTruckPlan?planId="+planId,
+            dataType: "json",
+            success: function(data){
+                 var jsonObject=JSON.parse(data);
+                
+                var truckPlanEntity = {
+                    truckType: $("#truckType").val()=,
+                    isFinish: $("#isFinish").val(),
+                    planNumber: $("#planNumber").val(),
+                    planVolume: $("#planVolume").val(),
+                    goodVolume: $("#goodVolume").val(),
+                    remainVolume: $("#remainVolume").val(),
+                    badVolume: $("#badVolume").val(),
+                    planDate: $("#planDate").val(),
+                    produceDate: $("#produceDate").val(),
+                    finishDate: $("#finishDate").val(),
+                    examine: $("#examine").val(),
+                    remark: $("#remark").val()
+                }
+
+
+
+
+
+//                $('#resText').empty();   //清空resText里面的所有内容
+//                var html = '';
+//                $.each(data, function(commentIndex, comment){
+//                    html += '<div class="comment"><h6>' + comment['username']
+//                            + ':</h6><p class="para"' + comment['content']
+//                            + '</p></div>';
+//                });
+//                $('#resText').html(html);
+            },
+            error:fuction(data){
+
+            }
+        });
     }
 
 </script>

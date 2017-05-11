@@ -23,7 +23,7 @@ public class TruckPlanEntity {
 
     private Long finishDate;
 
-    private String check;
+    private String examine;
 
     private String remark;
 
@@ -115,12 +115,12 @@ public class TruckPlanEntity {
         this.finishDate = finishDate;
     }
 
-    public String getCheck() {
-        return check;
+    public String getExamine() {
+        return examine;
     }
 
-    public void setCheck(String check) {
-        this.check = check == null ? null : check.trim();
+    public void setExamine(String examine) {
+        this.examine = examine == null ? null : examine.trim();
     }
 
     public String getRemark() {

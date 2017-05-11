@@ -1,12 +1,13 @@
 package com.bysj.rj.dao;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import com.bysj.rj.entity.TruckPlanEntity;
 import com.bysj.rj.entity.TruckPlanEntityExample;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-public interface TruckPlanEntityMapper{
+@Repository
+public interface TruckPlanEntityMapper {
     int countByExample(TruckPlanEntityExample example);
 
     int deleteByExample(TruckPlanEntityExample example);

@@ -784,73 +784,73 @@ public class TruckPlanEntityExample {
             return (Criteria) this;
         }
 
-        public Criteria andCheckIsNull() {
-            addCriterion("check is null");
+        public Criteria andExamineIsNull() {
+            addCriterion("examine is null");
             return (Criteria) this;
         }
 
-        public Criteria andCheckIsNotNull() {
-            addCriterion("check is not null");
+        public Criteria andExamineIsNotNull() {
+            addCriterion("examine is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCheckEqualTo(String value) {
-            addCriterion("check =", value, "check");
+        public Criteria andExamineEqualTo(String value) {
+            addCriterion("examine =", value, "examine");
             return (Criteria) this;
         }
 
-        public Criteria andCheckNotEqualTo(String value) {
-            addCriterion("check <>", value, "check");
+        public Criteria andExamineNotEqualTo(String value) {
+            addCriterion("examine <>", value, "examine");
             return (Criteria) this;
         }
 
-        public Criteria andCheckGreaterThan(String value) {
-            addCriterion("check >", value, "check");
+        public Criteria andExamineGreaterThan(String value) {
+            addCriterion("examine >", value, "examine");
             return (Criteria) this;
         }
 
-        public Criteria andCheckGreaterThanOrEqualTo(String value) {
-            addCriterion("check >=", value, "check");
+        public Criteria andExamineGreaterThanOrEqualTo(String value) {
+            addCriterion("examine >=", value, "examine");
             return (Criteria) this;
         }
 
-        public Criteria andCheckLessThan(String value) {
-            addCriterion("check <", value, "check");
+        public Criteria andExamineLessThan(String value) {
+            addCriterion("examine <", value, "examine");
             return (Criteria) this;
         }
 
-        public Criteria andCheckLessThanOrEqualTo(String value) {
-            addCriterion("check <=", value, "check");
+        public Criteria andExamineLessThanOrEqualTo(String value) {
+            addCriterion("examine <=", value, "examine");
             return (Criteria) this;
         }
 
-        public Criteria andCheckLike(String value) {
-            addCriterion("check like", value, "check");
+        public Criteria andExamineLike(String value) {
+            addCriterion("examine like", value, "examine");
             return (Criteria) this;
         }
 
-        public Criteria andCheckNotLike(String value) {
-            addCriterion("check not like", value, "check");
+        public Criteria andExamineNotLike(String value) {
+            addCriterion("examine not like", value, "examine");
             return (Criteria) this;
         }
 
-        public Criteria andCheckIn(List<String> values) {
-            addCriterion("check in", values, "check");
+        public Criteria andExamineIn(List<String> values) {
+            addCriterion("examine in", values, "examine");
             return (Criteria) this;
         }
 
-        public Criteria andCheckNotIn(List<String> values) {
-            addCriterion("check not in", values, "check");
+        public Criteria andExamineNotIn(List<String> values) {
+            addCriterion("examine not in", values, "examine");
             return (Criteria) this;
         }
 
-        public Criteria andCheckBetween(String value1, String value2) {
-            addCriterion("check between", value1, value2, "check");
+        public Criteria andExamineBetween(String value1, String value2) {
+            addCriterion("examine between", value1, value2, "examine");
             return (Criteria) this;
         }
 
-        public Criteria andCheckNotBetween(String value1, String value2) {
-            addCriterion("check not between", value1, value2, "check");
+        public Criteria andExamineNotBetween(String value1, String value2) {
+            addCriterion("examine not between", value1, value2, "examine");
             return (Criteria) this;
         }
 
