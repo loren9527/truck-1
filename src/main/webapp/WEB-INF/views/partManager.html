@@ -15,6 +15,106 @@
     <!-- 引入外部CSS js 文件 -->
     #parse("includeLink.html")
     <!-- end 引入外部CSS js 文件 -->
+    <!-- Plugins CSS-->
+    <link href="${ctxPath}/assets/plugins/datepick/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+    <!-- Plugins JS-->
+    <script src="${ctxPath}/assets/plugins/datepick/bootstrap-datetimepicker.js"></script>
+
+    <script>
+        $(document).ready(function(){
+        });
+        function ajaxFind() {
+
+            $.ajax({
+                type:"post",
+                url:"partsFind",
+                dataType:"json",
+                data:{
+                    serialNum:$("#serialNum").val().toString(),
+                    startTime:$("#startTime").val(),
+                    endTime:$("#endTime").val(),
+                    partName:$("#partName").val(),
+                    businessName:$("#businessName").val()
+                },
+                success : function(data) {
+
+                    $('#ajaxShowParts').empty();   //清空resText里面的所有内容
+                    var html = '';
+                    $.each(data.partsList, function(index, content){
+                    html += "<tr><td>"+content.partNum+"</td><td>"+
+                            content.partName+"</td><td>"+
+                            content.serialNum+"</td><td>"+
+                            content.standard+"</td><td>"+
+                            content.brand+"</td><td>"+
+                            content.businessName+"</td><td>"+
+                            content.produceTime+"</td><td>"+
+                            content.createTime+"</td><td>"+
+                            content.partition+"</td></tr>";
+                });
+                $('#ajaxShowParts').html(html);
+                },
+                error : function(data) {
+                }
+
+            });
+        }
+        function insertPart() {
+            $("#insertPart").submit();
+        }
+        function showModalInsert() {
+            $("#insertPart input").val("");
+            $('#produceTimeModal').datetimepicker('update');
+            $("#planModal").modal("show");
+        }
+        function showModal(id) {
+            $.ajax({
+                type:"post",
+                url:"findPartById",
+                dataType:"json",
+                data:{
+                    id : id
+                },
+                success : function(data) {
+                    $("#idModal").val(data.id);
+                    $("#partNumModal").val(data.partNum);
+                    $("#partNameModal").val(data.partName);
+                    $("#serialNumModal").val(data.serialNum);
+                    $("#standardModal").val(data.standard);
+                    $("#brandModal").val(data.brand);
+                    $("#produceTimeModal").val(data.produceTime);
+                    $('#produceTimeModal').datetimepicker('update');
+                    $("#partitionModal").val(data.partition);
+                    $("#businessNameModal").val(data.businessName);
+                    $("#planModal").modal("show");
+                },
+                error : function(data) {
+                    alert(data);
+                }
+            });
+        }
+        function deletePartById(id) {
+            $.ajax({
+                type:"post",
+                url:"deletePartById",
+                dataType:"json",
+                data:{
+                    id : id
+                },
+                success : function(data) {
+                    if (data.msg="ok"){
+                        alert("删除成功！");
+                        location.reload();
+                    }else {
+                        alert("删除失败！");
+                    }
+                },
+                error : function(data) {
+                    alert(data);
+                }
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -61,14 +161,11 @@
                         <div class="panel-body table-responsive">
 
                             <div class="panel panel-default"
-                                 style="margin-top: 15px; style=" border:1pxsolidred
-                            ">
+                                 style="margin-top: 15px; border:1px solid ">
                             <div class="panel-heading ">
                                 <div class="row " id="dayPlanRow">
                                     <div class=" col-sm-3 col-md-2 " style="text-align: right; ">
-                                        <button id="addPartInfo" class="btn btn-info "
-                                                type="button ">配件添加
-                                        </button>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" onclick="showModalInsert()">添加配件</button>
                                     </div>
                                 </div>
                             </div>
@@ -78,292 +175,38 @@
                                            class="table table-bordered table-striped ">
                                         <thead>
                                         <tr>
+                                            <th>配件编号</th>
                                             <th>名称</th>
-                                            <th>编号</th>
                                             <th>型号</th>
                                             <th>规格</th>
                                             <th>品牌</th>
                                             <th>厂商</th>
                                             <th>出厂时间</th>
                                             <th>存库时间</th>
-                                            <th>分区</th>
+                                            <th>厂区</th>
                                             <th>操作</th>
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        #foreach($partsEntity in $!{partsList})
                                         <tr>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td class="actions " style="width: 80px; "><a
-                                                    href="# " class="hidden on-editing save-row "><i
-                                                    class="fa fa-save "></i></a> <a href="# "
-                                                                                    class="hidden on-editing cancel-row "><i
-                                                    class="fa fa-times "></i></a> <a href="# "
-                                                                                     class="on-default edit-row "><i
-                                                    class="fa fa-pencil "></i></a>
-                                                <a href="# " class="on-default remove-row "><i
+                                            <td>$!{partsEntity.partNum}</td>
+                                            <td>$!{partsEntity.partName}</td>
+                                            <td>$!{partsEntity.serialNum}</td>
+                                            <td>$!{partsEntity.standard}</td>
+                                            <td>$!{partsEntity.brand}</td>
+                                            <td>$!{partsEntity.businessName}</td>
+                                            <td>$!{partsEntity.produceTime}</td>
+                                            <td>$!{partsEntity.createTime}</td>
+                                            <td>$!{partsEntity.partition}</td>
+                                            <td class="actions " style="width: 80px; "><a href="# "
+                                                                                     class="on-default " onclick="showModal('$!{partsEntity.id}');"><i class="fa fa-pencil "></i></a>
+                                                <a href="" class="on-default " onclick="deletePartById('$!{partsEntity.id}');"><i
                                                         class="fa fa-trash-o "></i></a></td>
                                         </tr>
-                                        <tr>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td class="actions " style="width: 80px; "><a
-                                                    href="# " class="hidden on-editing save-row "><i
-                                                    class="fa fa-save "></i></a> <a href="# "
-                                                                                    class="hidden on-editing cancel-row "><i
-                                                    class="fa fa-times "></i></a> <a href="# "
-                                                                                     class="on-default edit-row "><i
-                                                    class="fa fa-pencil "></i></a>
-                                                <a href="# " class="on-default remove-row "><i
-                                                        class="fa fa-trash-o "></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td class="actions " style="width: 80px; "><a
-                                                    href="# " class="hidden on-editing save-row "><i
-                                                    class="fa fa-save "></i></a> <a href="# "
-                                                                                    class="hidden on-editing cancel-row "><i
-                                                    class="fa fa-times "></i></a> <a href="# "
-                                                                                     class="on-default edit-row "><i
-                                                    class="fa fa-pencil "></i></a>
-                                                <a href="# " class="on-default remove-row "><i
-                                                        class="fa fa-trash-o "></i></a></td>
-                                        </tr>
-
+                                        #end
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row  ">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="panel panel-default bk-bg-white">
-                        <div class="panel-heading bk-bg-white">
-                            <h6><i class="fa fa-table red"></i><span class="break"></span>配件信息查询</h6>
-                            <div class="panel-actions">
-                                <a href="#" class="btn-minimize"><i class="fa fa fa-caret-up"></i></a>
-                            </div>
-                        </div>
-                        <div class="panel-body table-responsive">
-                            <div class="row" style="margin-top: 20px;">
-                                <div class="col-sm-12 col-md-12">
-                                    <form role="form">
-                                        <div class="row" style="margin-bottom: 10px;">
-                                            <div class="col-sm-6 col-dm-6">
-                                                <div class="input-group" style="margin-bottom: 10px;">
-                                                    <span class="input-group-addon" id="basic-addon1">转向架种类</span>
-                                                    <select class="form-control">
-                                                        <option>1号转向架</option>
-                                                        <option>2号转向架</option>
-                                                        <option>3号转向架</option>
-                                                        <option>4号转向架</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-dm-6">
-                                                <div class="form-group">
-                                                    <div class="input-daterange input-group date-picker ">
-																	<span class="input-group-addon"> <i
-                                                                            class="fa fa-calendar"></i> 时间
-																	</span> <input type="text" class="form-control"
-                                                                                   name="start">
-                                                        <span class="input-group-addon">到</span> <input
-                                                            type="text" class="form-control" name="end">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row" style="margin-bottom: 10px;">
-                                            <div class="col-sm-6 col-dm-6">
-                                                <div class="input-group" style="margin-bottom: 10px;">
-                                                    <span class="input-group-addon" id="basic-addon1">名称</span>
-                                                    <select class="form-control">
-                                                        <option>1xxxxx</option>
-                                                        <option>1xxxxx</option>
-                                                        <option>1xxxxx</option>
-                                                        <option>1xxxxx</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-dm-6">
-                                                <div class="form-group">
-                                                    <div class="input-group" style="margin-bottom: 10px;">
-                                                        <span class="input-group-addon" id="basic-addon1">厂商</span>
-                                                        <select class="form-control">
-                                                            <option>xxxxx</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="button" class="bk-margin-5 btn btn-info"
-                                                style="float: right; ">查询
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row  ">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="panel panel-default bk-bg-white">
-                        <div class="panel-heading bk-bg-white">
-                            <h6><i class="fa fa-table red"></i><span class="break"></span>查询结果</h6>
-                            <div class="panel-actions">
-                                <a href="#" class="btn-minimize"><i class="fa fa fa-caret-up"></i></a>
-                                <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-                            </div>
-                        </div>
-                        <div class="panel-body table-responsive">
-                            <div id="datatable-default_wrapper" class="dataTables_wrapper no-footer">
-                                <div class="row datatables-header form-inline">
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="dataTables_length" id="datatable-default_length"><label>
-                                            <div class="select2-container" id="s2id_autogen1"><a
-                                                    href="javascript:void(0)" class="select2-choice" tabindex="-1">
-                                                <span class="select2-chosen" id="select2-chosen-2">10</span><abbr
-                                                    class="select2-search-choice-close"></abbr> <span
-                                                    class="select2-arrow" role="presentation"><b
-                                                    role="presentation"></b></span></a><label for="s2id_autogen2"
-                                                                                              class="select2-offscreen"></label><input
-                                                    class="select2-focusser select2-offscreen" type="text"
-                                                    aria-haspopup="true" role="button"
-                                                    aria-labelledby="select2-chosen-2" id="s2id_autogen2">
-                                                <div class="select2-drop select2-display-none">
-                                                    <div class="select2-search select2-search-hidden select2-offscreen">
-                                                        <label for="s2id_autogen2_search"
-                                                               class="select2-offscreen"></label> <input type="text"
-                                                                                                         autocomplete="off"
-                                                                                                         autocorrect="off"
-                                                                                                         autocapitalize="off"
-                                                                                                         spellcheck="false"
-                                                                                                         class="select2-input"
-                                                                                                         role="combobox"
-                                                                                                         aria-expanded="true"
-                                                                                                         aria-autocomplete="list"
-                                                                                                         aria-owns="select2-results-2"
-                                                                                                         id="s2id_autogen2_search"
-                                                                                                         placeholder="">
-                                                    </div>
-                                                    <ul class="select2-results" role="listbox"
-                                                        id="select2-results-2"></ul>
-                                                </div>
-                                            </div>
-                                            <select name="datatable-default_length" aria-controls="datatable-default"
-                                                    class="select2-offscreen" tabindex="-1" title="">
-                                                <option value="10">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select> 每页记录数</label></div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <div id="datatable-default_filter" class="dataTables_filter"><label><input
-                                                type="search" class="form-control" placeholder="搜索"
-                                                aria-controls="datatable-default"></label></div>
-                                    </div>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-striped dataTable no-footer"
-                                           id="datatable-default" role="grid" aria-describedby="datatable-default_info">
-                                        <thead>
-                                        <tr>
-                                            <th>名称</th>
-                                            <th>编号</th>
-                                            <th>型号</th>
-                                            <th>规格</th>
-                                            <th>品牌</th>
-                                            <th>厂商</th>
-                                            <th>出厂时间</th>
-                                            <th>存库时间</th>
-                                            <th>分区</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="row datatables-footer">
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="dataTables_info" id="datatable-default_info" role="status"
-                                             aria-live="polite">Showing 1 to 3 of 3 entries
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="dataTables_paginate paging_bs_normal"
-                                             id="datatable-default_paginate">
-                                            <ul class="pagination">
-                                                <li class="prev disabled"><a href="#"><span
-                                                        class="fa fa-chevron-left"></span></a></li>
-                                                <li class="active"><a href="#">1</a></li>
-                                                <li class="next disabled"><a href="#"><span
-                                                        class="fa fa-chevron-right"></span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -371,14 +214,190 @@
                 </div>
             </div>
         </div>
-        <!-- End Main Page -->
+
+        <div class="row  ">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default bk-bg-white">
+                    <div class="panel-heading bk-bg-white">
+                        <h6><i class="fa fa-table red"></i><span class="break"></span>配件信息查询</h6>
+                        <div class="panel-actions">
+                            <a href="#" class="btn-minimize"><i class="fa fa fa-caret-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="panel-body table-responsive">
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-sm-12 col-md-12">
+                                <form role="form">
+                                    <div class="row" style="margin-bottom: 10px;">
+                                        <div class="col-sm-6 col-dm-6">
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon" >转向架种类</span>
+                                                <select class="form-control" id="serialNum">
+                                                    <option value="">全部转向架</option>
+                                                    <option value="TYPE_CRH3_TRUCK">CRH3系列动车组转向架</option>
+                                                    <option value="TYPE_ABCSubway_TRUCK">A/B/C型地铁转向架</option>
+                                                    <option value="TYPE_SW220K_TRUCK">SW-220K部备车转向架</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-dm-6">
+                                            <div class="form-group">
+                                                <div class="input-daterange input-group date-picker ">
+																	<span class="input-group-addon"> <i
+                                                                            class="fa fa-calendar"></i> 时间
+																	</span>
+                                                    <div class="input-group date form_date_start" data-date="" data-date-format="yyyy-mm-dd">
+                                                        <input class="form-control" type="text" value="" name="startTime" id="startTime" readonly>
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                    </div>
+                                                    <span class="input-group-addon">到</span>
+                                                    <div class="input-group date form_date_end" data-date="" data-date-format="yyyy-mm-dd">
+                                                        <input class="form-control" type="text" value="" name="endTime" id="endTime" readonly>
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom: 10px;">
+                                        <div class="col-sm-6 col-dm-6">
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon" id="basic-addon1">名称</span>
+                                                <input class="form-control" type="text" value="" name="partName" id="partName">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-dm-6">
+                                            <div class="form-group">
+                                                <div class="input-group" style="margin-bottom: 10px;">
+                                                    <span class="input-group-addon" id="basic-addon1">厂商</span>
+                                                    <input class="form-control" type="text" value="" name="businessName" id="businessName">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="bk-margin-5 btn btn-info"
+                                            style="float: right; " onclick="ajaxFind();">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row  ">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default bk-bg-white">
+                    <div class="panel-heading bk-bg-white">
+                        <h6><i class="fa fa-table red"></i><span class="break"></span>查询结果</h6>
+                        <div class="panel-actions">
+                            <a href="#" class="btn-minimize"><i class="fa fa fa-caret-up"></i></a>
+                            <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                    <div class="panel-body table-responsive">
+                        <div id="datatable-default_wrapper" class="dataTables_wrapper no-footer"><div class="row datatables-header form-inline"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="datatable-default_length"><label><div class="select2-container" id="s2id_autogen1"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-2">10</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen2" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-2" id="s2id_autogen2"><div class="select2-drop select2-display-none">   <div class="select2-search select2-search-hidden select2-offscreen">       <label for="s2id_autogen2_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-2" id="s2id_autogen2_search" placeholder="">   </div>   <ul class="select2-results" role="listbox" id="select2-results-2">   </ul></div></div><select name="datatable-default_length" aria-controls="datatable-default" class="select2-offscreen" tabindex="-1" title=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> 每页记录数</label></div></div><div class="col-sm-12 col-md-6"><div id="datatable-default_filter" class="dataTables_filter"><label><input type="search" class="form-control" placeholder="搜索" aria-controls="datatable-default"></label></div></div></div><div class="table-responsive"><table class="table table-bordered table-striped dataTable no-footer" id="datatable-default" role="grid" aria-describedby="datatable-default_info">
+                            <thead>
+                            <tr>
+                                <th>配件编号</th>
+                                <th>名称</th>
+                                <th>型号</th>
+                                <th>规格</th>
+                                <th>品牌</th>
+                                <th>厂商</th>
+                                <th>出厂时间</th>
+                                <th>存库时间</th>
+                                <th>厂区</th>
+                            </tr>
+                            </thead>
+                            <tbody id="ajaxShowParts">
+                            </tbody>
+                        </table></div><div class="row datatables-footer"><div class="col-sm-12 col-md-6"><div class="dataTables_info" id="datatable-default_info" role="status" aria-live="polite">Showing 1 to 3 of 3 entries</div></div><div class="col-sm-12 col-md-6"><div class="dataTables_paginate paging_bs_normal" id="datatable-default_paginate"><ul class="pagination"><li class="prev disabled"><a href="#"><span class="fa fa-chevron-left"></span></a></li><li class="active"><a href="#">1</a></li><li class="next disabled"><a href="#"><span class="fa fa-chevron-right"></span></a></li></ul></div></div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
+    <!-- End Main Page -->
+    </div>
+    <!-- 	描述：添加任务修改任务的模态框 -->
+    <div class="modal fade bs-example-modal-lg" id="planModal" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document" style="width: 950px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">添加配件</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="insertPart" action="insertOrUpdatePart" method="post">
+                        <div class="panel-body">
+                            <div class="row" id="truckPlanEntity">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-dm-12">
+                                            <input type="hidden" name="id" id="idModal">
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">配件编号</span>
+                                                <input type="text" class="form-control" name="partNum" id="partNumModal">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">配件名称</span>
+                                                <input type="text" class="form-control" name="partName" id="partNameModal">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">型号</span>
+                                                <input type="text" class="form-control" name="serialNum" id="serialNumModal">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">规格</span>
+                                                <input type="text" class="form-control" name="standard" id="standardModal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <div class="raw">
+                                        <div class=" col-sm-12 col-md-12">
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">品牌</span>
+                                                <input type="text" class="form-control" name="brand" id="brandModal"  >
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">厂商</span>
+                                                <input type="text" class="form-control" name="businessName" id="businessNameModal"  >
+                                            </div>
+                                        <div class="input-group" style="margin-bottom: 10px;">
+                                            <span class="input-group-addon">出厂时间</span>
+                                            <input type="text" class="form-control form_date_produce" data-date-format="yyyy-mm-dd" name="produceTime" id="produceTimeModal" readonly >
+                                        </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">厂区</span>
+                                                <input type="text" class="form-control" name="partition" id="partitionModal"  >
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button " class="btn btn-default " data-dismiss="modal">关闭</button>
+                    <button type="button " class="btn btn-primary " onclick="insertPart();">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End 添加任务修改任务的模态框-->
 </div>
 <!--/container-->
 
 <!-- Pages JS -->
-<script src="assets/js/pages/table-part.js "></script>
+<script src="${ctxPath}/assets/js/pages/table-part.js "></script>
 <!-- 自定义 JS -->
 <script type="text/javascript ">
     window.onload = function () {
@@ -387,7 +406,40 @@
     }
 </script>
 <!-- end: JavaScript-->
+<script>
+    $('.form_date_start').datetimepicker({
 
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0,
+        pickerPosition: "bottom-left"
+    });
+    $('.form_date_end').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0,
+        pickerPosition: "bottom-left"
+    });
+    $('.form_date_produce').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0,
+        pickerPosition: "bottom-left"
+    });
+
+</script>
 </body>
 </div>
 </html>

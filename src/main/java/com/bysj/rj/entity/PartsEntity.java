@@ -1,13 +1,17 @@
 package com.bysj.rj.entity;
 
+import java.util.Date;
+
 public class PartsEntity {
-    private Long partId;
+    private Integer id;
+
+    private Integer partNum;
 
     private String partName;
 
-    private String serialNumber;
+    private String serialNum;
 
-    private String typeNumber;
+    private String ext;
 
     private String standard;
 
@@ -15,18 +19,26 @@ public class PartsEntity {
 
     private String businessName;
 
-    private Long produceTime;
+    private Date produceTime;
 
-    private Long storageTime;
+    private Date createTime;
 
     private String partition;
 
-    public Long getPartId() {
-        return partId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPartId(Long partId) {
-        this.partId = partId;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getPartNum() {
+        return partNum;
+    }
+
+    public void setPartNum(Integer partNum) {
+        this.partNum = partNum;
     }
 
     public String getPartName() {
@@ -37,20 +49,20 @@ public class PartsEntity {
         this.partName = partName == null ? null : partName.trim();
     }
 
-    public String getSerialNumber() {
-        return serialNumber;
+    public String getSerialNum() {
+        return serialNum;
     }
 
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber == null ? null : serialNumber.trim();
+    public void setSerialNum(String serialNum) {
+        this.serialNum = serialNum == null ? null : serialNum.trim();
     }
 
-    public String getTypeNumber() {
-        return typeNumber;
+    public String getExt() {
+        return ext;
     }
 
-    public void setTypeNumber(String typeNumber) {
-        this.typeNumber = typeNumber == null ? null : typeNumber.trim();
+    public void setExt(String ext) {
+        this.ext = ext == null ? null : ext.trim();
     }
 
     public String getStandard() {
@@ -77,20 +89,20 @@ public class PartsEntity {
         this.businessName = businessName == null ? null : businessName.trim();
     }
 
-    public Long getProduceTime() {
+    public Date getProduceTime() {
         return produceTime;
     }
 
-    public void setProduceTime(Long produceTime) {
+    public void setProduceTime(Date produceTime) {
         this.produceTime = produceTime;
     }
 
-    public Long getStorageTime() {
-        return storageTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setStorageTime(Long storageTime) {
-        this.storageTime = storageTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public String getPartition() {

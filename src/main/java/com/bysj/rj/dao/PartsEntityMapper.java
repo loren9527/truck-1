@@ -6,12 +6,13 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+
 public interface PartsEntityMapper {
     int countByExample(PartsEntityExample example);
 
     int deleteByExample(PartsEntityExample example);
 
-    int deleteByPrimaryKey(Long partId);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(PartsEntity record);
 
@@ -19,7 +20,7 @@ public interface PartsEntityMapper {
 
     List<PartsEntity> selectByExample(PartsEntityExample example);
 
-    PartsEntity selectByPrimaryKey(Long partId);
+    PartsEntity selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") PartsEntity record, @Param("example") PartsEntityExample example);
 

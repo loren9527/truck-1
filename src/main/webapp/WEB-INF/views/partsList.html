@@ -11,10 +11,46 @@
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
-
     <!-- 引入外部CSS js 文件 -->
     #parse("includeLink.html")
     <!-- end 引入外部CSS js 文件 -->
+    <script>
+        $(document).ready(function(){
+
+        });
+        //选择文件excel
+        function importExcel() {
+            $("#filed").click();
+        }
+        //上传
+        function upload() {
+            $("#uploadExcel").attr("enctype","multipart/form-data");
+            var htmlobj = $("#uploadExcel").submit();
+        }
+        //提交
+        function submitParts() {
+            $.ajax({
+                url:"insertParts",
+                data:{
+                    partsStr:"ssssssssss"
+                },
+                type:"post",
+                success : function(data) {
+                    if(data=="ok"){
+                    alert('成功!');
+                    }else {
+                        alert("失败");
+                    }
+                },
+                error : function(data) {
+                    alert(data);
+                }
+            });
+        }
+        function downFile() {
+            window.open("${ctxPath}/assets/res/测试表.xls");
+        }
+    </script>
 </head>
 
 <body>
@@ -54,12 +90,17 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="panel panel-default bk-bg-white">
                         <div class="panel-heading bk-bg-white">
-                            <button type="button" class="bk-margin-5 btn btn-primary">excel模板下载</button>
-                            <button type="button" class="bk-margin-5 btn btn-primary">excel上传</button>
+                            <button type="button" class="bk-margin-5 btn btn-primary" onclick="downFile();">excel模板下载</button>
+                            <form style="float: left" id="uploadExcel" name="uploadExcel" action="uploadExcel" method="post">
+                                <input id="filed" type="file" name="filed" onchange="upload();" style="display: none;"/>
+                            </form>
+                            <button type="button" class="bk-margin-5 btn btn-primary" onclick="importExcel();">excel上传</button>
 
                             <div class="panel-actions" style="float: right">
-                                <button type="button" class="bk-margin-5 btn btn-primary" style="float: left">确认提交
+                                <form action="insertParts" method="post">
+                                <button type="submit" class="bk-margin-5 btn btn-primary" style="float: left">确认提交
                                 </button>
+                                </form>
                                 <a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
                                 <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
                             </div>
@@ -76,27 +117,22 @@
                                         <th>品牌</th>
                                         <th>厂商</th>
                                         <th>出厂时间</th>
+                                        <th>厂区</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    #foreach($partsEntity in $!{partsList})
                                     <tr>
-                                        <td>Willson</td>
-                                        <td>Developer</td>
-                                        <td>2563$</td>
-                                        <td>Willson</td>
-                                        <td>Developer</td>
-                                        <td>2563$</td>
-                                        <td>Willson</td>
+                                        <td>$!{partsEntity.partNum}</td>
+                                        <td>$!{partsEntity.partName}</td>
+                                        <td>$!{partsEntity.serialNum}</td>
+                                        <td>$!{partsEntity.standard}</td>
+                                        <td>$!{partsEntity.brand}</td>
+                                        <td>$!{partsEntity.businessName}</td>
+                                        <td>$!{partsEntity.produceTime}</td>
+                                        <td>$!{partsEntity.partition}</td>
                                     </tr>
-                                    <tr>
-                                        <td>Willson</td>
-                                        <td>Developer</td>
-                                        <td>2563$</td>
-                                        <td>Willson</td>
-                                        <td>Developer</td>
-                                        <td>2563$</td>
-                                        <td>Willson</td>
-                                    </tr>
+                                    #end
                                     </tbody>
                                 </table>
                             </div>

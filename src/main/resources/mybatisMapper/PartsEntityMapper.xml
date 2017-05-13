@@ -2,16 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bysj.rj.dao.PartsEntityMapper" >
   <resultMap id="BaseResultMap" type="com.bysj.rj.entity.PartsEntity" >
-    <id column="part_id" property="partId" jdbcType="BIGINT" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="part_num" property="partNum" jdbcType="INTEGER" />
     <result column="part_name" property="partName" jdbcType="VARCHAR" />
-    <result column="serial_number" property="serialNumber" jdbcType="VARCHAR" />
-    <result column="type_number" property="typeNumber" jdbcType="VARCHAR" />
+    <result column="serial_num" property="serialNum" jdbcType="VARCHAR" />
+    <result column="ext" property="ext" jdbcType="VARCHAR" />
     <result column="standard" property="standard" jdbcType="VARCHAR" />
     <result column="brand" property="brand" jdbcType="VARCHAR" />
     <result column="business_name" property="businessName" jdbcType="VARCHAR" />
-    <result column="produce_time" property="produceTime" jdbcType="BIGINT" />
-    <result column="storage_time" property="storageTime" jdbcType="BIGINT" />
-    <result column="partition" property="partition" jdbcType="CHAR" />
+    <result column="produce_time" property="produceTime" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="partition" property="partition" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    part_id, part_name, serial_number, type_number, standard, brand, business_name, produce_time, 
-    storage_time, partition
+    id, part_num, part_name, serial_num, ext, standard, brand, business_name, produce_time, 
+    create_time, partition
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bysj.rj.entity.PartsEntityExample" >
     select
@@ -90,15 +91,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from parts
-    where part_id = #{partId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from parts
-    where part_id = #{partId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.bysj.rj.entity.PartsEntityExample" >
     delete from parts
@@ -107,29 +108,32 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bysj.rj.entity.PartsEntity" >
-    insert into parts (part_id, part_name, serial_number, 
-      type_number, standard, brand, 
-      business_name, produce_time, storage_time, 
-      partition)
-    values (#{partId,jdbcType=BIGINT}, #{partName,jdbcType=VARCHAR}, #{serialNumber,jdbcType=VARCHAR}, 
-      #{typeNumber,jdbcType=VARCHAR}, #{standard,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, 
-      #{businessName,jdbcType=VARCHAR}, #{produceTime,jdbcType=BIGINT}, #{storageTime,jdbcType=BIGINT}, 
-      #{partition,jdbcType=CHAR})
+    insert into parts (id, part_num, part_name, 
+      serial_num, ext, standard, 
+      brand, business_name, produce_time, 
+      create_time, partition)
+    values (#{id,jdbcType=INTEGER}, #{partNum,jdbcType=INTEGER}, #{partName,jdbcType=VARCHAR}, 
+      #{serialNum,jdbcType=VARCHAR}, #{ext,jdbcType=VARCHAR}, #{standard,jdbcType=VARCHAR}, 
+      #{brand,jdbcType=VARCHAR}, #{businessName,jdbcType=VARCHAR}, #{produceTime,jdbcType=DATE}, 
+      #{createTime,jdbcType=DATE}, #{partition,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bysj.rj.entity.PartsEntity" >
     insert into parts
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="partId != null" >
-        part_id,
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="partNum != null" >
+        part_num,
       </if>
       <if test="partName != null" >
         part_name,
       </if>
-      <if test="serialNumber != null" >
-        serial_number,
+      <if test="serialNum != null" >
+        serial_num,
       </if>
-      <if test="typeNumber != null" >
-        type_number,
+      <if test="ext != null" >
+        ext,
       </if>
       <if test="standard != null" >
         standard,
@@ -143,25 +147,28 @@
       <if test="produceTime != null" >
         produce_time,
       </if>
-      <if test="storageTime != null" >
-        storage_time,
+      <if test="createTime != null" >
+        create_time,
       </if>
       <if test="partition != null" >
         partition,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="partId != null" >
-        #{partId,jdbcType=BIGINT},
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="partNum != null" >
+        #{partNum,jdbcType=INTEGER},
       </if>
       <if test="partName != null" >
         #{partName,jdbcType=VARCHAR},
       </if>
-      <if test="serialNumber != null" >
-        #{serialNumber,jdbcType=VARCHAR},
+      <if test="serialNum != null" >
+        #{serialNum,jdbcType=VARCHAR},
       </if>
-      <if test="typeNumber != null" >
-        #{typeNumber,jdbcType=VARCHAR},
+      <if test="ext != null" >
+        #{ext,jdbcType=VARCHAR},
       </if>
       <if test="standard != null" >
         #{standard,jdbcType=VARCHAR},
@@ -173,13 +180,13 @@
         #{businessName,jdbcType=VARCHAR},
       </if>
       <if test="produceTime != null" >
-        #{produceTime,jdbcType=BIGINT},
+        #{produceTime,jdbcType=DATE},
       </if>
-      <if test="storageTime != null" >
-        #{storageTime,jdbcType=BIGINT},
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
       </if>
       <if test="partition != null" >
-        #{partition,jdbcType=CHAR},
+        #{partition,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -192,17 +199,20 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update parts
     <set >
-      <if test="record.partId != null" >
-        part_id = #{record.partId,jdbcType=BIGINT},
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.partNum != null" >
+        part_num = #{record.partNum,jdbcType=INTEGER},
       </if>
       <if test="record.partName != null" >
         part_name = #{record.partName,jdbcType=VARCHAR},
       </if>
-      <if test="record.serialNumber != null" >
-        serial_number = #{record.serialNumber,jdbcType=VARCHAR},
+      <if test="record.serialNum != null" >
+        serial_num = #{record.serialNum,jdbcType=VARCHAR},
       </if>
-      <if test="record.typeNumber != null" >
-        type_number = #{record.typeNumber,jdbcType=VARCHAR},
+      <if test="record.ext != null" >
+        ext = #{record.ext,jdbcType=VARCHAR},
       </if>
       <if test="record.standard != null" >
         standard = #{record.standard,jdbcType=VARCHAR},
@@ -214,13 +224,13 @@
         business_name = #{record.businessName,jdbcType=VARCHAR},
       </if>
       <if test="record.produceTime != null" >
-        produce_time = #{record.produceTime,jdbcType=BIGINT},
+        produce_time = #{record.produceTime,jdbcType=DATE},
       </if>
-      <if test="record.storageTime != null" >
-        storage_time = #{record.storageTime,jdbcType=BIGINT},
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=DATE},
       </if>
       <if test="record.partition != null" >
-        partition = #{record.partition,jdbcType=CHAR},
+        partition = #{record.partition,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -229,16 +239,17 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update parts
-    set part_id = #{record.partId,jdbcType=BIGINT},
+    set id = #{record.id,jdbcType=INTEGER},
+      part_num = #{record.partNum,jdbcType=INTEGER},
       part_name = #{record.partName,jdbcType=VARCHAR},
-      serial_number = #{record.serialNumber,jdbcType=VARCHAR},
-      type_number = #{record.typeNumber,jdbcType=VARCHAR},
+      serial_num = #{record.serialNum,jdbcType=VARCHAR},
+      ext = #{record.ext,jdbcType=VARCHAR},
       standard = #{record.standard,jdbcType=VARCHAR},
       brand = #{record.brand,jdbcType=VARCHAR},
       business_name = #{record.businessName,jdbcType=VARCHAR},
-      produce_time = #{record.produceTime,jdbcType=BIGINT},
-      storage_time = #{record.storageTime,jdbcType=BIGINT},
-      partition = #{record.partition,jdbcType=CHAR}
+      produce_time = #{record.produceTime,jdbcType=DATE},
+      create_time = #{record.createTime,jdbcType=DATE},
+      partition = #{record.partition,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -246,14 +257,17 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.bysj.rj.entity.PartsEntity" >
     update parts
     <set >
+      <if test="partNum != null" >
+        part_num = #{partNum,jdbcType=INTEGER},
+      </if>
       <if test="partName != null" >
         part_name = #{partName,jdbcType=VARCHAR},
       </if>
-      <if test="serialNumber != null" >
-        serial_number = #{serialNumber,jdbcType=VARCHAR},
+      <if test="serialNum != null" >
+        serial_num = #{serialNum,jdbcType=VARCHAR},
       </if>
-      <if test="typeNumber != null" >
-        type_number = #{typeNumber,jdbcType=VARCHAR},
+      <if test="ext != null" >
+        ext = #{ext,jdbcType=VARCHAR},
       </if>
       <if test="standard != null" >
         standard = #{standard,jdbcType=VARCHAR},
@@ -265,28 +279,29 @@
         business_name = #{businessName,jdbcType=VARCHAR},
       </if>
       <if test="produceTime != null" >
-        produce_time = #{produceTime,jdbcType=BIGINT},
+        produce_time = #{produceTime,jdbcType=DATE},
       </if>
-      <if test="storageTime != null" >
-        storage_time = #{storageTime,jdbcType=BIGINT},
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
       </if>
       <if test="partition != null" >
-        partition = #{partition,jdbcType=CHAR},
+        partition = #{partition,jdbcType=VARCHAR},
       </if>
     </set>
-    where part_id = #{partId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bysj.rj.entity.PartsEntity" >
     update parts
-    set part_name = #{partName,jdbcType=VARCHAR},
-      serial_number = #{serialNumber,jdbcType=VARCHAR},
-      type_number = #{typeNumber,jdbcType=VARCHAR},
+    set part_num = #{partNum,jdbcType=INTEGER},
+      part_name = #{partName,jdbcType=VARCHAR},
+      serial_num = #{serialNum,jdbcType=VARCHAR},
+      ext = #{ext,jdbcType=VARCHAR},
       standard = #{standard,jdbcType=VARCHAR},
       brand = #{brand,jdbcType=VARCHAR},
       business_name = #{businessName,jdbcType=VARCHAR},
-      produce_time = #{produceTime,jdbcType=BIGINT},
-      storage_time = #{storageTime,jdbcType=BIGINT},
-      partition = #{partition,jdbcType=CHAR}
-    where part_id = #{partId,jdbcType=BIGINT}
+      produce_time = #{produceTime,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=DATE},
+      partition = #{partition,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

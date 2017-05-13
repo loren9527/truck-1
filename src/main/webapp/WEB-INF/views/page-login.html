@@ -21,6 +21,39 @@
 				display: none;
 			}
 		</style>
+		<script>
+			$(document).ready(function(){
+				#if($!{registerInfo}=="success"){
+					alert("账号注册成功！");
+				}
+				#end
+				#if($!{loginInfo}=="error"){
+					alert("密码有误，请重新输入！");
+				}
+				#end
+				#if($!{loginInfo}=="noUser"){
+					alert("请先登录！");
+				}
+				#end
+			});
+			
+			function loginCheck() {
+				var flag = false;
+				var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+				if($("#userAccount").val().trim()==""){
+					alert("账号不能为空！");
+					return flag;
+				}else if(reg.test($("#userAccount").val().trim())==false){
+					alert("邮箱格式有误！");
+					return flag;
+				}
+				if($("#password").val().trim()==""){
+					alert("密码不能为空！");
+					return flag;
+				}
+				return true;
+			}
+		</script>
 	</head>
 
 	<body>
@@ -34,15 +67,15 @@
 							<div class="panel">
 								<div class="panel-body">								
 									<div class="header bk-margin-bottom-20 text-center">										
-										<img src="assets/img/logo.png" class="img-responsive" alt="" />
+										<img src="${ctxPath}/assets/img/logo.png" class="img-responsive" alt="" />
 										<h4>Log In</h4>
 									</div>		
-									<form class="form-horizontal login" action="index.html" method="post">
+									<form class="form-horizontal login" action="login" method="post">
 										<div class="bk-padding-left-20 bk-padding-right-20">
 											<div class="form-group">
-												<label>Username</label>
+												<label>账号</label>
 												<div class="input-group input-group-icon">
-													<input type="text" class="form-control bk-radius" id="username" placeholder="Username or E-mail"/>
+													<input type="text" class="form-control bk-radius" name="userAccount" id="userAccount" placeholder="邮箱"/>
 													<span class="input-group-addon">
 														<span class="icon">
 															<i class="fa fa-user"></i>
@@ -51,9 +84,9 @@
 												</div>
 											</div>											
 											<div class="form-group">
-												<label>Username</label>
+												<label>密码</label>
 												<div class="input-group input-group-icon">
-													<input type="password" class="form-control bk-radius" id="password" placeholder="Password"/>
+													<input type="password" class="form-control bk-radius" name="password" id="password"/>
 													<span class="input-group-addon">
 														<span class="icon">
 															<i class="fa fa-key"></i>
@@ -65,27 +98,21 @@
 												<div class="col-sm-8">
 													<div class="checkbox-custom checkbox-default">
 														<input id="RememberMe" name="rememberme" type="checkbox" />
-														<label for="RememberMe">Remember Me</label>
+														<label for="RememberMe">记住密码</label>
 													</div>
 												</div>
 												<div class="col-sm-4 text-right">
-													<button type="submit" class="btn btn-primary hidden-xs">Log In</button>
-													<button type="submit" class="btn btn-primary btn-block btn-lg visible-xs bk-margin-top-20">Log In</button>
+													<button type="submit" onclick="loginCheck();" class="btn btn-primary hidden-xs">登录</button>
+													<!--<button type="submit" class="btn btn-primary btn-block btn-lg visible-xs bk-margin-top-20">登录</button>-->
 												</div>
 											</div>
 											<div class="text-with-hr">
-												<span>or</span>
-											</div>											
-											<div class="text-center bk-margin-top-10 bk-margin-bottom-30">
-												<a class="btn btn-facebook bk-margin-bottom-15 bk-margin-5">Connect with <i class="fa fa-facebook"></i></a>
-												<a class="btn btn-twitter bk-margin-bottom-15 bk-margin-5">Connect with <i class="fa fa-twitter"></i></a>
 											</div>
-											<p class="text-center">Don't have an account yet? <a href="page-register.html">Register!</a></p>
+											<p class="text-center">还没有账号？ <a href="page-register">马上申请</a></p>
 										</div>
 									</form>
 								</div>
 							</div>
-							<p class="text-center text-muted">Fire <i class="fa fa-coffee"></i> Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a> - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a></p>			
 						</div>
 					</div>			
 				</div>
@@ -94,8 +121,8 @@
 		</div><!--/container-->
 
 		<!-- Pages JS -->
-		<script src="assets/js/pages/page-login.js"></script>
-		<script src="assets/plugins/bootkit/js/bootkit.js"></script>
+		<script src="${ctxPath}/assets/js/pages/page-login.js"></script>
+		<script src="${ctxPath}/assets/plugins/bootkit/js/bootkit.js"></script>
 	</body>
 	
 </html>

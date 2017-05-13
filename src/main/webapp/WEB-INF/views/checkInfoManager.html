@@ -15,7 +15,105 @@
     <!-- 引入外部CSS js 文件 -->
     #parse("includeLink.html")
     <!-- end 引入外部CSS js 文件 -->
+    <!-- Plugins CSS-->
+    <link href="${ctxPath}/assets/plugins/datepick/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 
+    <!-- Plugins JS-->
+    <script src="${ctxPath}/assets/plugins/datepick/bootstrap-datetimepicker.js"></script>
+    <script>
+        $(document).ready(function(){
+        });
+        function ajaxFind() {
+
+            $.ajax({
+                type:"post",
+                url:"checkInfoFind",
+                dataType:"json",
+                data:{
+                    techType:$("#techType").val().toString(),
+                    startTime:$("#startTime").val(),
+                    endTime:$("#endTime").val(),
+                    checkResult:$("#checkResult").val(),
+                    batch:$("#batch").val()
+                },
+                success : function(data) {
+
+                    $('#ajaxShowCheckInfo').empty();   //清空resText里面的所有内容
+                    var html = '';
+                    $.each(data.checkInfoList, function(index, content){
+                        html += "<tr><td>"+content.truckId+"</td><td>"+
+                                content.checkResult+"</td><td>"+
+                                content.techType+"</td><td>"+
+                                content.batch+"</td><td>"+
+                                content.produceTime+"</td><td>"+
+                                content.checkUser+"</td><td>"+
+                                content.checkTime+"</td></tr>";
+                    });
+                    $('#ajaxShowCheckInfo').html(html);
+                },
+                error : function(data) {
+
+                }
+
+            });
+        }
+        function insertCheckInfo() {
+            $("#insertCheckInfo").submit();
+        }
+        function showModalInsert() {
+            $("#insertCheckInfo input").val("");
+            $('#checkTimeModal').datetimepicker('update');
+            $('#produceTimeModal').datetimepicker('update');
+            $("#checkInfoModal").modal("show");
+        }
+        function showModal(id) {
+            $.ajax({
+                type:"post",
+                url:"findCheckInfoById",
+                dataType:"json",
+                data:{
+                    id : id
+                },
+                success : function(data) {
+                    $("#idModal").val(data.id);
+                    $("#truckIdModal").val(data.truckId);
+                    $("#checkResultModal").val(data.checkResult);
+                    $("#techTypeModal").val(data.techType);
+                    $("#batchModal").val(data.batch);
+                    $("#checkTimeModal").val(data.checkTime);
+                    $('#checkTimeModal').datetimepicker('update');
+                    $("#produceTimeModal").val(data.produceTime);
+                    $('#produceTimeModal').datetimepicker('update');
+                    $("#checkUserModal").val(data.checkUser);
+                    $("#checkInfoModal").modal("show");
+                },
+                error : function(data) {
+                    alert(data);
+                }
+            });
+        }
+        function deletePartById(id) {
+            $.ajax({
+                type:"post",
+                url:"deleteCheckInfoById",
+                dataType:"json",
+                data:{
+                    id : id
+                },
+                success : function(data) {
+                    if (data.msg="ok"){
+                        alert("删除成功！");
+                        location.reload();
+                    }else {
+                        alert("删除失败！");
+                    }
+                },
+                error : function(data) {
+                    alert(data);
+                }
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -68,8 +166,8 @@
                             <div class="panel-heading ">
                                 <div class="row " id="dayPlanRow">
                                     <div class=" col-sm-3 col-md-2 " style="text-align: right; ">
-                                        <button id="addCheckInfo" class="btn btn-info "
-                                                type="button ">添加检测信息
+                                        <button class="btn btn-info "
+                                                type="button " data-toggle="modal" onclick="showModalInsert();">添加检测信息
                                         </button>
                                     </div>
                                 </div>
@@ -82,7 +180,7 @@
                                         <tr>
                                             <th>转向架ID</th>
                                             <th>检测结果</th>
-                                            <th>工艺类型</th>
+                                            <th>转向架种类</th>
                                             <th>批次</th>
                                             <th>生产日期</th>
                                             <th>检验员</th>
@@ -91,61 +189,21 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        #foreach($checkInfoEntity in $!{checkInfoList})
                                         <tr>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td class="actions " style="width: 80px; "><a
-                                                    href="# " class="hidden on-editing save-row "><i
-                                                    class="fa fa-save "></i></a> <a href="# "
-                                                                                    class="hidden on-editing cancel-row "><i
-                                                    class="fa fa-times "></i></a> <a href="# "
-                                                                                     class="on-default edit-row "><i
-                                                    class="fa fa-pencil "></i></a>
-                                                <a href="# " class="on-default remove-row "><i
+                                            <td>$!{checkInfoEntity.truckId}</td>
+                                            <td>$!{checkInfoEntity.checkResult}</td>
+                                            <td>$!{checkInfoEntity.techType}</td>
+                                            <td>$!{checkInfoEntity.batch}</td>
+                                            <td>$!{checkInfoEntity.produceTime}</td>
+                                            <td>$!{checkInfoEntity.checkUser}</td>
+                                            <td>$!{checkInfoEntity.checkTime}</td>
+                                            <td class="actions " style="width: 80px; "><a href="# "
+                                                                                          class="on-default " onclick="showModal('$!{checkInfoEntity.id}');"><i class="fa fa-pencil "></i></a>
+                                                <a href="" class="on-default " onclick="deletePartById('$!{checkInfoEntity.id}');"><i
                                                         class="fa fa-trash-o "></i></a></td>
                                         </tr>
-                                        <tr>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td class="actions " style="width: 80px; "><a
-                                                    href="# " class="hidden on-editing save-row "><i
-                                                    class="fa fa-save "></i></a> <a href="# "
-                                                                                    class="hidden on-editing cancel-row "><i
-                                                    class="fa fa-times "></i></a> <a href="# "
-                                                                                     class="on-default edit-row "><i
-                                                    class="fa fa-pencil "></i></a>
-                                                <a href="# " class="on-default remove-row "><i
-                                                        class="fa fa-trash-o "></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td class="actions " style="width: 80px; "><a
-                                                    href="# " class="hidden on-editing save-row "><i
-                                                    class="fa fa-save "></i></a> <a href="# "
-                                                                                    class="hidden on-editing cancel-row "><i
-                                                    class="fa fa-times "></i></a> <a href="# "
-                                                                                     class="on-default edit-row "><i
-                                                    class="fa fa-pencil "></i></a>
-                                                <a href="# " class="on-default remove-row "><i
-                                                        class="fa fa-trash-o "></i></a></td>
-                                        </tr>
-
+                                        #end
                                         </tbody>
                                     </table>
                                 </div>
@@ -173,11 +231,11 @@
                                             <div class="col-sm-6 col-dm-6">
                                                 <div class="input-group" style="margin-bottom: 10px;">
                                                     <span class="input-group-addon" id="basic-addon1">转向架种类</span>
-                                                    <select class="form-control">
-                                                        <option>1号转向架</option>
-                                                        <option>2号转向架</option>
-                                                        <option>3号转向架</option>
-                                                        <option>4号转向架</option>
+                                                    <select class="form-control" name="techType" id="techType">
+                                                        <option value="">全部转向架</option>
+                                                        <option value="TYPE_CRH3_TRUCK">CRH3系列动车组转向架</option>
+                                                        <option value="TYPE_ABCSubway_TRUCK">A/B/C型地铁转向架</option>
+                                                        <option value="TYPE_SW220K_TRUCK">SW-220K部备车转向架</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -185,11 +243,17 @@
                                                 <div class="form-group">
                                                     <div class="input-daterange input-group date-picker ">
 																	<span class="input-group-addon"> <i
-                                                                            class="fa fa-calendar"></i> 时间
-																	</span> <input type="text" class="form-control"
-                                                                                   name="start">
-                                                        <span class="input-group-addon">到</span> <input
-                                                            type="text" class="form-control" name="end">
+                                                                            class="fa fa-calendar"></i> 生产时间
+																	</span>
+                                                        <div class="input-group date form_date_start" data-date="" data-date-format="yyyy-mm-dd hh:mm:ss">
+                                                            <input class="form-control" type="text" value="" name="startTime" id="startTime" readonly>
+                                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                        </div>
+                                                        <span class="input-group-addon">到</span>
+                                                        <div class="input-group date form_date_end" data-date="" data-date-format="yyyy-mm-dd hh:mm:ss">
+                                                            <input class="form-control" type="text" value="" name="endTime" id="endTime" readonly>
+                                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,28 +262,24 @@
                                             <div class="col-sm-6 col-dm-6">
                                                 <div class="input-group" style="margin-bottom: 10px;">
                                                     <span class="input-group-addon" id="basic-addon1">批次</span>
-                                                    <select class="form-control">
-                                                        <option>1xxxxx</option>
-                                                        <option>1xxxxx</option>
-                                                        <option>1xxxxx</option>
-                                                        <option>1xxxxx</option>
-                                                    </select>
+                                                    <input class="form-control" type="text" value="" name="batch" id="batch">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-dm-6">
                                                 <div class="form-group">
                                                     <div class="input-group" style="margin-bottom: 10px;">
-                                                        <span class="input-group-addon" id="basic-addon1">成次品</span>
-                                                        <select class="form-control">
-                                                            <option>成品</option>
-                                                            <option>次品</option>
+                                                        <span class="input-group-addon" id="basic-addon1">检测结果</span>
+                                                        <select class="form-control" name="checkResult" id="checkResult">
+                                                            <option value="">全部</option>
+                                                            <option value="成品">成品</option>
+                                                            <option value="次品">次品</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <button type="button" class="bk-margin-5 btn btn-info"
-                                                style="float: right; ">查询
+                                                style="float: right; " onclick="ajaxFind();">查询
                                         </button>
                                     </form>
                                 </div>
@@ -295,14 +355,14 @@
                                         <tr>
                                             <th>转向架ID</th>
                                             <th>检测结果</th>
-                                            <th>工艺类型</th>
+                                            <th>转向架种类</th>
                                             <th>批次</th>
                                             <th>生产日期</th>
                                             <th>检验员</th>
                                             <th>检测时间</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="ajaxShowCheckInfo">
                                         <tr>
                                             <td>xxxxxxx</td>
                                             <td>xxxxxxx</td>
@@ -313,27 +373,6 @@
                                             <td>xxxxxxx</td>
 
                                         </tr>
-                                        <tr>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-                                            <td>xxxxxxx</td>
-
-                                        </tr>
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -366,6 +405,74 @@
         <!-- End Main Page -->
 
     </div>
+    <!-- 	描述：添加任务修改任务的模态框 -->
+    <div class="modal fade bs-example-modal-lg" id="checkInfoModal" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document" style="width: 950px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">添加检测信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="insertCheckInfo" action="insertOrUpdateCheckInfo" method="post">
+                        <div class="panel-body">
+                            <div class="row" id="truckPlanEntity">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-dm-12">
+                                            <input type="hidden" name="id" id="idModal">
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">转向架ID</span>
+                                                <input type="text" class="form-control" name="truckId" id="truckIdModal">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">检测结果</span>
+                                                <input type="text" class="form-control" name="checkResult" id="checkResultModal">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">转向架种类</span>
+                                                <input type="text" class="form-control" name="techType" id="techTypeModal">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">批次</span>
+                                                <input type="text" class="form-control" name="batch" id="batchModal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <div class="raw">
+                                        <div class=" col-sm-12 col-md-12">
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">生产日期</span>
+                                                <input type="text" class="form-control form_date_produce" data-date-format="yyyy-mm-dd hh:mm:ss" name="produceTime" id="produceTimeModal" readonly>
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">检测员</span>
+                                                <input type="text" class="form-control" name="checkUser" id="checkUserModal"  >
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">检测时间</span>
+                                                <input type="text" class="form-control form_date_check" data-date-format="yyyy-mm-dd hh:mm:ss" name="checkTime" id="checkTimeModal" readonly >
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button " class="btn btn-default " data-dismiss="modal">关闭</button>
+                    <button type="button " class="btn btn-primary " onclick="insertCheckInfo();">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End 添加任务修改任务的模态框-->
 </div>
 <!--/container-->
 
@@ -381,7 +488,48 @@
     }
 </script>
 <!-- end: JavaScript-->
-
+<script>
+    $('.form_date_produce').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1,
+        pickerPosition: "bottom-left"
+    });
+    $('.form_date_check').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1,
+        pickerPosition: "bottom-left"
+    });
+    $('.form_date_start').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1,
+        pickerPosition: "bottom-left"
+    });
+    $('.form_date_end').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1,
+        pickerPosition: "bottom-left"
+    });
+</script>
 </body>
 </div>
 </html>

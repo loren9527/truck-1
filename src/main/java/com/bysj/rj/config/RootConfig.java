@@ -21,7 +21,7 @@ import java.io.IOException;
  * Created by Administrator on 2017/4/29 0029.
  */
 @Configuration
-@ComponentScan(basePackages = {"com.bysj.rj."},excludeFilters = { @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Controller.class,WebListener.class})})
+@ComponentScan(basePackages = {"com.bysj.rj"},excludeFilters = { @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Controller.class,WebListener.class})})
 @MapperScan("com.bysj.rj.dao")
 @EnableTransactionManagement
 public class RootConfig {

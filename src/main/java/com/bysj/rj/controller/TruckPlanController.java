@@ -1,7 +1,6 @@
 package com.bysj.rj.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bysj.rj.entity.DayPlanEntity;
 import com.bysj.rj.entity.TruckPlanEntity;
@@ -17,8 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 /**
