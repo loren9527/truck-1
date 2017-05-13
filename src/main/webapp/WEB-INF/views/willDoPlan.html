@@ -57,7 +57,7 @@
                         <div class="panel-body table-responsive">
                             <table class="table table-bordered table-striped" id="datatable-default"
                                    style="overflow-x: scroll; display: block;">
-                                <thead>
+                                <thead >
                                 <tr>
                                     <th>订单类型</th>
                                     <th>完工与否</th>
@@ -75,6 +75,7 @@
                                 </tr>
                                 </thead>
                                 <tbody id="id-tbody">
+                                #if($truckPlanEntityList.size()>0)
                                 #foreach($truckPlanOne in $truckPlanEntityList)
                                 <tr class="gradeX">
                                     <td>$!{truckPlanOne.truckType}</td>
@@ -96,14 +97,19 @@
                                     <td class="center">$!truckPlanOne.check</td>
                                     <td class="center">$!truckPlanOne.remark</td>
                                     <td class="actions">
-                                        <a href="#" class="on-default edit-row" data-toggle="modal"
-                                           data-target="#planModal" onclick='editTruckPlan($!truckPlanOne.planId)'><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        <a href="#" class="on-default remove-row" data-toggle="modal"
-                                           data-target="#dayPlanModal"><i class="fa fa-table red"></i></a>
+                                        <a href="#" class="on-default "  onclick='editTruckPlan($!truckPlanOne.planId)'><i
+                                                class="fa fa-pencil"></i></a>
+                                        <a href="#" class="on-default " onclick="removeTruckPlan(this,$!truckPlanOne.planId)"><i class="fa fa-trash-o"></i></a>
+                                        <a href="#" class="on-default  " onclick="doTruckPlan($!truckPlanOne.planId)"><i class="fa fa fa-cogs "></i></a>
                                     </td>
                                 </tr>
                                 #end
+                                #else
+                                <tr>
+                                <td valign="top" colspan="13" class="dataTables_empty" style="widows: 1200px;">No data available in table</td>
+                                </tr>
+                                #end
+
                                 </tbody>
                             </table>
                         </div>
@@ -113,13 +119,14 @@
         </div>
         <!-- End Main Page -->
     </div>
-    <!-- 	描述：添加任务修改任务的模态框 -->
+    <!-- 	描述：添加任务的模态框 -->
     <div class="modal fade bs-example-modal-lg" id="planModal" tabindex="-1" role="dialog"
          aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document" style="width: 950px;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            onclick="addTruckPlan()"><span
                             aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="exampleModalLabel">添加计划</h4>
                 </div>
@@ -132,11 +139,18 @@
                                         <div class="col-sm-12 col-dm-12">
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">订单类型</span>
-                                                <input type="text" class="form-control" id="truckType">
+                                                <select class="form-control" id="truckType">
+                                                    <option value="TYPE_CRH3_TRUCK">CRH3系列动车组转向架</option>
+                                                    <option value="TYPE_ABCSubway_TRUCK">A/B/C型地铁转向架</option>
+                                                    <option value="TYPE_SW220K_TRUCK">SW-220K部备车转向架</option>
+                                                </select>
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">完工与否</span>
-                                                <input type="text" class="form-control" id="isFinish">
+                                                <select class="form-control" id="isFinish">
+                                                    <option value="1">已完成</option>
+                                                    <option value="0">未完成</option>
+                                                </select>
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">销售单号</span>
@@ -144,38 +158,37 @@
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">生产日期</span>
-                                                <input type="text" class="form-control" id="produceDate">
+                                                <input type="date"  class="form-control" id="produceDate">
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">完成日期</span>
-                                                <input type="text" class="form-control" id="finishDate"  >
+                                                <input type="date" class="form-control" id="finishDate">
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">原定完成日</span>
-                                                <input type="text" class="form-control" id="planDate"  >
+                                                <input type="date" class="form-control" id="planDate">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class=" col-sm-6 col-md-6">
                                     <div class="raw">
-
                                         <div class=" col-sm-12 col-md-12">
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">总计划总量</span>
-                                                <input type="text" class="form-control" id="planVolume">
+                                                <input type="number"  value="0" class="form-control" id="planVolume">
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">现成品总量</span>
-                                                <input type="text" class="form-control" id="goodVolume">
+                                                <input type="number" value="0" class="form-control" id="goodVolume">
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">待生产总量</span>
-                                                <input type="text" class="form-control" id="remainVolume">
+                                                <input type="number" value="0" class="form-control" id="remainVolume">
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">现次品总量</span>
-                                                <input type="text" class="form-control" id="badVolume">
+                                                <input type="number" value="0" class="form-control" id="badVolume">
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">审计</span>
@@ -195,7 +208,6 @@
                                     <div class="row " id="dayPlanRow">
                                         <div class=" col-sm-3 col-md-2 " style="text-align: right; ">
                                             <button id="addDayPlan" class="btn btn-info " type="button ">添加日计划</button>
-
                                         </div>
                                     </div>
                                 </div>
@@ -209,30 +221,11 @@
                                                 <th>累积成品数</th>
                                                 <th>不良品数</th>
                                                 <th>完成与否</th>
-                                                <th style="text-align: center; ">备注</th>
+                                                <th>备注</th>
                                                 <th>操作</th>
                                             </tr>
                                             </thead>
                                             <tbody id="dayPlanTr">
-                                           <!-- <tr>
-                                                <td>2017.3.16</td>
-                                                <td>11000</td>
-                                                <td>10000</td>
-                                                <td>1000</td>
-                                                <td style="text-align: center; "><span
-                                                        class="label label-warning ">完成</span></td>
-                                                <td>hhhhhhhhhhhhhhhhhhhhhhhh</td>
-                                                <td class="actions " style="width: 80px; ">
-                                                    <a href="# " class="hidden on-editing save-row "><i
-                                                            class="fa fa-save "></i></a>
-                                                    <a href="# " class="hidden on-editing cancel-row "><i
-                                                            class="fa fa-times "></i></a>
-                                                    <a href="# " class="on-default edit-row "><i
-                                                            class="fa fa-pencil "></i></a>
-                                                    <a href="# " class="on-default remove-row "><i
-                                                            class="fa fa-trash-o "></i></a>
-                                                </td>
-                                            </tr>-->
 
                                             </tbody>
                                         </table>
@@ -249,7 +242,134 @@
             </div>
         </div>
     </div>
-    <!-- End 添加任务修改任务的模态框-->
+    <!-- End 添加任务的模态框-->
+
+    <!-- 	描述：修改任务的模态框 -->
+    <div class="modal fade bs-example-modal-lg" id="planModal0" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document" style="width: 950px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            onclick="addTruckPlan()"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel0">添加计划</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="panel-body">
+                            <div class="row" id="truckPlanEntity0">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-dm-12">
+                                            <input type="number"  style="display: none"  id="planId0">
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">订单类型</span>
+                                                <select class="form-control" id="truckType0">
+                                                    <option value="TYPE_CRH3_TRUCK">CRH3系列动车组转向架</option>
+                                                    <option value="TYPE_ABCSubway_TRUCK">A/B/C型地铁转向架</option>
+                                                    <option value="TYPE_SW220K_TRUCK">SW-220K部备车转向架</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">完工与否</span>
+                                                <select class="form-control" id="isFinish0">
+                                                    <option value="1">已完成</option>
+                                                    <option value="0">未完成</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">销售单号</span>
+                                                <input type="text" class="form-control" id="planNumber0">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">生产日期</span>
+                                                <input type="date" class="form-control" id="produceDate0">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">完成日期</span>
+                                                <input type="date" class="form-control" id="finishDate0">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">原定完成日</span>
+                                                <input type="date" class="form-control" id="planDate0">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <div class="raw">
+                                        <div class=" col-sm-12 col-md-12">
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">总计划总量</span>
+                                                <input type="number"  value="0" class="form-control" id="planVolume0">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">现成品总量</span>
+                                                <input type="number" value="0" class="form-control" id="goodVolume0">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">待生产总量</span>
+                                                <input type="number" value="0" class="form-control" id="remainVolume0">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">现次品总量</span>
+                                                <input type="number"   value="0" class="form-control" id="badVolume0">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">审计</span>
+                                                <input type="text" class="form-control" id="examine0">
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <span class="input-group-addon">备注</span>
+                                                <input type="text" class="form-control" id="remark0">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default" style="margin-top: 15px; ">
+                                <div class="panel-heading ">
+                                    <div class="row " id="dayPlanRow0">
+                                        <div class=" col-sm-3 col-md-2 " style="text-align: right; ">
+                                            <button id="addDayPlan0" class="btn btn-info " type="button ">添加日计划</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body ">
+                                    <div class="table-responsive " >
+                                        <table id="dayPlan-editable0" class="table table-bordered table-striped ">
+                                            <thead>
+                                            <tr>
+                                                <th>日期</th>
+                                                <th>日计划产量</th>
+                                                <th>累积成品数</th>
+                                                <th>不良品数</th>
+                                                <th>完成与否</th>
+                                                <th>备注</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="dayPlanTr0">
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button " class="btn btn-default " data-dismiss="#planModal0 ">关闭</button>
+                    <button type="button " id="editPlan" class="btn btn-primary ">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End 修改任务的模态框-->
 
     <!-- 	描述：日任务的模态框 -->
     <div class="modal fade bs-example-modal-lg" id="dayPlanModal" tabindex="-1" role="dialog"
@@ -265,16 +385,10 @@
                     <form>
                         <div class="panel-body">
                             <div class="panel panel-default" style="margin-top: 0px;">
-                                <div class="panel-heading ">
-                                    <div class="row " id="dayPlanRow2">
-                                        <div class=" col-sm-3 col-md-2 " style="text-align: right; ">
-                                            <button id="addDayPlan2" class="btn btn-info " type="button ">添加日计划</button>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="panel-body ">
                                     <div class="table-responsive ">
-                                        <table id="dayPlan-editable2" class="table table-bordered table-striped ">
+                                        <table id="doPlanTable" class="table table-bordered table-striped ">
                                             <thead>
                                             <tr>
                                                 <th>日期</th>
@@ -282,34 +396,11 @@
                                                 <th>累积成品数</th>
                                                 <th>不良品数</th>
                                                 <th>完成与否</th>
-                                                <th style="text-align: center; ">备注</th>
+                                                <th>备注</th>
                                                 <th>操作</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
-
-
-                                            <tr>
-                                                <td>2017.3.16</td>
-                                                <td>11000</td>
-                                                <td>10000</td>
-                                                <td>1000</td>
-                                                <td style="text-align: center; "><span
-                                                        class="label label-warning ">完成</span></td>
-                                                <td>hhhhhhhhhhhhhhhhhhhhhhhh</td>
-                                                <td class="actions " style="width: 80px; ">
-                                                    <a href="# " class="hidden on-editing save-row "><i
-                                                            class="fa fa-save "></i></a>
-                                                    <a href="# " class="hidden on-editing cancel-row "><i
-                                                            class="fa fa-times "></i></a>
-                                                    <a href="# " class="on-default edit-row "><i
-                                                            class="fa fa-pencil "></i></a>
-                                                    <a href="# " class="on-default remove-row "><i
-                                                            class="fa fa-trash-o "></i></a>
-                                                    <a href="# " class="on-default remove-row " data-toggle="modal"
-                                                       data-target="#doDayPlanModal"><i class="fa fa-cogs"></i></a>
-                                                </td>
-                                            </tr>
+                                            <tbody id="dayPlanTr2">
 
                                             </tbody>
                                         </table>
@@ -320,8 +411,8 @@
                     </form>
                 </div>
                 <div class="modal-footer ">
-                    <button type="button " class="btn btn-default " data-dismiss="modal ">关闭</button>
-                    <button type="button " class="btn btn-primary ">保存</button>
+                    <button type="button " class="btn btn-default " data-dismiss="#dayPlanModal ">关闭</button>
+                    <button type="button " class="btn btn-primary " >保存</button>
                 </div>
             </div>
         </div>
@@ -329,7 +420,7 @@
     <!-- 	end 日任务的模态框 -->
 
     <!-- 	描述：日任务的执行模态框 -->
-    <div class="modal fade" id="doDayPlanModal" data-position="center" tabindex="-1" role="dialog">
+    <div class="modal fade"  id="doDayPlanModal" data-position="center" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-doDayPlan" role="document" data-position="center" style=" margin: 200px auto; ">
             <div class="modal-content">
                 <div class="modal-header">
@@ -355,10 +446,9 @@
                                 <div class="input-group" style="margin-bottom: 10px;">
                                     <span class="input-group-addon">转向架种类</span>
                                     <select class="form-control">
-                                        <option>1号转向架</option>
-                                        <option>2号转向架</option>
-                                        <option>3号转向架</option>
-                                        <option>4号转向架</option>
+                                        <option value="TYPE_CRH3_TRUCK">CRH3系列动车组转向架</option>
+                                        <option value="TYPE_ABCSubway_TRUCK">A/B/C型地铁转向架</option>
+                                        <option value="TYPE_SW220K_TRUCK">SW-220K部备车转向架</option>
                                     </select>
                                 </div>
                             </div>
@@ -380,6 +470,7 @@
 <!--/container-->
 
 <!-- Pages JS -->
+<script src="${ctxPath}/assets/js/pages/table-doplantable.js "></script>
 <script src="${ctxPath}/assets/js/pages/table-advanced.js "></script>
 <!-- 自定义 JS -->
 <script type="text/javascript ">
@@ -392,13 +483,20 @@
                 '</div>');
         $("#dayPlanRow").prepend($("#dayPlan-editable_filter").parent());
         $("#dayPlanRow").prepend($("#dayPlan-editable_length").parent());
-        $("#dayPlanRow2").prepend($("#dayPlan-editable2_filter").parent());
-        $("#dayPlanRow2").prepend($("#dayPlan-editable2_length").parent());
+
+        $("#doPlanTable_filter").parent().before('<div class="col-sm-3 col-md-2 "></div>');
+
+        var temp=$("#id-tbody").children();
+        console.info(temp);
+        if(temp.length==1&& temp.children().length==1){
+           var td=temp.children();
+            td.attr("id","ggggg");
+        }
+        console.info(temp);
     }
 
     $(document).ready(function () {
         $("#addPlan").click(function () {
-
             var truckPlanEntity = {
                 truckType: $("#truckType").val(),
                 isFinish: $("#isFinish").val(),
@@ -417,71 +515,234 @@
             var dayPlanArry = [];
             $('#dayPlanTr tr').each(function () {
                 var tdArr = $(this).children();
-                var temp;
-                if (tdArr.eq(4).text() == "已完成") temp = 1;
-                else temp = 0;
-                var dayPlan = {
-                    date: moment(tdArr.eq(0).text()).format('X'),
-                    planVolume: tdArr.eq(1).text(),
-                    goodVolume: tdArr.eq(2).text(),
-                    badVolume: tdArr.eq(3).text(),
-                    isFinish: temp,
-                    remark: tdArr.eq(5).text()
+                if(tdArr.length>1){
+                    var temp;
+                    if (tdArr.eq(4).text() == "已完成") temp = 1;
+                    else temp = 0;
+                    var dayPlan = {
+                        date: moment(tdArr.eq(0).text()).format('X'),
+                        planVolume: tdArr.eq(1).text(),
+                        goodVolume: tdArr.eq(2).text(),
+                        badVolume: tdArr.eq(3).text(),
+                        isFinish: temp,
+                        remark: tdArr.eq(5).text()
+                    }
+                    dayPlanArry.push(dayPlan);
                 }
-                dayPlanArry.push(dayPlan);
             });
 
-            $.post("http://localhost:8080/truck-1/addPlan",
+            $.post("${ctxPath}/addPlan",
                     {
                         truckPlanEntity: JSON.stringify(truckPlanEntity),
                         dayPlanArry: JSON.stringify(dayPlanArry)
                     },
-                    function (resultMsg) {
-                        var json = JSON.parse(resultMsg);
+                    function (message) {
+                        var json = JSON.parse(message);
                         if (json.msg) {
-                            alert("成功");
+                            alert("保存成功");
                         } else {
-                            alert("失败");
+                            alert("执行失败！请检查网络,或者服务器未启动！");
                         }
                     });
 
         });
     });
 
+//    function addTruckPlan() {
+//        $("#truckType").val("");
+//        $("#isFinish").val("");
+//        $("#planNumber").val("");
+//        $("#planVolume").val("");
+//        $("#goodVolume").val("");
+//        $("#remainVolume").val("");
+//        $("#badVolume").val("");
+//        $("#planDate").val("");
+//        $("#produceDate").val("");
+//        $("#finishDate").val("");
+//        $("#examine").val("");
+//        $("#remark").val("");
+//
+//        $('#dayPlanTr').empty();
+//        var html = '<tr class="odd"><td valign="top" colspan="7" class="dataTables_empty">No data available in tab</td></tr>';
+//        $('#dayPlanTr').html(html);
+//    }
+
+
+    $(document).ready(function () {
+        $("#editPlan").click(function () {
+            var truckPlanEntity = {
+                planId: $("#planId0").val(),
+                truckType: $("#truckType0").val(),
+                isFinish: $("#isFinish0").val(),
+                planNumber: $("#planNumber0").val(),
+                planVolume: $("#planVolume0").val(),
+                goodVolume: $("#goodVolume0").val(),
+                remainVolume: $("#remainVolume0").val(),
+                badVolume: $("#badVolume0").val(),
+                planDate: $("#planDate0").val(),
+                produceDate: $("#produceDate0").val(),
+                finishDate: $("#finishDate0").val(),
+                examine: $("#examine0").val(),
+                remark: $("#remark0").val()
+            }
+
+            var dayPlanArry = [];
+            $('#dayPlanTr0 tr').each(function () {
+                var tdArr = $(this).children();
+                if(tdArr.length>1){
+                    var temp;
+                    if (tdArr.eq(4).text() == "已完成") temp = 1;
+                    else temp = 0;
+                    var dayPlan = {
+                        date: moment(tdArr.eq(0).text()).format('X'),
+                        planVolume: tdArr.eq(1).text(),
+                        goodVolume: tdArr.eq(2).text(),
+                        badVolume: tdArr.eq(3).text(),
+                        isFinish: temp,
+                        remark: tdArr.eq(5).text()
+                    }
+                    dayPlanArry.push(dayPlan);
+                }
+            });
+
+            $.post("${ctxPath}/editPlan",
+                    {
+                        truckPlanEntity: JSON.stringify(truckPlanEntity),
+                        dayPlanArry: JSON.stringify(dayPlanArry)
+                    },
+                    function (message) {
+                        var json = JSON.parse(message);
+                        if (json.msg) {
+                            alert("保存成功");
+                        } else {
+                            alert("执行失败！请检查网络,或者服务器未启动！");
+                        }
+                    });
+
+        });
+    });
+
+
     function editTruckPlan(planId) {
-         //要学会用浏览器控制台测试 console.info(tdArr)   console.log(tdArr.eq(1).text());
+        //要学会用浏览器控制台测试 console.info(tdArr)   console.log(tdArr.eq(1).text());
         $.ajax({
             type: "GET",
-            url:  "${ctxPath}/editTruckPlan?planId="+planId,
+            url: "${ctxPath}/editTruckPlan?planId=" + planId,
             dataType: "json",
             success: function (data) {
-                $("#truckType").val(data.truckPlanEntity.truckType);
-                $("#isFinish").val(data.truckPlanEntity.isFinish);
-                $("#planNumber").val(data.truckPlanEntity.planNumber);
-                $("#planVolume").val(data.truckPlanEntity.planVolume);
-                $("#goodVolume").val(data.truckPlanEntity.goodVolume);
-                $("#remainVolume").val(data.truckPlanEntity.remainVolume);
-                $("#badVolume").val(data.truckPlanEntity.badVolume);
-                $("#planDate").val(data.truckPlanEntity.planDate);
-                $("#produceDate").val(data.truckPlanEntity.produceDate);
-                $("#finishDate").val(data.truckPlanEntity.finishDate);
-                $("#examine").val(data.truckPlanEntity.examine);
-                $("#remark").val(data.truckPlanEntity.remark);
+                $("#planId0").val(data.truckPlanEntity.planId);
+                $("#truckType0").val(data.truckPlanEntity.truckType);
+                $("#isFinish0").val(data.truckPlanEntity.isFinish);
+                $("#planNumber0").val(data.truckPlanEntity.planNumber);
+                $("#planVolume0").val(data.truckPlanEntity.planVolume);
+                $("#goodVolume0").val(data.truckPlanEntity.goodVolume);
+                $("#remainVolume0").val(data.truckPlanEntity.remainVolume);
+                $("#badVolume0").val(data.truckPlanEntity.badVolume);
+                $("#planDate0").val(data.truckPlanEntity.planDate);
+                $("#produceDate0").val(data.truckPlanEntity.produceDate);
+                $("#finishDate0").val(data.truckPlanEntity.finishDate);
+                $("#examine0").val(data.truckPlanEntity.examine);
+                $("#remark0").val(data.truckPlanEntity.remark);
 
-//                $('#resText').empty();   //清空resText里面的所有内容
-//                var html = '';
-//                $.each(data, function(commentIndex, comment){
-//                    html += '<div class="comment"><h6>' + comment['username']
-//                            + ':</h6><p class="para"' + comment['content']
-//                            + '</p></div>';
-//                });
-//                $('#resText').html(html);
+               //$('#dayPlanTr0').empty();   //清空resText里面的所有内容
+                var html = '';
+                if (data.dayPlanEntityList.length > 0) {
+                    $.each(data.dayPlanEntityList, function (Index, dayPlan) {
+                        // console.info(dayPlan);
+                        html += '<tr>'
+                                + '<td>' + dayPlan.date + '</td>'
+                                + '<td>' + dayPlan.planVolume + '</td>'
+                                + '<td>' + dayPlan.goodVolume + '</td>'
+                                + '<td>' + dayPlan.badVolume + '</td>'
+                                + '<td>' + dayPlan.isFinish + '</td>'
+                                + '<td>' + dayPlan.remark + '</td>'
+                                + '<td class="actions" style="width: 60px;">' + '<a href="# " class="hidden on-editing save-row "><i class="fa fa-save "></i></a>'
+                                + '<a href="# " class="hidden on-editing cancel-row "><i class="fa fa-times "></i></a>'
+                                + '<a href="# " class="on-default edit-row "><i class="fa fa-pencil "></i></a>'
+                                + '<a href="# " class="on-default remove-row "><i class="fa fa-trash-o "></i></a>'
+                                + '</td>'
+                                + '</tr>';
+                    });
+                } else {
+                    html = '<tr class="odd"><td valign="top" colspan="7" class="dataTables_empty">No data available in tab</td></tr>';
+                }
+
+                $('#dayPlanTr0').html(html);
+                EditableTable.initialize();
+                $("#dayPlanRow0").prepend($("#dayPlan-editable0_filter").parent());
+                $("#dayPlanRow0").prepend($("#dayPlan-editable0_length").parent());
+
+                $('#planModal0').modal('show');
             },
             error: function (data) {
-                alert(data);
+                alert("请求失败！请检查网络,或者服务器未启动！");
             }
         });
     }
+
+    function doTruckPlan(planId) {
+        //要学会用浏览器控制台测试 console.info(tdArr)   console.log(tdArr.eq(1).text());
+        $.ajax({
+            type: "GET",
+            url: "${ctxPath}/doTruckPlan?planId=" + planId,
+            dataType: "json",
+            success: function (data) {
+                //$('#dayPlanTr2').empty();   //清空resText里面的所有内容
+                var html = '';
+                if (data.dayPlanEntityList.length > 0) {
+                    $.each(data.dayPlanEntityList, function (Index, dayPlan) {
+                        // console.info(dayPlan);
+                        html += '<tr>'
+                                + '<td>' + dayPlan.date + '</td>'
+                                + '<td>' + dayPlan.planVolume + '</td>'
+                                + '<td>' + dayPlan.goodVolume + '</td>'
+                                + '<td>' + dayPlan.badVolume + '</td>'
+                                + '<td>' + dayPlan.isFinish + '</td>'
+                                + '<td>' + dayPlan.remark + '</td>'
+                                + '<td class="actions" style="width: 60px;">'
+                                + '<a  href="# " class="on-default remove-row " data-toggle="modal"data-target="#doDayPlanModal"><i class="fa fa-cogs"></i></a>'
+                                + '</td>'
+                                + '</tr>';
+                    });
+                } else {
+                    html = '<tr class="odd"><td valign="top" colspan="7" class="dataTables_empty">No data available in tab</td></tr>';
+                }
+
+                $('#dayPlanTr2').html(html);
+//                EditableTable.initialize();
+//                $("#dayPlanRow0").prepend($("#dayPlan-editable0_filter").parent());
+//                $("#dayPlanRow0").prepend($("#dayPlan-editable0_length").parent());
+//
+                $('#dayPlanModal').modal('show');
+            },
+            error: function (data) {
+                alert("执行失败！请检查网络,或者服务器未启动！");
+            }
+        });
+    }
+
+    function removeTruckPlan(the,planId){
+        var result=confirm("确定要删除此计划吗？");
+        if (result) {
+            $.ajax({
+                type: "GET",
+                url: "${ctxPath}/removeTruckPlan?planId=" + planId,
+                success: function (message) {
+                    var json = JSON.parse(message);
+                    if (json.msg) {
+                        $(the).parent().parent().remove();
+                    }else {
+                        alert("删除失败！请稍后再试！");
+                    }
+                },
+                error: function (message) {
+                    alert("删除失败！请检查网络,或者服务器未启动！");
+                }
+            });
+        }
+    }
+
+
 
 </script>
 <!-- end: JavaScript-->

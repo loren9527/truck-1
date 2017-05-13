@@ -45,7 +45,7 @@
 
 }).apply(this, [jQuery]);
 
- 
+
 
 /*Datatable - default*/
 (function($) {
@@ -63,6 +63,7 @@
 	});
 
 }).apply(this, [jQuery]);
+
 
 /*Datatable - editable*/
 (function($) {
@@ -143,33 +144,13 @@
 
 					var $row = $(this).closest('tr');
 
-					$.magnificPopup.open({
-						items: {
-							src: '#dialog',
-							type: 'inline'
-						},
-						preloader: false,
-						modal: true,
-						callbacks: {
-							change: function() {
-								_self.dialog.$confirm.on('click', function(e) {
-									e.preventDefault();
+					_self.rowRemove($(this).closest('tr'));
 
-									_self.rowRemove($row);
-									$.magnificPopup.close();
-								});
-							},
-							close: function() {
-								_self.dialog.$confirm.off('click');
-							}
-						}
-					});
 				});
 
 			this.$addButton.on('click', function(e) {
-				e.preventDefault();
-
-				_self.rowAdd();
+				 e.preventDefault();
+				 _self.rowAdd();
 			});
 
 			this.dialog.$cancel.on('click', function(e) {
@@ -305,16 +286,15 @@
 
 }).apply(this, [jQuery]);
 
-/*Datatable - editable*/
-(function($) {
 
-	'use strict';
 
-	var EditableTable = {
+
+
+ var EditableTable = {
 
 		options: {
-			addButton: '#addDayPlan2',
-			table: '#dayPlan-editable2',
+			addButton: '#addDayPlan0',
+			table: '#dayPlan-editable0',
 			dialog: {
 				wrapper: '#dialog',
 				cancelButton: '#dialogCancel',
@@ -384,32 +364,12 @@
 
 					var $row = $(this).closest('tr');
 
-					$.magnificPopup.open({
-						items: {
-							src: '#dialog',
-							type: 'inline'
-						},
-						preloader: false,
-						modal: true,
-						callbacks: {
-							change: function() {
-								_self.dialog.$confirm.on('click', function(e) {
-									e.preventDefault();
+					_self.rowRemove($(this).closest('tr'));
 
-									_self.rowRemove($row);
-									$.magnificPopup.close();
-								});
-							},
-							close: function() {
-								_self.dialog.$confirm.off('click');
-							}
-						}
-					});
 				});
 
 			this.$addButton.on('click', function(e) {
 				e.preventDefault();
-
 				_self.rowAdd();
 			});
 
@@ -540,8 +500,7 @@
 
 	};
 
-	$(function() {
-		EditableTable.initialize();
-	});
 
-}).apply(this, [jQuery]);
+
+
+

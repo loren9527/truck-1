@@ -34,6 +34,9 @@ public class RootConfig {
         dataSource.setUrl("jdbc:mysql://101.201.65.103:3306/bysj?useUnicode=true&characterEncoding=UTF-8");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
+//        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/bysj?useUnicode=true&characterEncoding=UTF-8");
+//        dataSource.setUsername("root");
+//        dataSource.setPassword("123456");
         dataSource.setMaxActive(20);
         dataSource.setInitialSize(0);
         dataSource.setMaxIdle(20);
