@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bysj.rj.dao.DayPlanEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.bysj.rj.entity.DayPlanEntity" >
+    <id column="dp_id" property="dpId" jdbcType="BIGINT" />
+    <result column="date" property="date" jdbcType="BIGINT" />
+    <result column="plan_volume" property="planVolume" jdbcType="INTEGER" />
+    <result column="good_volume" property="goodVolume" jdbcType="INTEGER" />
+    <result column="bad_volume" property="badVolume" jdbcType="INTEGER" />
+    <result column="is_finish" property="isFinish" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="truck_plan_id" property="truckPlanId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dp_id, date, plan_volume, good_volume, bad_volume, is_finish, remark, truck_plan_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bysj.rj.entity.DayPlanEntityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from day_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from day_plan
+    where dp_id = #{dpId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from day_plan
+    where dp_id = #{dpId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bysj.rj.entity.DayPlanEntityExample" >
+    delete from day_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bysj.rj.entity.DayPlanEntity" >
+    insert into day_plan (dp_id, date, plan_volume, 
+      good_volume, bad_volume, is_finish, 
+      remark, truck_plan_id)
+    values (#{dpId,jdbcType=BIGINT}, #{date,jdbcType=BIGINT}, #{planVolume,jdbcType=INTEGER}, 
+      #{goodVolume,jdbcType=INTEGER}, #{badVolume,jdbcType=INTEGER}, #{isFinish,jdbcType=TINYINT}, 
+      #{remark,jdbcType=VARCHAR}, #{truckPlanId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into day_plan (dp_id, date, plan_volume,
+    good_volume, bad_volume, is_finish,
+    remark, truck_plan_id)
+    values
+    <foreach collection="list" item="item" index="index"
+             separator=", ">
+      (#{item.dpId,jdbcType=BIGINT}, #{item.date,jdbcType=BIGINT}, #{item.planVolume,jdbcType=INTEGER},
+      #{item.goodVolume,jdbcType=INTEGER}, #{item.badVolume,jdbcType=INTEGER}, #{item.isFinish,jdbcType=TINYINT},
+      #{item.remark,jdbcType=VARCHAR}, #{item.truckPlanId,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.bysj.rj.entity.DayPlanEntity" >
+    insert into day_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dpId != null" >
+        dp_id,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="planVolume != null" >
+        plan_volume,
+      </if>
+      <if test="goodVolume != null" >
+        good_volume,
+      </if>
+      <if test="badVolume != null" >
+        bad_volume,
+      </if>
+      <if test="isFinish != null" >
+        is_finish,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="truckPlanId != null" >
+        truck_plan_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dpId != null" >
+        #{dpId,jdbcType=BIGINT},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=BIGINT},
+      </if>
+      <if test="planVolume != null" >
+        #{planVolume,jdbcType=INTEGER},
+      </if>
+      <if test="goodVolume != null" >
+        #{goodVolume,jdbcType=INTEGER},
+      </if>
+      <if test="badVolume != null" >
+        #{badVolume,jdbcType=INTEGER},
+      </if>
+      <if test="isFinish != null" >
+        #{isFinish,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="truckPlanId != null" >
+        #{truckPlanId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bysj.rj.entity.DayPlanEntityExample" resultType="java.lang.Integer" >
+    select count(*) from day_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update day_plan
+    <set >
+      <if test="record.dpId != null" >
+        dp_id = #{record.dpId,jdbcType=BIGINT},
+      </if>
+      <if test="record.date != null" >
+        date = #{record.date,jdbcType=BIGINT},
+      </if>
+      <if test="record.planVolume != null" >
+        plan_volume = #{record.planVolume,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodVolume != null" >
+        good_volume = #{record.goodVolume,jdbcType=INTEGER},
+      </if>
+      <if test="record.badVolume != null" >
+        bad_volume = #{record.badVolume,jdbcType=INTEGER},
+      </if>
+      <if test="record.isFinish != null" >
+        is_finish = #{record.isFinish,jdbcType=TINYINT},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.truckPlanId != null" >
+        truck_plan_id = #{record.truckPlanId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update day_plan
+    set dp_id = #{record.dpId,jdbcType=BIGINT},
+      date = #{record.date,jdbcType=BIGINT},
+      plan_volume = #{record.planVolume,jdbcType=INTEGER},
+      good_volume = #{record.goodVolume,jdbcType=INTEGER},
+      bad_volume = #{record.badVolume,jdbcType=INTEGER},
+      is_finish = #{record.isFinish,jdbcType=TINYINT},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      truck_plan_id = #{record.truckPlanId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bysj.rj.entity.DayPlanEntity" >
+    update day_plan
+    <set >
+      <if test="date != null" >
+        date = #{date,jdbcType=BIGINT},
+      </if>
+      <if test="planVolume != null" >
+        plan_volume = #{planVolume,jdbcType=INTEGER},
+      </if>
+      <if test="goodVolume != null" >
+        good_volume = #{goodVolume,jdbcType=INTEGER},
+      </if>
+      <if test="badVolume != null" >
+        bad_volume = #{badVolume,jdbcType=INTEGER},
+      </if>
+      <if test="isFinish != null" >
+        is_finish = #{isFinish,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="truckPlanId != null" >
+        truck_plan_id = #{truckPlanId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where dp_id = #{dpId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bysj.rj.entity.DayPlanEntity" >
+    update day_plan
+    set date = #{date,jdbcType=BIGINT},
+      plan_volume = #{planVolume,jdbcType=INTEGER},
+      good_volume = #{goodVolume,jdbcType=INTEGER},
+      bad_volume = #{badVolume,jdbcType=INTEGER},
+      is_finish = #{isFinish,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      truck_plan_id = #{truckPlanId,jdbcType=BIGINT}
+    where dp_id = #{dpId,jdbcType=BIGINT}
+  </update>
+</mapper>
