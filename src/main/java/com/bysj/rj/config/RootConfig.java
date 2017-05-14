@@ -1,6 +1,5 @@
 package com.bysj.rj.config;
 
-import com.alibaba.fastjson.JSON;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -13,6 +12,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.stereotype.Controller;
+
 import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -21,6 +21,7 @@ import java.io.IOException;
  * Created by Administrator on 2017/4/29 0029.
  */
 @Configuration
+//@EnableWebSocket
 @ComponentScan(basePackages = {"com.bysj.rj"},excludeFilters = { @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Controller.class,WebListener.class})})
 @MapperScan("com.bysj.rj.dao")
 @EnableTransactionManagement
@@ -63,4 +64,17 @@ public class RootConfig {
         mapperScannerConfigurer.setBasePackage("com.bysj.rj.dao");
         return mapperScannerConfigurer;
     }
+
+//    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+//        registry.addHandler(myHandler(), "/ws").addInterceptors(new MyHandShake());
+//
+//        registry.addHandler(myHandler(), "/ws/sockjs").addInterceptors(new MyHandShake()).withSockJS();
+//    }
+//
+//
+//    @Bean
+//    public WebsocketHandler myHandler() {
+//        return new WebsocketHandler();
+//    }
+
 }

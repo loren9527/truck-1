@@ -64,13 +64,13 @@
                         </div>
                         <div class="panel-body">
                             <div class="row" style="margin-bottom: 10px;">
-                                <div class="col-sm-6 col-dm-6">
+                                <div class="col-sm-5 col-dm-5">
                                     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                                    <div id="echartContiner" style="width: 100%;height:300px;"></div>
+                                    <div id="echartContiner" style="width: 100%;height:400px;"></div>
                                 </div>
-                                <div class="col-sm-6 col-dm-6">
+                                <div class="col-sm-7 col-dm-7">
                                     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                                    <div id="echartContiner2" style="width: 100%;height:300px;"></div>
+                                    <div id="echartContiner2" style="width: 100%;height:400px;"></div>
                                 </div>
                             </div>
 
@@ -108,10 +108,10 @@
 </div>
 <!--/container-->
 
+<script src="${ctxPath}/assets/plugins/echarts/echarts.min.js"></script>
 <!-- 自定义 JS -->
 <script type="text/javascript">
     $(document).ready(function () {
-
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('echartContiner'));
         // 指定图表的配置项和数据
@@ -137,8 +137,8 @@
                     radius: '55%',
                     center: ['50%', '60%'],
                     data: [
-                        {value: 1548, name: '成品'},
-                        {value: 135, name: '次品'}
+                        {value: $resultJSON.allGoodCount, name: '成品'},
+                        {value: $resultJSON.allBadCount, name: '次品'}
                     ],
                     itemStyle: {
                         emphasis: {
@@ -171,18 +171,19 @@
             legend: {
                 orient: 'vertical',
                 left: 'left',
-                data: ['兼容动车组转向架', '城轨转向架', '部备车转向架']
+                data: ['CRH3动车组转向架', 'ABC城轨转向架', 'SW220K部备车转向架']
             },
-            series: [
+
+        series: [
                 {
                     name: '访问来源',
                     type: 'pie',
                     radius: '55%',
                     center: ['50%', '60%'],
                     data: [
-                        {value: 2334, name: '兼容动车组转向架'},
-                        {value: 1395, name: '城轨转向架'},
-                        {value: 1548, name: '部备车转向架'}
+                        {value: $resultJSON.typeCRH3_Count, name: 'CRH3动车组转向架'},
+                        {value: $resultJSON.typeABCSubway_Count, name: 'ABC城轨转向架'},
+                        {value: $resultJSON.typeSW220K_Count, name: 'SW220K部备车转向架'}
                     ],
                     itemStyle: {
                         emphasis: {
@@ -195,12 +196,74 @@
             ]
         };
 
-
         // 使用刚指定的配置项和数据显示图表。
         myChart2.setOption(option2);
+        myChart2.on('click', function (param) {
+            var truckType;
+            if(param.name=="CRH3动车组转向架"){
+                truckType="1";
+            }
+            if(param.name=="ABC城轨转向架"){
+                truckType="2";
+            }
+            if(param.name=="SW220K部备车转向架"){
+                truckType="3";
+            }
+            $.ajax({
+                type: "GET",
+                url: "${ctxPath}/goodBad?truckType=" + truckType,
+                dataType: "json",
+                success: function (rusultJSON) {
+                   var tempOption = {
+                        title: {
+                            text: '成品次品统计',
+                            subtext: param.name,
+                            x: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            left: 'left',
+                            data: ['成品', '次品']
+                        },
+                        series: [
+                            {
+                                name: '访问来源',
+                                type: 'pie',
+                                radius: '55%',
+                                center: ['50%', '60%'],
+                                data: [
+                                    {value: $resultJSON.allGoodCount, name: '成品'},
+                                    {value: $resultJSON.allBadCount, name: '次品'}
+                                ],
+                                itemStyle: {
+                                    emphasis: {
+                                        shadowBlur: 10,
+                                        shadowOffsetX: 0,
+                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    }
+                                }
+                            }
+                        ]
+                    };
 
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(tempOption);
+
+                },
+                error: function (rusultJSON) {
+                    alert("请求失败！请检查网络,或者服务器未启动！");
+                }
+            });
+
+
+        });
 
     });
+
 </script>
 <!-- end: JavaScript-->
 

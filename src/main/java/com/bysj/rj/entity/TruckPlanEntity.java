@@ -27,6 +27,35 @@ public class TruckPlanEntity {
 
     private String remark;
 
+    private  String strPlanDate;
+    private  String strFinishDate;
+    private  String strProduceDate;
+
+    public String getStrPlanDate() {
+        return strPlanDate;
+    }
+
+    public void setStrPlanDate(String strPlanDate) {
+        this.strPlanDate = strPlanDate;
+    }
+
+    public String getStrProduceDate() {
+        return strProduceDate;
+    }
+
+    public void setStrProduceDate(String strProduceDate) {
+        this.strProduceDate = strProduceDate;
+    }
+
+    public void setStrFinishDate(String strFinishDate) {
+        this.strFinishDate = strFinishDate;
+    }
+
+    public String getStrFinishDate() {
+        return strFinishDate;
+    }
+
+
     public Long getPlanId() {
         return planId;
     }

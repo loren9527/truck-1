@@ -21,4 +21,8 @@ public class DayPlanService {
         dayPlanEntityExample.or().andTruckPlanIdEqualTo(planId);
         return dayPanEntityMapper.selectByExample(dayPlanEntityExample);
     }
+
+    public DayPlanEntity getEntiyByDpID(Long dpId) {
+        return   dayPanEntityMapper.selectByPrimaryKey(dpId);
+    }
 }

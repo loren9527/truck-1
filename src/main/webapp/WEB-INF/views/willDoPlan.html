@@ -66,7 +66,7 @@
                                     <th>成品总量</th>
                                     <th>待产总量</th>
                                     <th>次品总量</th>
-                                    <th>原定完成日</th>
+                                    <th>原完成日</th>
                                     <th>生产日期</th>
                                     <th>完成日期</th>
                                     <th>审核</th>
@@ -78,7 +78,7 @@
                                 #if($truckPlanEntityList.size()>0)
                                 #foreach($truckPlanOne in $truckPlanEntityList)
                                 <tr class="gradeX">
-                                    <td>$!{truckPlanOne.truckType}</td>
+                                    <td style="min-width: 160px;">$!{truckPlanOne.truckType}</td>
                                     <td>
                                         #if($truckPlanOne.isFinish)
                                         <span class="label label-default">已完成</span>
@@ -91,16 +91,16 @@
                                     <td class="center">$!truckPlanOne.goodVolume</td>
                                     <td class="center">$!truckPlanOne.remainVolume</td>
                                     <td class="center">$!truckPlanOne.badVolume</td>
-                                    <td class="center" style="width: 140px;">$!truckPlanOne.planDate</td>
-                                    <td class="center">$!truckPlanOne.produceDate</td>
-                                    <td class="center">$!truckPlanOne.finishDate</td>
+                                    <td class="center" style="width: 140px;">$!truckPlanOne.strPlanDate</td>
+                                    <td class="center">$!truckPlanOne.strProduceDate</td>
+                                    <td class="center">$!truckPlanOne.strFinishDate</td>
                                     <td class="center">$!truckPlanOne.check</td>
                                     <td class="center">$!truckPlanOne.remark</td>
                                     <td class="actions">
                                         <a href="#" class="on-default "  onclick='editTruckPlan($!truckPlanOne.planId)'><i
                                                 class="fa fa-pencil"></i></a>
                                         <a href="#" class="on-default " onclick="removeTruckPlan(this,$!truckPlanOne.planId)"><i class="fa fa-trash-o"></i></a>
-                                        <a href="#" class="on-default  " onclick="doTruckPlan($!truckPlanOne.planId)"><i class="fa fa fa-cogs "></i></a>
+                                        <a href="#" class="on-default  " onclick="indexDayPlan($!truckPlanOne.planId)"><i class="fa fa fa-cogs "></i></a>
                                     </td>
                                 </tr>
                                 #end
@@ -140,9 +140,9 @@
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">订单类型</span>
                                                 <select class="form-control" id="truckType">
-                                                    <option value="TYPE_CRH3_TRUCK">CRH3系列动车组转向架</option>
-                                                    <option value="TYPE_ABCSubway_TRUCK">A/B/C型地铁转向架</option>
-                                                    <option value="TYPE_SW220K_TRUCK">SW-220K部备车转向架</option>
+                                                    <option value="CRH3系列动车组转向架">CRH3系列动车组转向架</option>
+                                                    <option value="A/B/C型地铁转向架">A/B/C型地铁转向架</option>
+                                                    <option value="SW-220K部备车转向架">SW-220K部备车转向架</option>
                                                 </select>
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
@@ -165,7 +165,7 @@
                                                 <input type="date" class="form-control" id="finishDate">
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
-                                                <span class="input-group-addon">原定完成日</span>
+                                                <span class="input-group-addon">原完成日</span>
                                                 <input type="date" class="form-control" id="planDate">
                                             </div>
                                         </div>
@@ -236,7 +236,7 @@
                     </form>
                 </div>
                 <div class="modal-footer ">
-                    <button type="button " class="btn btn-default " data-dismiss="modal ">关闭</button>
+                    <button type="button " class="btn btn-default " data-dismiss="modal">关闭</button>
                     <button type="button " id="addPlan" class="btn btn-primary ">保存</button>
                 </div>
             </div>
@@ -266,9 +266,9 @@
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">订单类型</span>
                                                 <select class="form-control" id="truckType0">
-                                                    <option value="TYPE_CRH3_TRUCK">CRH3系列动车组转向架</option>
-                                                    <option value="TYPE_ABCSubway_TRUCK">A/B/C型地铁转向架</option>
-                                                    <option value="TYPE_SW220K_TRUCK">SW-220K部备车转向架</option>
+                                                    <option value="CRH3系列动车组转向架">CRH3系列动车组转向架</option>
+                                                    <option value="A/B/C型地铁转向架">A/B/C型地铁转向架</option>
+                                                    <option value="SW-220K部备车转向架">SW-220K部备车转向架</option>
                                                 </select>
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
@@ -291,7 +291,7 @@
                                                 <input type="date" class="form-control" id="finishDate0">
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
-                                                <span class="input-group-addon">原定完成日</span>
+                                                <span class="input-group-addon">原完成日</span>
                                                 <input type="date" class="form-control" id="planDate0">
                                             </div>
                                         </div>
@@ -363,7 +363,7 @@
                     </form>
                 </div>
                 <div class="modal-footer ">
-                    <button type="button " class="btn btn-default " data-dismiss="#planModal0 ">关闭</button>
+                    <button type="button " class="btn btn-default " data-dismiss="modal">关闭</button>
                     <button type="button " id="editPlan" class="btn btn-primary ">保存</button>
                 </div>
             </div>
@@ -411,8 +411,7 @@
                     </form>
                 </div>
                 <div class="modal-footer ">
-                    <button type="button " class="btn btn-default " data-dismiss="#dayPlanModal ">关闭</button>
-                    <button type="button " class="btn btn-primary " >保存</button>
+                    <button type="button " class="btn btn-default " data-dismiss="modal">关闭</button>
                 </div>
             </div>
         </div>
@@ -431,35 +430,22 @@
                 <div class="modal-body">
                     <form role="form">
                         <div class="row" style="margin-bottom: 10px;">
-                            <div class="col-sm-6 col-dm-6">
+                            <div class="col-sm-6 col-dm-9" id="selectContent">
                                 <div class="input-group">
                                     <span class="input-group-addon">生产机器</span>
-                                    <select class="form-control">
-                                        <option>1号机器</option>
-                                        <option>2号机器</option>
-                                        <option>3号机器</option>
-                                        <option>4号机器</option>
+                                    <select class="form-control" id="workshop">
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-dm-6">
-                                <div class="input-group" style="margin-bottom: 10px;">
-                                    <span class="input-group-addon">转向架种类</span>
-                                    <select class="form-control">
-                                        <option value="TYPE_CRH3_TRUCK">CRH3系列动车组转向架</option>
-                                        <option value="TYPE_ABCSubway_TRUCK">A/B/C型地铁转向架</option>
-                                        <option value="TYPE_SW220K_TRUCK">SW-220K部备车转向架</option>
-                                    </select>
-                                </div>
+                            <div class="col-sm-6 col-dm-3"  >
                             </div>
                         </div>
-
-                        <input type="hidden" class="form-control" name="dp_id" value="">
+                        <input type="hidden" id="dayPlanId" class="form-control" name="dp_id" value="">
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">执行</button>
+                    <button type="button"  class="btn btn-primary" id="doBtn" onclick="doDayPlan()">执行</button>
                 </div>
             </div>
         </div>
@@ -622,7 +608,6 @@
         });
     });
 
-
     function editTruckPlan(planId) {
         //要学会用浏览器控制台测试 console.info(tdArr)   console.log(tdArr.eq(1).text());
         $.ajax({
@@ -639,8 +624,8 @@
                 $("#remainVolume0").val(data.truckPlanEntity.remainVolume);
                 $("#badVolume0").val(data.truckPlanEntity.badVolume);
                 $("#planDate0").val(data.truckPlanEntity.planDate);
-                $("#produceDate0").val(data.truckPlanEntity.produceDate);
-                $("#finishDate0").val(data.truckPlanEntity.finishDate);
+                $("#produceDate0").val(data.truckPlanEntity.strProduceDate);
+                $("#finishDate0").val(data.truckPlanEntity.strFinishDate);
                 $("#examine0").val(data.truckPlanEntity.examine);
                 $("#remark0").val(data.truckPlanEntity.remark);
 
@@ -680,14 +665,27 @@
         });
     }
 
-    function doTruckPlan(planId) {
+    function indexDayPlan(planId) {
         //要学会用浏览器控制台测试 console.info(tdArr)   console.log(tdArr.eq(1).text());
         $.ajax({
             type: "GET",
-            url: "${ctxPath}/doTruckPlan?planId=" + planId,
+            url: "${ctxPath}/indexDayPlan?planId=" + planId,
             dataType: "json",
             success: function (data) {
-                //$('#dayPlanTr2').empty();   //清空resText里面的所有内容
+                $('#workshop').empty();   //清空resText里面的所有内容
+                var htmlOption='';
+                if (data.workshopList.length > 0) {
+                    $.each(data.workshopList, function (Index, worckshop) {
+                        htmlOption += '<option>' + worckshop.name + '</option>';
+                    });
+                    $("#workshop").html(htmlOption);
+                    $("#doBtn").attr("disabled", false);
+                } else {
+                    htmlOption = '<span>暂无可空闲的生产机器！</span>';
+                    $("#selectContent").empty();
+                    $("#selectContent").html(htmlOption);
+                    $("#doBtn").attr("disabled", true);
+                }
                 var html = '';
                 if (data.dayPlanEntityList.length > 0) {
                     $.each(data.dayPlanEntityList, function (Index, dayPlan) {
@@ -700,7 +698,7 @@
                                 + '<td>' + dayPlan.isFinish + '</td>'
                                 + '<td>' + dayPlan.remark + '</td>'
                                 + '<td class="actions" style="width: 60px;">'
-                                + '<a  href="# " class="on-default remove-row " data-toggle="modal"data-target="#doDayPlanModal"><i class="fa fa-cogs"></i></a>'
+                                + '<a  href="# " class="on-default" onclick="fillDayPlanId('+dayPlan.dpId+')" data-toggle="modal"data-target="#doDayPlanModal"><i class="fa fa-cogs"></i></a>'
                                 + '</td>'
                                 + '</tr>';
                     });
@@ -714,6 +712,37 @@
 //                $("#dayPlanRow0").prepend($("#dayPlan-editable0_length").parent());
 //
                 $('#dayPlanModal').modal('show');
+            },
+            error: function (data) {
+                alert("执行失败！请检查网络,或者服务器未启动！");
+            }
+        });
+    }
+
+    function fillDayPlanId(dayPlanId){
+        $("#dayPlanId").val(dayPlanId);
+    }
+
+    function doDayPlan( ) {
+        //要学会用浏览器控制台测试 console.info(tdArr)   console.log(tdArr.eq(1).text());
+        var dayPlanId= $("#dayPlanId").val();
+        var  workshopName=$("#workshop").val();
+        $.ajax({
+            type: "post",
+            url: "${ctxPath}/doDayPlan",
+            data:{
+                dayPlanId:dayPlanId,
+                workshopName:workshopName
+            },
+            dataType: "json",
+            success: function (message) {
+                //var json = JSON.parse(message);
+                $('#doDayPlanModal').modal('hide');
+                if (message.msg) {
+                    alert("执行成功！");
+                } else {
+                    alert("执行失败！请重试！");
+                }
             },
             error: function (data) {
                 alert("执行失败！请检查网络,或者服务器未启动！");
@@ -741,12 +770,8 @@
             });
         }
     }
-
-
-
 </script>
 <!-- end: JavaScript-->
-
 </body>
 
 </html>

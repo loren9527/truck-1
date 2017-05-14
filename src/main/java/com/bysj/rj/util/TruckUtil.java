@@ -15,12 +15,14 @@ public class TruckUtil {
     protected static Logger logger = Logger.getLogger(TruckPlanController.class);
 
     public  static void writer(HttpServletResponse response, JSONObject jsonObject){
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out= null;
         try {
             out = response.getWriter();
         } catch (IOException e) {
             logger.error("获取输出流异常");
         }
+        System.out.print(jsonObject.toJSONString());
         out.println(jsonObject.toJSONString());
         out.flush();
         out.close();

@@ -6,7 +6,7 @@
     <!-- Basic -->
     <meta charset="UTF-8"/>
 
-    <title>Advanced Table | Fire - Admin Template</title>
+    <title>转向架查询</title>
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
@@ -37,14 +37,14 @@
                             <a href="willDoPlan.html"><i class="icon fa fa-home"></i>Home</a>
                         </li>
                         <li class="active">
-                            <a href="#"><i class="fa fa-briefcase"></i>生产信息统计
+                            <a href="#"><i class="fa fa-briefcase"></i>生产信息查询
                             </a>
                         </li>
 
                     </ol>
                 </div>
                 <div class="pull-right">
-                    <h2>生产信息统计</h2>
+                    <h2>生产信息查询</h2>
                 </div>
             </div>
             <!-- End Page Header -->
@@ -60,7 +60,7 @@
                         </div>
                         <div class="panel-body table-responsive" style="display: none;">
                             <table class="table table-bordered table-striped mb-none dataTable no-footer"
-                                   id="datatable-default2" style="overflow-x: scroll; display: block;" role="grid">
+                                   id="datatable-default2" style=" overflow-x: scroll; display: block;">
                                 <thead>
                                 <tr>
                                     <th>订单类型</th>
@@ -78,59 +78,32 @@
                                     <th>操作</th>
                                 </tr>
                                 </thead>
-                                <tbody id="id-tbody">
+                                <tbody  >
+                                #foreach($truckPlanOne in $truckPlanEntityList)
                                 <tr class="gradeX">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-warning">完成</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center" style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="actions">
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-table red"></i></a>
+                                    <td style="min-width: 160px;">$!{truckPlanOne.truckType}</td>
+                                    <td style="min-width: 100px;">
+                                        #if($truckPlanOne.isFinish)
+                                        <span class="label label-default">已完成</span>
+                                        #else
+                                        <span class="label label-warning">未完成</span>
+                                        #end
+                                    </td>
+                                    <td style="min-width: 120px;">$!{truckPlanOne.planNumber}</td>
+                                    <td style="min-width: 100px;">$!{truckPlanOne.planVolume}</td>
+                                    <td style="min-width: 100px;">$!truckPlanOne.goodVolume</td>
+                                    <td style="min-width: 100px;">$!truckPlanOne.remainVolume</td>
+                                    <td style="min-width: 100px;">$!truckPlanOne.badVolume</td>
+                                    <td style="min-width: 100px;"  >$!truckPlanOne.strPlanDate</td>
+                                    <td style="min-width: 120px;">$!truckPlanOne.strProduceDate</td>
+                                    <td style="min-width: 120px;">$!truckPlanOne.strFinishDate</td>
+                                    <td style="min-width: 120px;">$!truckPlanOne.check</td>
+                                    <td style="min-width: 120px;">$!truckPlanOne.remark</td>
+                                    <td style="min-width: 100px;">
+                                        <a href="#" class="on-default remove-row" onclick="selectTruck($!truckPlanOne.planId)"><i class="fa fa-table red"></i></a>
                                     </td>
                                 </tr>
-
-                                <tr class="gradeX">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-primary">未完工</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td style="width: 140px;" class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="actions">
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-table red"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeC">
-                                    <td>xxxxxx</td>
-                                    <td><span class="label label-warning">完成</span></td>
-                                    <td style="width: 140px;">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td style="width: 140px;" class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="actions">
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-table red"></i></a>
-                                    </td>
-                                </tr>
+                                #end
                                 </tbody>
                             </table>
                         </div>
@@ -153,11 +126,11 @@
                                     <div class="col-sm-6 col-dm-6">
                                         <div class="input-group" style="margin-bottom: 10px;">
                                             <span class="input-group-addon" id="basic-addon1">转向架种类</span>
-                                            <select class="form-control">
-                                                <option>1号转向架</option>
-                                                <option>2号转向架</option>
-                                                <option>3号转向架</option>
-                                                <option>4号转向架</option>
+                                            <select class="form-control" name="techType" id="techType">
+                                                <option value="0">全部转向架</option>
+                                                <option value="1">CRH3系列动车组转向架</option>
+                                                <option value="2">A/B/C型地铁转向架</option>
+                                                <option value="3">SW-220K部备车转向架</option>
                                             </select>
                                         </div>
                                     </div>
@@ -200,7 +173,6 @@
                                    role="grid" aria-describedby="datatable-default_info">
                                 <thead>
                                 <tr>
-                                    <th>销售单号</th>
                                     <th>批次</th>
                                     <th>类型</th>
                                     <th>状态</th>
@@ -208,27 +180,20 @@
                                 </tr>
                                 </thead>
                                 <tbody id="id-tbody">
+                                #foreach($truckOne in $truckEntityList)
                                 <tr class="gradeX">
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td><span class="label label-warning">次品</span></td>
-                                    <td class="center">xxxxxx</td>
+                                    <td >$!truckOne.batch</td>
+                                    <td >$!truckOne.type</td>
+                                    <td>
+                                        #if($truckOne.state)
+                                        <span class="label label-default">成品</span>
+                                        #else
+                                        <span class="label label-warning">次品</span>
+                                        #end
+                                    </td>
+                                    <td >$!truckOne.date</td>
                                 </tr>
-                                <tr class="gradeX">
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td><span class="label label-warning">次品</span></td>
-                                    <td class="center">xxxxxx</td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td class="center">xxxxxx</td>
-                                    <td><span class="label label-warning">次品</span></td>
-                                    <td class="center">xxxxxx</td>
-                                </tr>
+                                #end
                                 </tbody>
                             </table>
                         </div>

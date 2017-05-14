@@ -4,7 +4,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import com.bysj.rj.entity.DayPlanEntity;
 import com.bysj.rj.entity.DayPlanEntityExample;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface DayPlanEntityMapper {
     int countByExample(DayPlanEntityExample example);
 

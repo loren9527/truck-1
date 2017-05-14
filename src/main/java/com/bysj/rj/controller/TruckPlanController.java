@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.bysj.rj.entity.DayPlanEntity;
 import com.bysj.rj.entity.TruckPlanEntity;
+import com.bysj.rj.entity.WorkshopEntity;
 import com.bysj.rj.service.DayPlanService;
 import com.bysj.rj.service.TruckPlanService;
+import com.bysj.rj.service.WorkshopService;
 import com.bysj.rj.util.TruckUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +32,10 @@ public class TruckPlanController {
     private TruckPlanService truckPlanService;
     @Resource
     private DayPlanService dayPlanService;
+    @Resource
+    private WorkshopService workshopService;
 
-    @GetMapping("/")
+    @GetMapping(value = {"/","/willDoPlan"})
     public String  IndexWillDoPlan(HttpServletRequest request, HttpServletResponse response){
         List<TruckPlanEntity> truckPlanEntityList=truckPlanService.getTruckPlanAll();
         request.setAttribute("truckPlanEntityList",truckPlanEntityList);
@@ -40,8 +44,8 @@ public class TruckPlanController {
 
     @PostMapping("/addPlan")
     public void  addPlan(HttpServletRequest request, HttpServletResponse response ){
-        String truckPlanEntity=request.getParameter("truckPlanEntity");
-        String dayPlanArry=request.getParameter("dayPlanArry");
+        String truckPlanEntity=request.getParameter("truckPlanEntity").trim();
+        String dayPlanArry=request.getParameter("dayPlanArry").trim();
         List<DayPlanEntity> dayPlanEntityList=JSONObject.parseArray(dayPlanArry,DayPlanEntity.class);
         TruckPlanEntity truckPlan = JSON.parseObject(truckPlanEntity,TruckPlanEntity.class);
         int result=truckPlanService.addPlan(truckPlan,dayPlanEntityList);
@@ -54,11 +58,10 @@ public class TruckPlanController {
         TruckUtil.writer(response,message);
     }
 
-
     @PostMapping("/editPlan")
     public void  editPlan(HttpServletRequest request, HttpServletResponse response ){
-        String truckPlanEntity=request.getParameter("truckPlanEntity");
-        String dayPlanArry=request.getParameter("dayPlanArry");
+        String truckPlanEntity=request.getParameter("truckPlanEntity").trim();
+        String dayPlanArry=request.getParameter("dayPlanArry").trim();
 
         List<DayPlanEntity> dayPlanEntityList=JSONObject.parseArray(dayPlanArry,DayPlanEntity.class);
         TruckPlanEntity truckPlan = JSON.parseObject(truckPlanEntity,TruckPlanEntity.class);
@@ -74,7 +77,7 @@ public class TruckPlanController {
 
     @GetMapping("/editTruckPlan")
     public void  editTruckPlan(HttpServletRequest request, HttpServletResponse response ){
-        String planId=request.getParameter("planId");
+        String planId=request.getParameter("planId").trim();
         TruckPlanEntity truckPlanEntity=truckPlanService.getEntityById(Long.parseLong(planId));
         List<DayPlanEntity> dayPlanEntityList=dayPlanService.getEntiyListByPlanID(Long.parseLong(planId));
         JSONObject data=new JSONObject();
@@ -85,7 +88,7 @@ public class TruckPlanController {
 
     @GetMapping("/removeTruckPlan")
     public void  removeTruckPlan(HttpServletRequest request, HttpServletResponse response ){
-        String  planId=request.getParameter("planId");
+        String  planId=request.getParameter("planId").trim();
         int result=truckPlanService.delEntityById(Long.parseLong(planId));
         JSONObject message=new JSONObject();
         if(result>0){
@@ -96,13 +99,30 @@ public class TruckPlanController {
         TruckUtil.writer(response,message);
     }
 
-    @GetMapping("/doTruckPlan")
-    public void  doTruckPlan(HttpServletRequest request, HttpServletResponse response ){
-        String  planId=request.getParameter("planId");
+    @GetMapping("/indexDayPlan")
+    public void  indexDayPlan(HttpServletRequest request, HttpServletResponse response ){
+        String  planId=request.getParameter("planId").trim();
         List<DayPlanEntity> dayPlanEntityList=dayPlanService.getEntiyListByPlanID(Long.parseLong(planId));
+        List<WorkshopEntity> workshopList= workshopService.canWorkEntity();
         JSONObject data=new JSONObject();
+        data.put("workshopList",workshopList);
         data.put("dayPlanEntityList",dayPlanEntityList);
         TruckUtil.writer(response,data);
+    }
+
+
+    @PostMapping("/doDayPlan")
+    public void  doTruckPlan(HttpServletRequest request, HttpServletResponse response ){
+        String  dayPlanId=request.getParameter("dayPlanId").trim();
+        String  workshopName=request.getParameter("workshopName").trim();
+        int result=workshopService.doDayPlan(dayPlanId,workshopName);
+        JSONObject message=new JSONObject();
+        if(result>0){
+            message.put("msg",true);
+        }else{
+            message.put("msg",false);
+        }
+        TruckUtil.writer(response,message);
     }
 
 

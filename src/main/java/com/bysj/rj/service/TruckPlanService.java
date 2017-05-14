@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,8 +24,18 @@ public class TruckPlanService{
 	private DayPlanEntityMapper dayPlanEntityMapper;
 
 	public List<TruckPlanEntity> getTruckPlanAll(){
+		SimpleDateFormat dateFormat=new  SimpleDateFormat("yyyy/MM/dd");
 		TruckPlanEntityExample truckPlanEntityExample=new TruckPlanEntityExample();
-		return  truckPlanEntityMapper.selectByExample(truckPlanEntityExample);
+		 List<TruckPlanEntity> truckPlanEntityList=truckPlanEntityMapper.selectByExample(truckPlanEntityExample);
+		for (TruckPlanEntity truckPlanEntity : truckPlanEntityList) {
+			if (truckPlanEntity.getFinishDate() != null)
+				truckPlanEntity.setStrFinishDate(dateFormat.format(new Date(truckPlanEntity.getFinishDate())));
+			if (truckPlanEntity.getPlanDate() != null)
+				truckPlanEntity.setStrPlanDate(dateFormat.format(new Date(truckPlanEntity.getPlanDate())));
+			if (truckPlanEntity.getProduceDate() != null)
+				truckPlanEntity.setStrProduceDate(dateFormat.format(new Date(truckPlanEntity.getProduceDate())));
+		}
+		return  truckPlanEntityList;
 	}
 
 	@Transactional(isolation = Isolation.READ_COMMITTED)
