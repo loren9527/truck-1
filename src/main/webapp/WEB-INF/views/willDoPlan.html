@@ -78,12 +78,22 @@
                                 #if($truckPlanEntityList.size()>0)
                                 #foreach($truckPlanOne in $truckPlanEntityList)
                                 <tr class="gradeX">
-                                    <td style="min-width: 160px;">$!{truckPlanOne.truckType}</td>
+                                    <td style="min-width: 160px;">
+                                        #if($truckPlanOne.truckType=="1")
+                                             CRH3系列动车组转向架
+                                        #end
+                                        #if($truckPlanOne.truckType=="2")
+                                            A/B/C型地铁转向架
+                                        #end
+                                        #if($truckPlanOne.truckType=="3")
+                                            SW-220K部备车转向架
+                                        #end
+                                    </td>
                                     <td>
-                                        #if($truckPlanOne.isFinish)
-                                        <span class="label label-default">已完成</span>
+                                        #if($truckPlanOne.isFinish=="1")
+                                             <span class="label label-default">已完成</span>
                                         #else
-                                        <span class="label label-warning">未完成</span>
+                                            <span class="label label-warning">未完成</span>
                                         #end
                                     </td>
                                     <td>$!{truckPlanOne.planNumber}</td>
@@ -140,9 +150,9 @@
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">订单类型</span>
                                                 <select class="form-control" id="truckType">
-                                                    <option value="CRH3系列动车组转向架">CRH3系列动车组转向架</option>
-                                                    <option value="A/B/C型地铁转向架">A/B/C型地铁转向架</option>
-                                                    <option value="SW-220K部备车转向架">SW-220K部备车转向架</option>
+                                                    <option value="1">CRH3系列动车组转向架</option>
+                                                    <option value="2">A/B/C型地铁转向架</option>
+                                                    <option value="3">SW-220K部备车转向架</option>
                                                 </select>
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
@@ -266,9 +276,9 @@
                                             <div class="input-group" style="margin-bottom: 10px;">
                                                 <span class="input-group-addon">订单类型</span>
                                                 <select class="form-control" id="truckType0">
-                                                    <option value="CRH3系列动车组转向架">CRH3系列动车组转向架</option>
-                                                    <option value="A/B/C型地铁转向架">A/B/C型地铁转向架</option>
-                                                    <option value="SW-220K部备车转向架">SW-220K部备车转向架</option>
+                                                    <option value="1">CRH3系列动车组转向架</option>
+                                                    <option value="2">A/B/C型地铁转向架</option>
+                                                    <option value="3">SW-220K部备车转向架</option>
                                                 </select>
                                             </div>
                                             <div class="input-group" style="margin-bottom: 10px;">
@@ -503,7 +513,7 @@
                 var tdArr = $(this).children();
                 if(tdArr.length>1){
                     var temp;
-                    if (tdArr.eq(4).text() == "已完成") temp = 1;
+                    if (tdArr.eq(4).text() == "已完成"||tdArr.eq(4).text() == "完成") temp = 1;
                     else temp = 0;
                     var dayPlan = {
                         date: moment(tdArr.eq(0).text()).format('X'),
@@ -577,7 +587,7 @@
                 var tdArr = $(this).children();
                 if(tdArr.length>1){
                     var temp;
-                    if (tdArr.eq(4).text() == "已完成") temp = 1;
+                    if (tdArr.eq(4).text() == "已完成"||tdArr.eq(4).text() == "完成") temp = 1;
                     else temp = 0;
                     var dayPlan = {
                         date: moment(tdArr.eq(0).text()).format('X'),
@@ -623,23 +633,32 @@
                 $("#goodVolume0").val(data.truckPlanEntity.goodVolume);
                 $("#remainVolume0").val(data.truckPlanEntity.remainVolume);
                 $("#badVolume0").val(data.truckPlanEntity.badVolume);
-                $("#planDate0").val(data.truckPlanEntity.planDate);
+                alert(data.truckPlanEntity.strPlanDate);
+                $("#planDate0").val(data.truckPlanEntity.strPlanDate);
+                alert(data.truckPlanEntity.strProduceDate);
                 $("#produceDate0").val(data.truckPlanEntity.strProduceDate);
-                $("#finishDate0").val(data.truckPlanEntity.strFinishDate);
+                $("#finishDate0").val(data.truckPlanEntity.strProduceDate);
                 $("#examine0").val(data.truckPlanEntity.examine);
                 $("#remark0").val(data.truckPlanEntity.remark);
 
                //$('#dayPlanTr0').empty();   //清空resText里面的所有内容
                 var html = '';
                 if (data.dayPlanEntityList.length > 0) {
+                    var isFinish;
                     $.each(data.dayPlanEntityList, function (Index, dayPlan) {
                         // console.info(dayPlan);
+                       if(dayPlan.isFinish=="1")
+                           isFinish="已完成";
+                        else {
+                           isFinish= "未完成";
+                       }
+
                         html += '<tr>'
-                                + '<td>' + dayPlan.date + '</td>'
+                                + '<td>' + dayPlan.strDate + '</td>'
                                 + '<td>' + dayPlan.planVolume + '</td>'
                                 + '<td>' + dayPlan.goodVolume + '</td>'
                                 + '<td>' + dayPlan.badVolume + '</td>'
-                                + '<td>' + dayPlan.isFinish + '</td>'
+                                + '<td>' + isFinish+ '</td>'
                                 + '<td>' + dayPlan.remark + '</td>'
                                 + '<td class="actions" style="width: 60px;">' + '<a href="# " class="hidden on-editing save-row "><i class="fa fa-save "></i></a>'
                                 + '<a href="# " class="hidden on-editing cancel-row "><i class="fa fa-times "></i></a>'
@@ -691,7 +710,7 @@
                     $.each(data.dayPlanEntityList, function (Index, dayPlan) {
                         // console.info(dayPlan);
                         html += '<tr>'
-                                + '<td>' + dayPlan.date + '</td>'
+                                + '<td>' + dayPlan.strDate + '</td>'
                                 + '<td>' + dayPlan.planVolume + '</td>'
                                 + '<td>' + dayPlan.goodVolume + '</td>'
                                 + '<td>' + dayPlan.badVolume + '</td>'

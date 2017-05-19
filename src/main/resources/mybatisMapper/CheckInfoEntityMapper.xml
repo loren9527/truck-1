@@ -3,7 +3,7 @@
 <mapper namespace="com.bysj.rj.dao.CheckInfoEntityMapper" >
   <resultMap id="BaseResultMap" type="com.bysj.rj.entity.CheckInfoEntity" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="truck_id" property="truckId" jdbcType="INTEGER" />
+    <result column="truck_id" property="truckId" jdbcType="BIGINT" />
     <result column="check_result" property="checkResult" jdbcType="VARCHAR" />
     <result column="tech_type" property="techType" jdbcType="VARCHAR" />
     <result column="batch" property="batch" jdbcType="VARCHAR" />
@@ -107,7 +107,7 @@
     insert into check_info (id, truck_id, check_result, 
       tech_type, batch, produce_time, 
       check_User, check_time)
-    values (#{id,jdbcType=BIGINT}, #{truckId,jdbcType=INTEGER}, #{checkResult,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{truckId,jdbcType=BIGINT}, #{checkResult,jdbcType=VARCHAR}, 
       #{techType,jdbcType=VARCHAR}, #{batch,jdbcType=VARCHAR}, #{produceTime,jdbcType=TIMESTAMP}, 
       #{checkUser,jdbcType=VARCHAR}, #{checkTime,jdbcType=TIMESTAMP})
   </insert>
@@ -144,7 +144,7 @@
         #{id,jdbcType=BIGINT},
       </if>
       <if test="truckId != null" >
-        #{truckId,jdbcType=INTEGER},
+        #{truckId,jdbcType=BIGINT},
       </if>
       <if test="checkResult != null" >
         #{checkResult,jdbcType=VARCHAR},
@@ -179,7 +179,7 @@
         id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.truckId != null" >
-        truck_id = #{record.truckId,jdbcType=INTEGER},
+        truck_id = #{record.truckId,jdbcType=BIGINT},
       </if>
       <if test="record.checkResult != null" >
         check_result = #{record.checkResult,jdbcType=VARCHAR},
@@ -207,7 +207,7 @@
   <update id="updateByExample" parameterType="map" >
     update check_info
     set id = #{record.id,jdbcType=BIGINT},
-      truck_id = #{record.truckId,jdbcType=INTEGER},
+      truck_id = #{record.truckId,jdbcType=BIGINT},
       check_result = #{record.checkResult,jdbcType=VARCHAR},
       tech_type = #{record.techType,jdbcType=VARCHAR},
       batch = #{record.batch,jdbcType=VARCHAR},
@@ -222,7 +222,7 @@
     update check_info
     <set >
       <if test="truckId != null" >
-        truck_id = #{truckId,jdbcType=INTEGER},
+        truck_id = #{truckId,jdbcType=BIGINT},
       </if>
       <if test="checkResult != null" >
         check_result = #{checkResult,jdbcType=VARCHAR},
@@ -247,7 +247,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bysj.rj.entity.CheckInfoEntity" >
     update check_info
-    set truck_id = #{truckId,jdbcType=INTEGER},
+    set truck_id = #{truckId,jdbcType=BIGINT},
       check_result = #{checkResult,jdbcType=VARCHAR},
       tech_type = #{techType,jdbcType=VARCHAR},
       batch = #{batch,jdbcType=VARCHAR},

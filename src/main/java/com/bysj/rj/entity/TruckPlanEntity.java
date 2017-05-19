@@ -27,34 +27,9 @@ public class TruckPlanEntity {
 
     private String remark;
 
-    private  String strPlanDate;
-    private  String strFinishDate;
-    private  String strProduceDate;
-
-    public String getStrPlanDate() {
-        return strPlanDate;
-    }
-
-    public void setStrPlanDate(String strPlanDate) {
-        this.strPlanDate = strPlanDate;
-    }
-
-    public String getStrProduceDate() {
-        return strProduceDate;
-    }
-
-    public void setStrProduceDate(String strProduceDate) {
-        this.strProduceDate = strProduceDate;
-    }
-
-    public void setStrFinishDate(String strFinishDate) {
-        this.strFinishDate = strFinishDate;
-    }
-
-    public String getStrFinishDate() {
-        return strFinishDate;
-    }
-
+    private String strFinishDate;
+    private String strPlanDate;
+    private String strProduceDate;
 
     public Long getPlanId() {
         return planId;
@@ -158,5 +133,31 @@ public class TruckPlanEntity {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getStrPlanDate() {
+        return strPlanDate;
+    }
+
+    public String getStrProduceDate() {
+        return strProduceDate;
+    }
+
+
+
+    public String getStrFinishDate() {
+        return strFinishDate;
+    }
+
+    public void setStrFinishDate(String strFinishDate) {
+        this.strFinishDate = strFinishDate;
+    }
+
+    public void setStrPlanDate(String strPlanDate) {
+        this.strPlanDate = strPlanDate;
+    }
+
+    public void setStrProduceDate(String strProduceDate) {
+        this.strProduceDate = strProduceDate;
     }
 }

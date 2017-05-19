@@ -1,8 +1,8 @@
 package com.bysj.rj.service;
 
-import com.bysj.rj.dao.UserEntityMapper;
-import com.bysj.rj.entity.UserEntity;
-import com.bysj.rj.entity.UserEntityExample;
+import com.bysj.rj.dao.UsersEntityMapper;
+import com.bysj.rj.entity.UsersEntity;
+import com.bysj.rj.entity.UsersEntityExample;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,14 +17,14 @@ import java.util.List;
 @Service
 public class UserService {
     @Resource
-    private UserEntityMapper userEntityMapper;
+    private UsersEntityMapper userEntityMapper;
 
     /**
      * 账号注册
      * @param entity
      * @return
      */
-    public int registerAccount(UserEntity entity){
+    public int registerAccount(UsersEntity entity){
         return userEntityMapper.insertSelective(entity);
     }
 
@@ -33,15 +33,15 @@ public class UserService {
      * @param user
      * @return
      */
-    public UserEntity loginCheck(UserEntity user){
-        UserEntityExample userEntityExample = new UserEntityExample();
+    public UsersEntity loginCheck(UsersEntity user){
+        UsersEntityExample userEntityExample = new UsersEntityExample();
         //组装查询条件
         userEntityExample.or()
             .andUserAccountEqualTo(user.getUserAccount())
             .andPasswordEqualTo(user.getPassword());
-        ArrayList<UserEntity> list = new ArrayList<UserEntity>();
+        ArrayList<UsersEntity> list = new ArrayList<UsersEntity>();
         list.isEmpty();
-        List<UserEntity> userEntityList = userEntityMapper.selectByExample(userEntityExample);
+        List<UsersEntity> userEntityList = userEntityMapper.selectByExample(userEntityExample);
         if(!userEntityList.isEmpty()){
             return userEntityList.get(0);
         }else{

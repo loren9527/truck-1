@@ -107,7 +107,7 @@ public class CheckInfoEntityDto {
         if(dto.getId()!=null && !dto.getId().equals("")){
             entity.setId(Long.parseLong(dto.getId()));
         }
-        entity.setTruckId(Integer.parseInt(dto.getTruckId()));
+        entity.setTruckId(Long.parseLong(dto.getTruckId()));
         entity.setCheckResult(dto.getCheckResult());
         entity.setTechType(dto.getTechType());
         entity.setBatch(dto.getBatch());

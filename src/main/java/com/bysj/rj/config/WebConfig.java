@@ -31,7 +31,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     @Bean
     public VelocityConfigurer velocityConfig(){
         VelocityConfigurer configurer = new VelocityConfigurer();
-        configurer.setResourceLoaderPath("/WEB-INF/views/");
+        configurer.setResourceLoaderPath("/WEB-INF/views");
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         configurer.setConfigLocation(resolver.getResource("classpath:velocity.properties"));
         return configurer;

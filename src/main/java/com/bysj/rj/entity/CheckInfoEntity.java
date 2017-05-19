@@ -5,7 +5,7 @@ import java.util.Date;
 public class CheckInfoEntity {
     private Long id;
 
-    private Integer truckId;
+    private Long truckId;
 
     private String checkResult;
 
@@ -27,11 +27,11 @@ public class CheckInfoEntity {
         this.id = id;
     }
 
-    public Integer getTruckId() {
+    public Long getTruckId() {
         return truckId;
     }
 
-    public void setTruckId(Integer truckId) {
+    public void setTruckId(Long truckId) {
         this.truckId = truckId;
     }
 

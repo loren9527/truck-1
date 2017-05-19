@@ -14,9 +14,9 @@ public interface DayPlanEntityMapper {
 
     int deleteByPrimaryKey(Long dpId);
 
-    int insert(DayPlanEntity record);
-
     int insertBatch(List<DayPlanEntity> dayPlanEntityList);
+
+    int insert(DayPlanEntity record);
 
     int insertSelective(DayPlanEntity record);
 

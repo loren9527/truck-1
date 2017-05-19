@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bysj.rj.dao.UserEntityMapper" >
-  <resultMap id="BaseResultMap" type="com.bysj.rj.entity.UserEntity" >
+<mapper namespace="test.com.bysj.rj.dao.UsersEntityMapper" >
+  <resultMap id="BaseResultMap" type="test.com.bysj.rj.entity.UsersEntity" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_account" property="userAccount" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
@@ -11,6 +11,7 @@
     <result column="home_address" property="homeAddress" jdbcType="VARCHAR" />
     <result column="position" property="position" jdbcType="VARCHAR" />
     <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -71,9 +72,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, user_account, password, number, real_name, phone, home_address, position, department
+    id, user_account, password, number, real_name, phone, home_address, position, department, 
+    role_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bysj.rj.entity.UserEntityExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="test.com.bysj.rj.entity.UsersEntityExample" >
     select
     <if test="distinct" >
       distinct
@@ -98,23 +100,23 @@
     delete from users
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bysj.rj.entity.UserEntityExample" >
+  <delete id="deleteByExample" parameterType="test.com.bysj.rj.entity.UsersEntityExample" >
     delete from users
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bysj.rj.entity.UserEntity" >
+  <insert id="insert" parameterType="test.com.bysj.rj.entity.UsersEntity" >
     insert into users (id, user_account, password, 
       number, real_name, phone, 
-      home_address, position, department
-      )
+      home_address, position, department, 
+      role_id)
     values (#{id,jdbcType=INTEGER}, #{userAccount,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{number,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{homeAddress,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}
-      )
+      #{homeAddress,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{roleId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.bysj.rj.entity.UserEntity" >
+  <insert id="insertSelective" parameterType="test.com.bysj.rj.entity.UsersEntity" >
     insert into users
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -143,6 +145,9 @@
       </if>
       <if test="department != null" >
         department,
+      </if>
+      <if test="roleId != null" >
+        role_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -173,9 +178,12 @@
       <if test="department != null" >
         #{department,jdbcType=VARCHAR},
       </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bysj.rj.entity.UserEntityExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="test.com.bysj.rj.entity.UsersEntityExample" resultType="java.lang.Integer" >
     select count(*) from users
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -211,6 +219,9 @@
       <if test="record.department != null" >
         department = #{record.department,jdbcType=VARCHAR},
       </if>
+      <if test="record.roleId != null" >
+        role_id = #{record.roleId,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -226,12 +237,13 @@
       phone = #{record.phone,jdbcType=VARCHAR},
       home_address = #{record.homeAddress,jdbcType=VARCHAR},
       position = #{record.position,jdbcType=VARCHAR},
-      department = #{record.department,jdbcType=VARCHAR}
+      department = #{record.department,jdbcType=VARCHAR},
+      role_id = #{record.roleId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bysj.rj.entity.UserEntity" >
+  <update id="updateByPrimaryKeySelective" parameterType="test.com.bysj.rj.entity.UsersEntity" >
     update users
     <set >
       <if test="userAccount != null" >
@@ -258,10 +270,13 @@
       <if test="department != null" >
         department = #{department,jdbcType=VARCHAR},
       </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bysj.rj.entity.UserEntity" >
+  <update id="updateByPrimaryKey" parameterType="test.com.bysj.rj.entity.UsersEntity" >
     update users
     set user_account = #{userAccount,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -270,7 +285,8 @@
       phone = #{phone,jdbcType=VARCHAR},
       home_address = #{homeAddress,jdbcType=VARCHAR},
       position = #{position,jdbcType=VARCHAR},
-      department = #{department,jdbcType=VARCHAR}
+      department = #{department,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

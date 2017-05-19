@@ -1,6 +1,6 @@
 package com.bysj.rj.entity;
 
-public class UserEntity {
+public class UsersEntity {
     private Integer id;
 
     private String userAccount;
@@ -18,6 +18,8 @@ public class UserEntity {
     private String position;
 
     private String department;
+
+    private Integer roleId;
 
     public Integer getId() {
         return id;
@@ -89,5 +91,13 @@ public class UserEntity {
 
     public void setDepartment(String department) {
         this.department = department == null ? null : department.trim();
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 }

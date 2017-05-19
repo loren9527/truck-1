@@ -1,33 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="test.com.bysj.rj.dao.WorkshopEntityMapper">
-  <resultMap id="BaseResultMap" type="test.com.bysj.rj.entity.WorkshopEntity">
-    <id column="work_id" jdbcType="INTEGER" property="workId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="work_state" jdbcType="TINYINT" property="workState" />
-    <result column="health" jdbcType="TINYINT" property="health" />
-    <result column="dp_id" jdbcType="BIGINT" property="dpId" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.com.bysj.rj.dao.WorkshopEntityMapper" >
+  <resultMap id="BaseResultMap" type="test.com.bysj.rj.entity.WorkshopEntity" >
+    <id column="work_id" property="workId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="work_state" property="workState" jdbcType="TINYINT" />
+    <result column="health" property="health" jdbcType="TINYINT" />
+    <result column="dp_id" property="dpId" jdbcType="BIGINT" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -38,25 +38,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -67,41 +67,41 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     work_id, name, address, work_state, health, dp_id
   </sql>
-  <select id="selectByExample" parameterType="test.com.bysj.rj.entity.WorkshopEntityExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="test.com.bysj.rj.entity.WorkshopEntityExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
     from workshop
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from workshop
     where work_id = #{workId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from workshop
     where work_id = #{workId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="test.com.bysj.rj.entity.WorkshopEntityExample">
+  <delete id="deleteByExample" parameterType="test.com.bysj.rj.entity.WorkshopEntityExample" >
     delete from workshop
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="test.com.bysj.rj.entity.WorkshopEntity">
+  <insert id="insert" parameterType="test.com.bysj.rj.entity.WorkshopEntity" >
     insert into workshop (work_id, name, address, 
       work_state, health, dp_id
       )
@@ -109,82 +109,82 @@
       #{workState,jdbcType=TINYINT}, #{health,jdbcType=TINYINT}, #{dpId,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="test.com.bysj.rj.entity.WorkshopEntity">
+  <insert id="insertSelective" parameterType="test.com.bysj.rj.entity.WorkshopEntity" >
     insert into workshop
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="workId != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="workId != null" >
         work_id,
       </if>
-      <if test="name != null">
+      <if test="name != null" >
         name,
       </if>
-      <if test="address != null">
+      <if test="address != null" >
         address,
       </if>
-      <if test="workState != null">
+      <if test="workState != null" >
         work_state,
       </if>
-      <if test="health != null">
+      <if test="health != null" >
         health,
       </if>
-      <if test="dpId != null">
+      <if test="dpId != null" >
         dp_id,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="workId != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="workId != null" >
         #{workId,jdbcType=INTEGER},
       </if>
-      <if test="name != null">
+      <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="address != null">
+      <if test="address != null" >
         #{address,jdbcType=VARCHAR},
       </if>
-      <if test="workState != null">
+      <if test="workState != null" >
         #{workState,jdbcType=TINYINT},
       </if>
-      <if test="health != null">
+      <if test="health != null" >
         #{health,jdbcType=TINYINT},
       </if>
-      <if test="dpId != null">
+      <if test="dpId != null" >
         #{dpId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="test.com.bysj.rj.entity.WorkshopEntityExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="test.com.bysj.rj.entity.WorkshopEntityExample" resultType="java.lang.Integer" >
     select count(*) from workshop
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map" >
     update workshop
-    <set>
-      <if test="record.workId != null">
+    <set >
+      <if test="record.workId != null" >
         work_id = #{record.workId,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null">
+      <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.address != null">
+      <if test="record.address != null" >
         address = #{record.address,jdbcType=VARCHAR},
       </if>
-      <if test="record.workState != null">
+      <if test="record.workState != null" >
         work_state = #{record.workState,jdbcType=TINYINT},
       </if>
-      <if test="record.health != null">
+      <if test="record.health != null" >
         health = #{record.health,jdbcType=TINYINT},
       </if>
-      <if test="record.dpId != null">
+      <if test="record.dpId != null" >
         dp_id = #{record.dpId,jdbcType=BIGINT},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     update workshop
     set work_id = #{record.workId,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
@@ -192,257 +192,32 @@
       work_state = #{record.workState,jdbcType=TINYINT},
       health = #{record.health,jdbcType=TINYINT},
       dp_id = #{record.dpId,jdbcType=BIGINT}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="test.com.bysj.rj.entity.WorkshopEntity">
+  <update id="updateByPrimaryKeySelective" parameterType="test.com.bysj.rj.entity.WorkshopEntity" >
     update workshop
-    <set>
-      <if test="name != null">
+    <set >
+      <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="address != null">
+      <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="workState != null">
+      <if test="workState != null" >
         work_state = #{workState,jdbcType=TINYINT},
       </if>
-      <if test="health != null">
+      <if test="health != null" >
         health = #{health,jdbcType=TINYINT},
       </if>
-      <if test="dpId != null">
+      <if test="dpId != null" >
         dp_id = #{dpId,jdbcType=BIGINT},
       </if>
     </set>
     where work_id = #{workId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="test.com.bysj.rj.entity.WorkshopEntity">
-    update workshop
-    set name = #{name,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      work_state = #{workState,jdbcType=TINYINT},
-      health = #{health,jdbcType=TINYINT},
-      dp_id = #{dpId,jdbcType=BIGINT}
-    where work_id = #{workId,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="test.com.bysj.rj.entity.WorkshopEntity">
-    <id column="work_id" jdbcType="INTEGER" property="workId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="work_state" jdbcType="TINYINT" property="workState" />
-    <result column="health" jdbcType="TINYINT" property="health" />
-    <result column="dp_id" jdbcType="BIGINT" property="dpId" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    work_id, name, address, work_state, health, dp_id
-  </sql>
-  <select id="selectByExample" parameterType="test.com.bysj.rj.entity.WorkshopEntityExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from workshop
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from workshop
-    where work_id = #{workId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from workshop
-    where work_id = #{workId,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="test.com.bysj.rj.entity.WorkshopEntityExample">
-    delete from workshop
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="test.com.bysj.rj.entity.WorkshopEntity">
-    insert into workshop (work_id, name, address, 
-      work_state, health, dp_id
-      )
-    values (#{workId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{workState,jdbcType=TINYINT}, #{health,jdbcType=TINYINT}, #{dpId,jdbcType=BIGINT}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="test.com.bysj.rj.entity.WorkshopEntity">
-    insert into workshop
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="workId != null">
-        work_id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="address != null">
-        address,
-      </if>
-      <if test="workState != null">
-        work_state,
-      </if>
-      <if test="health != null">
-        health,
-      </if>
-      <if test="dpId != null">
-        dp_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="workId != null">
-        #{workId,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="workState != null">
-        #{workState,jdbcType=TINYINT},
-      </if>
-      <if test="health != null">
-        #{health,jdbcType=TINYINT},
-      </if>
-      <if test="dpId != null">
-        #{dpId,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="test.com.bysj.rj.entity.WorkshopEntityExample" resultType="java.lang.Integer">
-    select count(*) from workshop
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update workshop
-    <set>
-      <if test="record.workId != null">
-        work_id = #{record.workId,jdbcType=INTEGER},
-      </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.address != null">
-        address = #{record.address,jdbcType=VARCHAR},
-      </if>
-      <if test="record.workState != null">
-        work_state = #{record.workState,jdbcType=TINYINT},
-      </if>
-      <if test="record.health != null">
-        health = #{record.health,jdbcType=TINYINT},
-      </if>
-      <if test="record.dpId != null">
-        dp_id = #{record.dpId,jdbcType=BIGINT},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update workshop
-    set work_id = #{record.workId,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      address = #{record.address,jdbcType=VARCHAR},
-      work_state = #{record.workState,jdbcType=TINYINT},
-      health = #{record.health,jdbcType=TINYINT},
-      dp_id = #{record.dpId,jdbcType=BIGINT}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="test.com.bysj.rj.entity.WorkshopEntity">
-    update workshop
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null">
-        address = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="workState != null">
-        work_state = #{workState,jdbcType=TINYINT},
-      </if>
-      <if test="health != null">
-        health = #{health,jdbcType=TINYINT},
-      </if>
-      <if test="dpId != null">
-        dp_id = #{dpId,jdbcType=BIGINT},
-      </if>
-    </set>
-    where work_id = #{workId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="test.com.bysj.rj.entity.WorkshopEntity">
+  <update id="updateByPrimaryKey" parameterType="test.com.bysj.rj.entity.WorkshopEntity" >
     update workshop
     set name = #{name,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},

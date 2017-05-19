@@ -17,6 +17,8 @@ public class DayPlanEntity {
 
     private Long truckPlanId;
 
+    private String  strDate;
+
     public Long getDpId() {
         return dpId;
     }
@@ -79,5 +81,13 @@ public class DayPlanEntity {
 
     public void setTruckPlanId(Long truckPlanId) {
         this.truckPlanId = truckPlanId;
+    }
+
+    public String getStrDate() {
+        return strDate;
+    }
+
+    public void setStrDate(String strDate) {
+        this.strDate = strDate;
     }
 }

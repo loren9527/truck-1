@@ -25,6 +25,8 @@ public class PartsEntity {
 
     private String partition;
 
+    private Integer partitionId;
+
     public Integer getId() {
         return id;
     }
@@ -111,5 +113,13 @@ public class PartsEntity {
 
     public void setPartition(String partition) {
         this.partition = partition == null ? null : partition.trim();
+    }
+
+    public Integer getPartitionId() {
+        return partitionId;
+    }
+
+    public void setPartitionId(Integer partitionId) {
+        this.partitionId = partitionId;
     }
 }

@@ -314,52 +314,52 @@ public class TruckEntityExample {
             return (Criteria) this;
         }
 
-        public Criteria andDpIdEqualTo(Integer value) {
+        public Criteria andDpIdEqualTo(Long value) {
             addCriterion("dp_id =", value, "dpId");
             return (Criteria) this;
         }
 
-        public Criteria andDpIdNotEqualTo(Integer value) {
+        public Criteria andDpIdNotEqualTo(Long value) {
             addCriterion("dp_id <>", value, "dpId");
             return (Criteria) this;
         }
 
-        public Criteria andDpIdGreaterThan(Integer value) {
+        public Criteria andDpIdGreaterThan(Long value) {
             addCriterion("dp_id >", value, "dpId");
             return (Criteria) this;
         }
 
-        public Criteria andDpIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andDpIdGreaterThanOrEqualTo(Long value) {
             addCriterion("dp_id >=", value, "dpId");
             return (Criteria) this;
         }
 
-        public Criteria andDpIdLessThan(Integer value) {
+        public Criteria andDpIdLessThan(Long value) {
             addCriterion("dp_id <", value, "dpId");
             return (Criteria) this;
         }
 
-        public Criteria andDpIdLessThanOrEqualTo(Integer value) {
+        public Criteria andDpIdLessThanOrEqualTo(Long value) {
             addCriterion("dp_id <=", value, "dpId");
             return (Criteria) this;
         }
 
-        public Criteria andDpIdIn(List<Integer> values) {
+        public Criteria andDpIdIn(List<Long> values) {
             addCriterion("dp_id in", values, "dpId");
             return (Criteria) this;
         }
 
-        public Criteria andDpIdNotIn(List<Integer> values) {
+        public Criteria andDpIdNotIn(List<Long> values) {
             addCriterion("dp_id not in", values, "dpId");
             return (Criteria) this;
         }
 
-        public Criteria andDpIdBetween(Integer value1, Integer value2) {
+        public Criteria andDpIdBetween(Long value1, Long value2) {
             addCriterion("dp_id between", value1, value2, "dpId");
             return (Criteria) this;
         }
 
-        public Criteria andDpIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andDpIdNotBetween(Long value1, Long value2) {
             addCriterion("dp_id not between", value1, value2, "dpId");
             return (Criteria) this;
         }
@@ -424,63 +424,63 @@ public class TruckEntityExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsDoingIsNull() {
-            addCriterion("is_doing is null");
+        public Criteria andDateIsNull() {
+            addCriterion("date is null");
             return (Criteria) this;
         }
 
-        public Criteria andIsDoingIsNotNull() {
-            addCriterion("is_doing is not null");
+        public Criteria andDateIsNotNull() {
+            addCriterion("date is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIsDoingEqualTo(Byte value) {
-            addCriterion("is_doing =", value, "isDoing");
+        public Criteria andDateEqualTo(Long value) {
+            addCriterion("date =", value, "date");
             return (Criteria) this;
         }
 
-        public Criteria andIsDoingNotEqualTo(Byte value) {
-            addCriterion("is_doing <>", value, "isDoing");
+        public Criteria andDateNotEqualTo(Long value) {
+            addCriterion("date <>", value, "date");
             return (Criteria) this;
         }
 
-        public Criteria andIsDoingGreaterThan(Byte value) {
-            addCriterion("is_doing >", value, "isDoing");
+        public Criteria andDateGreaterThan(Long value) {
+            addCriterion("date >", value, "date");
             return (Criteria) this;
         }
 
-        public Criteria andIsDoingGreaterThanOrEqualTo(Byte value) {
-            addCriterion("is_doing >=", value, "isDoing");
+        public Criteria andDateGreaterThanOrEqualTo(Long value) {
+            addCriterion("date >=", value, "date");
             return (Criteria) this;
         }
 
-        public Criteria andIsDoingLessThan(Byte value) {
-            addCriterion("is_doing <", value, "isDoing");
+        public Criteria andDateLessThan(Long value) {
+            addCriterion("date <", value, "date");
             return (Criteria) this;
         }
 
-        public Criteria andIsDoingLessThanOrEqualTo(Byte value) {
-            addCriterion("is_doing <=", value, "isDoing");
+        public Criteria andDateLessThanOrEqualTo(Long value) {
+            addCriterion("date <=", value, "date");
             return (Criteria) this;
         }
 
-        public Criteria andIsDoingIn(List<Byte> values) {
-            addCriterion("is_doing in", values, "isDoing");
+        public Criteria andDateIn(List<Long> values) {
+            addCriterion("date in", values, "date");
             return (Criteria) this;
         }
 
-        public Criteria andIsDoingNotIn(List<Byte> values) {
-            addCriterion("is_doing not in", values, "isDoing");
+        public Criteria andDateNotIn(List<Long> values) {
+            addCriterion("date not in", values, "date");
             return (Criteria) this;
         }
 
-        public Criteria andIsDoingBetween(Byte value1, Byte value2) {
-            addCriterion("is_doing between", value1, value2, "isDoing");
+        public Criteria andDateBetween(Long value1, Long value2) {
+            addCriterion("date between", value1, value2, "date");
             return (Criteria) this;
         }
 
-        public Criteria andIsDoingNotBetween(Byte value1, Byte value2) {
-            addCriterion("is_doing not between", value1, value2, "isDoing");
+        public Criteria andDateNotBetween(Long value1, Long value2) {
+            addCriterion("date not between", value1, value2, "date");
             return (Criteria) this;
         }
     }

@@ -1,6 +1,6 @@
 package com.bysj.rj.interceptor;
 
-import com.bysj.rj.entity.UserEntity;
+import com.bysj.rj.entity.UsersEntity;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -30,7 +30,7 @@ public class LoginInterceptor {
     @Around("execution(* com.bysj.rj.controller.*.*(..)) " +
             "&& @annotation(com.bysj.rj.interceptor.LoginFilter) ")
     public Object preController(ProceedingJoinPoint jp) throws Throwable{
-        UserEntity userEntity = (UserEntity) request.getSession().getAttribute("user");
+        UsersEntity userEntity = (UsersEntity) request.getSession().getAttribute("user");
         if(null == userEntity){
             Signature signature =  jp.getSignature();
             Method m = ((MethodSignature) signature).getMethod();

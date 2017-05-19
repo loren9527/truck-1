@@ -4,9 +4,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import com.bysj.rj.entity.TruckEntity;
 import com.bysj.rj.entity.TruckEntityExample;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface TruckEntityMapper {
     int countByExample(TruckEntityExample example);
 

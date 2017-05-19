@@ -12,6 +12,9 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
 import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
@@ -21,23 +24,20 @@ import java.io.IOException;
  * Created by Administrator on 2017/4/29 0029.
  */
 @Configuration
-//@EnableWebSocket
 @ComponentScan(basePackages = {"com.bysj.rj"},excludeFilters = { @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Controller.class,WebListener.class})})
 @MapperScan("com.bysj.rj.dao")
 @EnableTransactionManagement
-public class RootConfig {
-
-
+public class RootConfig{
     @Bean
     public DataSource dataSource() throws Exception{
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://101.201.65.103:3306/bysj?useUnicode=true&characterEncoding=UTF-8");
-        dataSource.setUsername("root");
-        dataSource.setPassword("root");
-//        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/bysj?useUnicode=true&characterEncoding=UTF-8");
+//        dataSource.setUrl("jdbc:mysql://101.201.65.103:3306/bysj?useUnicode=true&characterEncoding=UTF-8");
 //        dataSource.setUsername("root");
-//        dataSource.setPassword("123456");
+//        dataSource.setPassword("root");
+        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/bysj?useUnicode=true&characterEncoding=UTF-8");
+        dataSource.setUsername("root");
+        dataSource.setPassword("123456");
         dataSource.setMaxActive(20);
         dataSource.setInitialSize(0);
         dataSource.setMaxIdle(20);
@@ -65,16 +65,6 @@ public class RootConfig {
         return mapperScannerConfigurer;
     }
 
-//    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-//        registry.addHandler(myHandler(), "/ws").addInterceptors(new MyHandShake());
-//
-//        registry.addHandler(myHandler(), "/ws/sockjs").addInterceptors(new MyHandShake()).withSockJS();
-//    }
-//
-//
-//    @Bean
-//    public WebsocketHandler myHandler() {
-//        return new WebsocketHandler();
-//    }
+
 
 }

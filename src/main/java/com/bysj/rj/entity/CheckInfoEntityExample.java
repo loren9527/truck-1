@@ -175,52 +175,52 @@ public class CheckInfoEntityExample {
             return (Criteria) this;
         }
 
-        public Criteria andTruckIdEqualTo(Integer value) {
+        public Criteria andTruckIdEqualTo(Long value) {
             addCriterion("truck_id =", value, "truckId");
             return (Criteria) this;
         }
 
-        public Criteria andTruckIdNotEqualTo(Integer value) {
+        public Criteria andTruckIdNotEqualTo(Long value) {
             addCriterion("truck_id <>", value, "truckId");
             return (Criteria) this;
         }
 
-        public Criteria andTruckIdGreaterThan(Integer value) {
+        public Criteria andTruckIdGreaterThan(Long value) {
             addCriterion("truck_id >", value, "truckId");
             return (Criteria) this;
         }
 
-        public Criteria andTruckIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andTruckIdGreaterThanOrEqualTo(Long value) {
             addCriterion("truck_id >=", value, "truckId");
             return (Criteria) this;
         }
 
-        public Criteria andTruckIdLessThan(Integer value) {
+        public Criteria andTruckIdLessThan(Long value) {
             addCriterion("truck_id <", value, "truckId");
             return (Criteria) this;
         }
 
-        public Criteria andTruckIdLessThanOrEqualTo(Integer value) {
+        public Criteria andTruckIdLessThanOrEqualTo(Long value) {
             addCriterion("truck_id <=", value, "truckId");
             return (Criteria) this;
         }
 
-        public Criteria andTruckIdIn(List<Integer> values) {
+        public Criteria andTruckIdIn(List<Long> values) {
             addCriterion("truck_id in", values, "truckId");
             return (Criteria) this;
         }
 
-        public Criteria andTruckIdNotIn(List<Integer> values) {
+        public Criteria andTruckIdNotIn(List<Long> values) {
             addCriterion("truck_id not in", values, "truckId");
             return (Criteria) this;
         }
 
-        public Criteria andTruckIdBetween(Integer value1, Integer value2) {
+        public Criteria andTruckIdBetween(Long value1, Long value2) {
             addCriterion("truck_id between", value1, value2, "truckId");
             return (Criteria) this;
         }
 
-        public Criteria andTruckIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andTruckIdNotBetween(Long value1, Long value2) {
             addCriterion("truck_id not between", value1, value2, "truckId");
             return (Criteria) this;
         }

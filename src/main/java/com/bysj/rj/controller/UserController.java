@@ -1,7 +1,7 @@
 package com.bysj.rj.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.bysj.rj.entity.UserEntity;
+import com.bysj.rj.entity.UsersEntity;
 import com.bysj.rj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +38,7 @@ public class UserController extends BaseController{
     }
 
     @PostMapping("register")
-    public ModelAndView register(UserEntity user){
+    public ModelAndView register(UsersEntity user){
         ModelAndView model = new ModelAndView();
         try {
             logger.info(JSON.toJSONString(user));
@@ -54,9 +54,9 @@ public class UserController extends BaseController{
         return model;
     }
     @PostMapping("login")
-    public ModelAndView loginCheck(UserEntity user){
+    public ModelAndView loginCheck(UsersEntity user){
         ModelAndView modelAndView = new ModelAndView();
-        UserEntity userEntity = userService.loginCheck(user);
+        UsersEntity userEntity = userService.loginCheck(user);
         if(null != userEntity){
             request.getSession().setAttribute("user",userEntity);
             modelAndView.setViewName("redirect:/partsList");

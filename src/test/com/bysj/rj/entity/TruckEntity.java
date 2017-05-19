@@ -7,11 +7,11 @@ public class TruckEntity {
 
     private String type;
 
-    private Integer dpId;
+    private Long dpId;
 
     private Byte state;
 
-    private Byte isDoing;
+    private Long date;
 
     public Long getTruckId() {
         return truckId;
@@ -37,11 +37,11 @@ public class TruckEntity {
         this.type = type == null ? null : type.trim();
     }
 
-    public Integer getDpId() {
+    public Long getDpId() {
         return dpId;
     }
 
-    public void setDpId(Integer dpId) {
+    public void setDpId(Long dpId) {
         this.dpId = dpId;
     }
 
@@ -53,11 +53,11 @@ public class TruckEntity {
         this.state = state;
     }
 
-    public Byte getIsDoing() {
-        return isDoing;
+    public Long getDate() {
+        return date;
     }
 
-    public void setIsDoing(Byte isDoing) {
-        this.isDoing = isDoing;
+    public void setDate(Long date) {
+        this.date = date;
     }
 }

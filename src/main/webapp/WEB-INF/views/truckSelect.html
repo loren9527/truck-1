@@ -81,9 +81,19 @@
                                 <tbody  >
                                 #foreach($truckPlanOne in $truckPlanEntityList)
                                 <tr class="gradeX">
-                                    <td style="min-width: 160px;">$!{truckPlanOne.truckType}</td>
-                                    <td style="min-width: 100px;">
-                                        #if($truckPlanOne.isFinish)
+                                    <td style="min-width: 160px;">
+                                        #if($truckPlanOne.truckType=="1")
+                                        CRH3系列动车组转向架
+                                        #end
+                                        #if($truckPlanOne.truckType=="2")
+                                        A/B/C型地铁转向架
+                                        #end
+                                        #if($truckPlanOne.truckType=="3")
+                                        SW-220K部备车转向架
+                                        #end
+                                    </td>
+                                    <td>
+                                        #if($truckPlanOne.isFinish=="1")
                                         <span class="label label-default">已完成</span>
                                         #else
                                         <span class="label label-warning">未完成</span>
@@ -100,7 +110,7 @@
                                     <td style="min-width: 120px;">$!truckPlanOne.check</td>
                                     <td style="min-width: 120px;">$!truckPlanOne.remark</td>
                                     <td style="min-width: 100px;">
-                                        <a href="#" class="on-default remove-row" onclick="selectTruck($!truckPlanOne.planId)"><i class="fa fa-table red"></i></a>
+                                        <a href="#" class="on-default  active"  onclick="selectTruck1($!truckPlanOne.planId)"><i class="fa fa-table"></i></a>
                                     </td>
                                 </tr>
                                 #end
@@ -140,17 +150,14 @@
 														<span class="input-group-addon">
 																<i class="fa fa-calendar"></i> 时间
 															</span>
-                                                <input type="text" class="form-control" name="start">
+                                                <input type="date" class="form-control" name="start">
                                                 <span class="input-group-addon">到</span>
-                                                <input type="text" class="form-control" name="end">
+                                                <input type="date" class="form-control" name="end">
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
-
-                                <button type="button" class="bk-margin-5 btn btn-info" style="float: right; ">查询
+                                <button type="button" class="bk-margin-5 btn btn-info" onclick="selectTruck2()" style="float: right; ">查询
                                 </button>
                             </form>
                         </div>
@@ -180,20 +187,7 @@
                                 </tr>
                                 </thead>
                                 <tbody id="id-tbody">
-                                #foreach($truckOne in $truckEntityList)
-                                <tr class="gradeX">
-                                    <td >$!truckOne.batch</td>
-                                    <td >$!truckOne.type</td>
-                                    <td>
-                                        #if($truckOne.state)
-                                        <span class="label label-default">成品</span>
-                                        #else
-                                        <span class="label label-warning">次品</span>
-                                        #end
-                                    </td>
-                                    <td >$!truckOne.date</td>
-                                </tr>
-                                #end
+
                                 </tbody>
                             </table>
                         </div>
@@ -213,20 +207,80 @@
 
 <!-- 自定义 JS -->
 <script type="text/javascript ">
-    //			   $(function () {
-    //			        $(".datepicker").datepicker({
-    //			            language: "zh-CN",
-    //			            autoclose: true,//选中之后自动隐藏日期选择框
-    //			            clearBtn: true,//清除按钮
-    //			            todayBtn: true,//今日按钮
-    //			            format: "yyyy-mm-dd"//日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
-    //			        });
-    //			    });
+    function selectTruck1(planId) {
+            $.ajax({
+                type: "GET",
+                url: "${ctxPath}/selectTruck1?planId=" + planId,
+                dataType: "json",
+                success: function (data) {
+                    var html = '';
+                    $('#id-tbody').empty( );
+                    if (data.truckEntiyList.length > 0) {
+                        var state;
+                        $.each(data.truckEntiyList, function (Index,truck) {
+                            if( truck.state=="1"){
+                                state="成品";
+                            }else {
+                                state="次品";
+                            }
+                            html += '<tr>'
+                                    + '<td>' + truck.batch + '</td>'
+                                    + '<td>' + truck.type + '</td>'
+                                    + '<td>' +state + '</td>'
+                                    + '<td>' + truck.strDate + '</td>'
+                                    + '</tr>';
+                        });
+                    } else {
+                        html = '<tr class="odd"><td valign="top" colspan="7" class="dataTables_empty">No data available in tab</td></tr>';
+                    }
 
-    //			 	$(".date-picker").datepicker({
-    //				    language: "zh-CN",
-    //				    autoclose: true
-    //				});
+                    $('#id-tbody').html(html);
+//                EditableTable.initialize();
+//                $("#dayPlanRow0").prepend($("#dayPlan-editable0_filter").parent());
+//                $("#dayPlanRow0").prepend($("#dayPlan-editable0_length").parent());
+                },
+                error: function (message) {
+                    alert("查询失败！请检查网络,或者服务器未启动！");
+                }
+            });
+    }
+    function selectTruck2( ) {
+//        $.ajax({
+//            type: "GET",
+//            url: "${ctxPath}/selectTruck1?planId=" + planId,
+//            dataType: "json",
+//            success: function (data) {
+//                var html = '';
+//                $('#id-tbody').empty( );
+//                if (data.truckEntiyList.length > 0) {
+//                    var state;
+//                    $.each(data.truckEntiyList, function (Index,truck) {
+//                        if( truck.state=="1"){
+//                            state="成品";
+//                        }else {
+//                            state="次品";
+//                        }
+//                        html += '<tr>'
+//                                + '<td>' + truck.batch + '</td>'
+//                                + '<td>' + truck.type + '</td>'
+//                                + '<td>' +state + '</td>'
+//                                + '<td>' + truck.strDate + '</td>'
+//                                + '</tr>';
+//                    });
+//                } else {
+//                    html = '<tr class="odd"><td valign="top" colspan="7" class="dataTables_empty">No data available in tab</td></tr>';
+//                }
+//
+//                $('#id-tbody').html(html);
+////                EditableTable.initialize();
+////                $("#dayPlanRow0").prepend($("#dayPlan-editable0_filter").parent());
+////                $("#dayPlanRow0").prepend($("#dayPlan-editable0_length").parent());
+//            },
+//            error: function (message) {
+//                alert("查询失败！请检查网络,或者服务器未启动！");
+//            }
+//        });
+    }
 </script>
 <!-- end: JavaScript-->
 

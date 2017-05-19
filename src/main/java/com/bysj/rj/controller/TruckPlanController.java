@@ -62,7 +62,6 @@ public class TruckPlanController {
     public void  editPlan(HttpServletRequest request, HttpServletResponse response ){
         String truckPlanEntity=request.getParameter("truckPlanEntity").trim();
         String dayPlanArry=request.getParameter("dayPlanArry").trim();
-
         List<DayPlanEntity> dayPlanEntityList=JSONObject.parseArray(dayPlanArry,DayPlanEntity.class);
         TruckPlanEntity truckPlan = JSON.parseObject(truckPlanEntity,TruckPlanEntity.class);
         int result=truckPlanService.editPlan(truckPlan,dayPlanEntityList);

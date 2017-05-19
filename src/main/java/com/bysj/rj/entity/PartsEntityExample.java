@@ -861,6 +861,66 @@ public class PartsEntityExample {
             addCriterion("partition not between", value1, value2, "partition");
             return (Criteria) this;
         }
+
+        public Criteria andPartitionIdIsNull() {
+            addCriterion("partition_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitionIdIsNotNull() {
+            addCriterion("partition_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitionIdEqualTo(Integer value) {
+            addCriterion("partition_id =", value, "partitionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitionIdNotEqualTo(Integer value) {
+            addCriterion("partition_id <>", value, "partitionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitionIdGreaterThan(Integer value) {
+            addCriterion("partition_id >", value, "partitionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitionIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("partition_id >=", value, "partitionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitionIdLessThan(Integer value) {
+            addCriterion("partition_id <", value, "partitionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitionIdLessThanOrEqualTo(Integer value) {
+            addCriterion("partition_id <=", value, "partitionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitionIdIn(List<Integer> values) {
+            addCriterion("partition_id in", values, "partitionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitionIdNotIn(List<Integer> values) {
+            addCriterion("partition_id not in", values, "partitionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitionIdBetween(Integer value1, Integer value2) {
+            addCriterion("partition_id between", value1, value2, "partitionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitionIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("partition_id not between", value1, value2, "partitionId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

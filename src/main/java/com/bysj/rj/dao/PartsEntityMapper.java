@@ -1,12 +1,12 @@
 package com.bysj.rj.dao;
 
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 import com.bysj.rj.entity.PartsEntity;
 import com.bysj.rj.entity.PartsEntityExample;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-
+@Repository
 public interface PartsEntityMapper {
     int countByExample(PartsEntityExample example);
 

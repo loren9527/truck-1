@@ -10,7 +10,12 @@
 
     <!-- Mobile Metas  响应式布局所需的meta元素配置-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <style>
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
 
+    </style>
     <!-- 引入外部CSS js 文件 -->
     #parse("includeLink.html")
     <!-- end 引入外部CSS js 文件 -->
@@ -69,13 +74,13 @@
                                         <div class="alert alert-info">
                                             <div class="row  ">
                                                 <div class="col-md-4 col-sm-6">
-                                                    <strong>转向架种类：</strong> <span >$!resultJSON.truckType0</span>
+                                                    <strong>转向架种类：</strong> <span>$!resultJSON.truckType0</span>
                                                 </div>
                                                 <div class="col-md-4 col-sm-6">
-                                                    <strong>计划单号：</strong> <span >$!resultJSON.truckPlanNumber0</span>
+                                                    <strong>计划单号：</strong> <span>$!resultJSON.truckPlanNumber0</span>
                                                 </div>
                                                 <div class="col-md-4 col-sm-6">
-                                                    <strong>日计划：</strong> <span >>$!resultJSON.dayPlanDate0</span>
+                                                    <strong>日计划：</strong> <span>$!resultJSON.dayPlanDate0</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -87,461 +92,48 @@
                                         <div class="tabs tabs-bottom tabs-info">
                                             <div class="tab-content" style="padding: 10px;">
                                                 <div id="home14" class="tab-pane active">
-                                                    <table>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px; margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                    <div class="panel panel-default"
+                                                         style="margin:0px;padding:0px; ">
+                                                        <div class="panel-body"
+                                                             style="background: #333; color: #aaa;height: 400px; padding-left:15px;  ">
+                                                            <div class="row">
+                                                                <div id="workplaceOne_1" class=" col-md-4 col-sm-4 "
+                                                                     style="height: 370px; overflow-y: scroll;   padding: 5px;">
+                                                                    <div>
 
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-right"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px; margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-right"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px; margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
+                                                                <div id="workplaceOne_2"
+                                                                     class=" col-md-4 col-sm-4 "
+                                                                     style="height: 370px; overflow-y: scroll;   ">
+                                                                    <div>
+
                                                                     </div>
                                                                 </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-right"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px; margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
+                                                                <div id="workplaceOne_3"
+                                                                     class=" col-md-4 col-sm-4 "
+                                                                     style="height: 370px; overflow-y: scroll;  ">
+                                                                    <div>
+
                                                                     </div>
                                                                 </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-right"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px;margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <div>
-                                                        <div style="text-align: right; margin-right: 8%;"><i
-                                                                class="fa fa-chevron-down"
-                                                                style="display: block;"></i><i
-                                                                class="fa fa-chevron-down"
-                                                                style="display: block;"></i><i
-                                                                class="fa fa-chevron-down" style="display: block;"></i>
+                                                            </div>
                                                         </div>
+
                                                     </div>
-
-                                                    <tbody>
-                                                    <table>
-
-                                                        <tr>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-left"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-left"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-left"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-left"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-
-
                                                 </div>
                                                 <div id="profile14" class="tab-pane  ">
-                                                    <table>
-                                                        <tbody>
-                                                        <tr style="margin-bottom: 15px;">
-                                                            <td style="width: 10%; padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
+                                                    <div class="panel panel-default">
+                                                        <video width="100%" height="400" controls autoplay>
+                                                            <source src="movie.ogg" type="video/ogg">
+                                                            <source src="movie.mp4" type="video/mp4">
+                                                            <source src="movie.webm" type="video/webm">
+                                                            <object data="movie.mp4" width="100%" height="400">
+                                                                <embed width="100%" height="400" src="${ctxPath}/video/videos.mp4">
+                                                            </object>
+                                                        </video>
 
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="width: 10%; padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%; padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <ul class="nav nav-tabs nav-right">
@@ -563,1028 +155,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-primary" id="panel-2" data-portlet-item>
-                        <div class="panel-heading  ">
-                            <h6>
-                                <i class="fa fa-cogs"></i>2号生产车间
-                            </h6>
-                            <div class="panel-actions">
-                                <a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
-                                <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div style="padding:5px">
-                                <div class="row  ">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="alert alert-info">
-                                            <div class="row  ">
-                                                <div class="col-md-4 col-sm-6">
-                                                    <strong>转向架种类：</strong> <span >$!resultJSON.truckType1</span>
-                                                </div>
-                                                <div class="col-md-4 col-sm-6">
-                                                    <strong>计划单号：</strong> <span >$!resultJSON.truckPlanNumber1</span>
-                                                </div>
-                                                <div class="col-md-4 col-sm-6">
-                                                    <strong>日计划：</strong> <span >>$!resultJSON.dayPlanDate1</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="row  ">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="tabs tabs-bottom tabs-info">
-                                            <div class="tab-content" style="padding: 10px;">
-                                                <div id="home14" class="tab-pane active">
-                                                    <table>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px; margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-right"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px; margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-right"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px; margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-right"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px; margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-right"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px;margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <div>
-                                                        <div style="text-align: right; margin-right: 8%;"><i
-                                                                class="fa fa-chevron-down"
-                                                                style="display: block;"></i><i
-                                                                class="fa fa-chevron-down"
-                                                                style="display: block;"></i><i
-                                                                class="fa fa-chevron-down" style="display: block;"></i>
-                                                        </div>
-                                                    </div>
-
-                                                    <tbody>
-                                                    <table>
-
-                                                        <tr>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-left"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-left"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-left"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-left"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-
-
-                                                </div>
-                                                <div id="profile14" class="tab-pane  ">
-                                                    <table>
-                                                        <tbody>
-                                                        <tr style="margin-bottom: 15px;">
-                                                            <td style="width: 10%; padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="width: 10%; padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%; padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <ul class="nav nav-tabs nav-right">
-                                                <li class="active">
-                                                    <a href="#home14" data-toggle="tab"><i
-                                                            class="fa fa-home"></i>生产监控</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#profile14" data-toggle="tab">视频监控</a>
-                                                </li>
-                                                <li style="float:right;">
-                                                    <a data-toggle="modal" data-target="#machineStart"><i
-                                                            class="fa fa-cogs"></i> &nbsp;起停控制</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-primary" id="panel-3" data-portlet-item>
-                        <div class="panel-heading  ">
-                            <h6>
-                                <i class="fa fa-cogs"></i>3号生产车间
-                            </h6>
-                            <div class="panel-actions">
-                                <a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
-                                <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div style="padding:5px">
-                                <div class="row  ">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="alert alert-info">
-                                            <div class="row  ">
-                                                <div class="col-md-4 col-sm-6">
-                                                    <strong>转向架种类：</strong> <span >$!resultJSON.truckType2</span>
-                                                </div>
-                                                <div class="col-md-4 col-sm-6">
-                                                    <strong>计划单号：</strong> <span >$!resultJSON.truckPlanNumber2</span>
-                                                </div>
-                                                <div class="col-md-4 col-sm-6">
-                                                    <strong>日计划：</strong> <span >>$!resultJSON.dayPlanDate2</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row  ">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="tabs tabs-bottom tabs-info">
-                                            <div class="tab-content" style="padding: 10px;">
-                                                <div id="home14" class="tab-pane active">
-                                                    <table>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px; margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-right"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px; margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-right"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px; margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-right"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px; margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-right"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-right"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default"
-                                                                     style="margin-bottom: 0px;margin-top: 20px;">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <div>
-                                                        <div style="text-align: right; margin-right: 8%;"><i
-                                                                class="fa fa-chevron-down"
-                                                                style="display: block;"></i><i
-                                                                class="fa fa-chevron-down"
-                                                                style="display: block;"></i><i
-                                                                class="fa fa-chevron-down" style="display: block;"></i>
-                                                        </div>
-                                                    </div>
-
-                                                    <tbody>
-                                                    <table>
-
-                                                        <tr>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-left"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-left"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-left"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 1%;">
-                                                                <span>  <i class="fa fa-chevron-left"
-                                                                           style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i><i
-                                                                        class="fa fa-chevron-left"
-                                                                        style="display: inline;"></i> </span>
-                                                            </td>
-                                                            <td style="width: 9%;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-
-
-                                                </div>
-                                                <div id="profile14" class="tab-pane  ">
-                                                    <table>
-                                                        <tbody>
-                                                        <tr style="margin-bottom: 15px;">
-                                                            <td style="width: 10%; padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="width: 10%; padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%; padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body"
-                                                                         style="background-color:#FCFCFC">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;  ">
-                                                                        <div class="row">
-                                                                            <div id="" class=" col-md-8 col-sm-8 ">
-                                                                                xxxxxxxxxxxx
-                                                                            </div>
-                                                                            <div class=" col-md-4 col-sm-4">
-                                                                                <a data-toggle="modal"
-                                                                                   data-target="#machineSet"><i
-                                                                                        class="fa fa-wrench"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                            <td style="width: 10%;padding: 5px;">
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-body">
-                                                                        Lorem ipsum dolor sit amet, consectetuer
-                                                                        adipiscing elit,
-                                                                    </div>
-                                                                    <div class="panel-footer"
-                                                                         style="margin: 0px; margin-top: 0px;">Panel
-                                                                        footer
-                                                                    </div>
-
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <ul class="nav nav-tabs nav-right">
-                                                <li class="active">
-                                                    <a href="#home14" data-toggle="tab"><i
-                                                            class="fa fa-home"></i>生产监控</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#profile14" data-toggle="tab">视频监控</a>
-                                                </li>
-                                                <li style="float:right;">
-                                                    <a data-toggle="modal" data-target="#machineStart"><i
-                                                            class="fa fa-cogs"></i> &nbsp;起停控制</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1615,7 +186,7 @@
                             </div>
                             <div class="col-sm-6 col-dm-6">
                                 <div class="input-group" style="margin-bottom: 10px;">
-                                    <span class="input-group-addon" id="basic-addon1">xxxx</span>
+                                    <span class="input-group-addon" id="basic-addon2">xxxx</span>
                                     <select class="form-control">
                                         <option>xxxx</option>
                                         <option>xxxx</option>
@@ -1648,11 +219,12 @@
                     <h4 class="modal-title">车间机器起停控制</h4>
                 </div>
                 <div class="modal-body">
-                    <strong>确定要停止运行吗？</strong>
+                    <strong style="display: inline;">确定要启动运行吗？</strong>
+                    <strong style="display: none;">确定要停止运行吗？</strong>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">确定</button>
+                    <button type="button" class="btn btn-primary" onclick="startCreate()">确定</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -1660,9 +232,64 @@
     <!-- End 工位机器的模态框-->
 </div>
 <!--/container-->
+<script src="${ctxPath}/assets/js/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        // 指定websocket路径
 
-<div class="clearfix"></div>
+        var websocket = new WebSocket('ws://localhost:8080/truck-1/websocket/chat');
 
+        websocket.onmessage = function (event) {
+            // 接收服务端的实时日志并添加到HTML页面中
+            var item = JSON.parse(event.data);
+            $("#workplaceOne_1 div").append(item.employeePlace + "&nbsp;&nbsp;" + item.employeeName + "&nbsp;&nbsp;" + item.employeeGrade + "<br>");
+            $("#workplaceOne_1").scrollTop($("#workplaceOne_1 div").height() - $("#workplaceOne_1").height());
+
+            $("#workplaceOne_2 div").append(item.truckNumber + "&nbsp;&nbsp;" + item.state + "&nbsp;&nbsp;" + item.date + "<br>");
+            $("#workplaceOne_2").scrollTop($("#workplaceOne_2 div").height() - $("#workplaceOne_2").height());
+
+            $("#workplaceOne_3 div").append(item.currentOperation + "<br>");
+            $("#workplaceOne_3").scrollTop($("#workplaceOne_3 div").height() - $("#workplaceOne_3").height());
+
+        };
+
+        websocket.onerror = function (event) {
+            // 接收服务端的实时日志并添加到HTML页面
+            alert(event.data)
+        }
+        websocket.onopen = function () {
+            // 接收服务端的实时日志并添加到HTML页面中
+            $("#log-container_1 div").append(event.data + "<p> </p>");
+            // 滚动条滚动到最低部
+            $("#log-container_1").scrollTop($("#log-container_1 div").height() - $("#log-container_1").height());
+        }
+
+        window.onbeforeunload = function (event) {
+            websocket.close();
+        }
+
+
+    });
+
+    function startCreate() {
+        $.ajax({
+            type: "GET",
+            url: "${ctxPath}/start",
+            dataType: "json",
+            success: function (data) {
+                if(data.msg===true){
+                    alert("启动成功！");
+                }
+            },
+            error: function (data) {
+                alert("启动失败！请检查网络,或者服务器未启动！");
+            }
+        });
+
+        $('#machineStart').modal('hide');
+    }
+
+</script>
 </body>
 
 </html>

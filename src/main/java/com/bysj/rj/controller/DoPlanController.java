@@ -1,9 +1,6 @@
 package com.bysj.rj.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.bysj.rj.entity.TruckPlanEntity;
-import com.bysj.rj.entity.WorkshopEntity;
-import com.bysj.rj.service.DayPlanService;
 import com.bysj.rj.service.TruckPlanService;
 import com.bysj.rj.service.WorkshopService;
 import org.apache.log4j.Logger;
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * Created by 龙 on 2017/5/13.
@@ -35,4 +31,6 @@ public class DoPlanController {
         request.setAttribute("resultJSON",resultJSON);
         return "doPlan";
     }
+
+
 }
